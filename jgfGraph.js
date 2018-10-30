@@ -3,26 +3,24 @@ const fsExtra = require('fs-extra');
 const check = require('check-types');
 const jgfSchema = require('./jgfSchema').jgfSchema;
 
-class JgfParser {
+class JGFGraph {
     constructor(type = '', label = '') {
         this.validator = new Validator();
 
         this.json = {
-            graph: {
-                type,
-                label,
-                nodes: [],
-                edges: []
-            }
+            type,
+            label,
+            nodes: [],
+            edges: []
         }
     }
 
     get nodes() {
-        return this.json.graph.nodes;
+        return this.json.nodes;
     }
 
     get edges() {
-        return this.json.graph.edges;
+        return this.json.edges;
     }
 
     addNode(id, label, metadata = null) {
@@ -35,7 +33,7 @@ class JgfParser {
         if (check.assigned(metadata)) {
             newNode.metadata = metadata;
         }
-        this.json.graph.nodes.push(newNode);
+        this.json.nodes.push(newNode);
     }
 
     addEdge(source, target, label = null, metadata = null) {
@@ -50,31 +48,23 @@ class JgfParser {
         if (check.assigned(metadata)) {
             edge.metadata = metadata;
         }
-        this.json.graph.edges.push(edge);
+        this.json.edges.push(edge);
     }
 
-    async loadFromFile(filename) {
-        try {
-            this.json = await fsExtra.readJson(filename);
-            let valid = this.validator.validate(this.json, jgfSchema);
+    // async loadFromFile(filename) {
+    //     try {
+    //         this.json = await fsExtra.readJson(filename);
+    //         let valid = this.validator.validate(this.json, jgfSchema);
 
-            if (!valid.valid) {
-                throw new Error(`Invalid JGF format: ${JSON.stringify(valid.errors)}`)
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async saveToFile(filename) {
-        try {
-            await fsExtra.writeJson(filename, this.json);
-        } catch (error) {
-            throw error;
-        }
-    }
+    //         if (!valid.valid) {
+    //             throw new Error(`Invalid JGF format: ${JSON.stringify(valid.errors)}`)
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 }
 
 module.exports = {
-    JgfParser
+    JGFGraph
 };

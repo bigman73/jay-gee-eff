@@ -4,7 +4,7 @@
   "description": "JGF - JSON Graph Format helper module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "JGF",
+    "jsongraph",
     "graph",
     "nodes",
     "vertices",
@@ -23,5 +24,13 @@
   "bugs": {
     "url": "https://github.com/bigman73/jay-gee-eff/issues"
   },
-  "homepage": "https://github.com/bigman73/jay-gee-eff#readme"
+  "homepage": "https://github.com/bigman73/jay-gee-eff#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "check-types": "^7.4.0",
+    "fs-extra": "^7.0.0",
+    "jsonschema": "^1.2.4"
+  }
 }
