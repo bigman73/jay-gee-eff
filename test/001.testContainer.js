@@ -22,16 +22,16 @@ describe('Container', () => {
             assert.notEqual(null, graphs);
             assert.equal(0, graphs.length);
         })
-    }),
+    })
 
-        describe('#addEmptyGraph', () => {
-            it('should add a graph to the container, in Multi-Graph mode', () => {
-                let container = new JGFContainer(singleGraph = false);
+    describe('#addEmptyGraph', () => {
+        it('should add a graph to the container, in Multi-Graph mode', () => {
+            let container = new JGFContainer(singleGraph = false);
 
-                let graph = container.addEmptyGraph();
-                assert.equal(1, container.graphs.length);
-                assert.notEqual(null, graph);
-                assert.notEqual(null, graph.nodes);
-            })
+            let graph = container.addEmptyGraph();
+            assert.equal(1, container.graphs.length);
+            assert.notEqual(null, graph);
+            assert.notEqual(null, graph.nodes);
         })
+    })
 });

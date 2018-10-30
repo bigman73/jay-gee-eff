@@ -52,9 +52,9 @@ describe('Graph', () => {
             graph.addNode(node2Id, node2Label);
 
             assert.equal(2, graph.nodes.length);
-            
+
             graph.addEdge(node1Id, node2Id, playerContractLabel);
-            
+
             assert.equal(1, graph.edges.length);
             assert.equal(playerContractLabel, graph.edges[0].label);
         })

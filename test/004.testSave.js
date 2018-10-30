@@ -3,14 +3,16 @@ const { JGFContainer } = require('../jgfContainer');
 const fsExtra = require('fs-extra');
 const path = require('path');
 
+/* eslint no-invalid-this: 0 */
+
 describe('ContainerSaveToFile', () => {
     describe('#saveToFile-onenode', () => {
-        beforeEach(() => {
+        beforeEach(async() => {
             this.currentTest = {};
             this.currentTest.filename = './test/temp/test-onenode.jgf';
-            fsExtra.ensureDirSync(path.dirname(this.currentTest.filename));
-            if (fsExtra.existsSync(this.currentTest.filename)) {
-                fsExtra.removeSync(this.currentTest.filename);
+            await fsExtra.ensureDir(path.dirname(this.currentTest.filename));
+            if (await fsExtra.exists(this.currentTest.filename)) {
+                await fsExtra.remove(this.currentTest.filename);
             }
         })
 
@@ -25,23 +27,23 @@ describe('ContainerSaveToFile', () => {
 
             await container.saveToFile(this.currentTest.filename);
 
-            assert.equal(true, fsExtra.existsSync(this.currentTest.filename));
-            const stats = fsExtra.statSync(this.currentTest.filename);
+            assert.equal(true, await fsExtra.exists(this.currentTest.filename));
+            const stats = await fsExtra.stat(this.currentTest.filename);
             const fileSizeInBytes = stats.size;
             assert.notEqual(0, fileSizeInBytes);
 
-            const fileContent = fsExtra.readJsonSync(this.currentTest.filename);
+            const fileContent = await fsExtra.readJson(this.currentTest.filename);
             assert.equal(1, fileContent.graph.nodes.length);
         })
     })
 
     describe('#saveToFile-full', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             this.currentTest = {};
             this.currentTest.filename = './test/temp/test-multinodes.jgf';
-            fsExtra.ensureDirSync(path.dirname(this.currentTest.filename));
-            if (fsExtra.existsSync(this.currentTest.filename)) {
-                fsExtra.removeSync(this.currentTest.filename);
+            await fsExtra.ensureDir(path.dirname(this.currentTest.filename));
+            if (await fsExtra.exists(this.currentTest.filename)) {
+                await fsExtra.remove(this.currentTest.filename);
             }
         })
 
@@ -62,9 +64,9 @@ describe('ContainerSaveToFile', () => {
 
             await container.saveToFile(this.currentTest.filename);
 
-            assert.equal(true, fsExtra.existsSync(this.currentTest.filename));
+            assert.equal(true, await fsExtra.exists(this.currentTest.filename));
 
-            const fileContent = fsExtra.readJsonSync(this.currentTest.filename);
+            const fileContent = await fsExtra.readJson(this.currentTest.filename);
             assert.equal(2, fileContent.graph.nodes.length);
             assert.equal(1, fileContent.graph.edges.length);
         })

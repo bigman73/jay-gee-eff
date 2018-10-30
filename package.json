@@ -31,6 +31,7 @@
   "dependencies": {
     "check-types": "^7.4.0",
     "fs-extra": "^7.0.0",
-    "jsonschema": "^1.2.4"
+    "jsonschema": "^1.2.4",
+    "lodash": "^4.17.11"
   }
 }

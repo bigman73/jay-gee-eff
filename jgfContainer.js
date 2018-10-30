@@ -1,5 +1,6 @@
 const Validator = require('jsonschema').Validator;
 const fsExtra = require('fs-extra');
+const _ = require('lodash');
 //const jgfSchema = require('./jgfSchema').jgfSchema;
 const { JGFGraph } = require('./jgfGraph');
 
@@ -12,13 +13,6 @@ class JGFContainer {
         if (singleGraph) {
             this.addEmptyGraph();
         }
-    }
-
-    addEmptyGraph() {
-        let graph = new JGFGraph();
-        this._graphs.push(graph);
-
-        return graph;
     }
 
     get graphs() {
@@ -37,6 +31,14 @@ class JGFContainer {
 
         return this._graphs[0];
     }
+
+    addEmptyGraph() {
+        let graph = new JGFGraph();
+        this._graphs.push(graph);
+
+        return graph;
+    }
+
 
     // async loadFromFile(filename) {
     //     try {
