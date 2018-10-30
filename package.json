@@ -1,0 +1,20 @@
+{
+  "name": "jay-gee-eff",
+  "version": "1.0.1",
+  "description": "JGF - JSON Graph Format helper module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigman73/jay-gee-eff.git"
+  },
+  "keywords": ["JGF", "graph", "nodes", "vertices", "edges", "relationships"],
+  "author": "Bigman73 (https://github.com/bigman73/jay-gee-eff)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bigman73/jay-gee-eff/issues"
+  },
+  "homepage": "https://github.com/bigman73/jay-gee-eff#readme"
+}
