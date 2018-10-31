@@ -16,17 +16,13 @@ class JGFGraph {
     constructor(type = '', label = '', directed = true, metadata = null) {
         this.validator = new Validator();
 
-        this._json = {
-            type,
-            label,
-            directed,
-            nodes: [],
-            edges: []
-        };
-        
-        if (check.assigned(metadata)) {
-            this._json.metadata = metadata;
-        }
+        this._nodes = {};
+        this._edges = [];
+
+        this._type = type;
+        this._label = label;
+        this._directed = directed;
+        this._metadata = metadata;
     }
 
     /**
@@ -34,63 +30,98 @@ class JGFGraph {
      * @param {*} graphJson JGF JSON object
      */
     loadFromJSON(graphJson) {
-        this._json = graphJson;
+        this._type = graphJson.type;
+        this._label = graphJson.label;
+        this._directed = graphJson.directed || true;
+        this._metadata = graphJson.metadata;
+
+        this._nodes = {};
+        this._edges = [];
+        this.addNodes(graphJson.nodes);
+        this.addEdges(graphJson.edges);
     }
 
     /**
      * Returns the graph type
      */
     get type() {
-        return this._json.type;
+        return this._type;
     }
 
     /**
      * Set the graph type
      */
     set type(value) {
-        this._json.type = value;
+        this._type = value;
     }
 
     /**
      * Returns the graph label
      */
     get label() {
-        return this._json.label;
+        return this._label;
     }
 
     /**
      * Set the graph label
      */
     set label(value) {
-        this._json.label = value;
+        this._label = value;
     }
 
     /**
      * Returns the graph meta data
      */
     get metadata() {
-        return this._json.metadata;
+        return this._metadata;
     }
 
     /**
      * Set the graph meta data
      */
     set metadata(value) {
-        this._json.metadata = value;
+        this._metadata = value;
     }
 
     /**
      * Returns all nodes
      */
     get nodes() {
-        return this._json.nodes;
+        return Object.values(this._nodes);
     }
 
     /**
      * Returns all edges
      */
     get edges() {
-        return this._json.edges;
+        return this._edges;
+    }
+
+    /**
+     * Returns the JGF Json
+     */
+    get json() {
+        let json = {
+            type: this._type,
+            label: this._label,
+            directed: this._directed,
+            nodes: [],
+            edges: []
+        };
+
+        if (check.assigned(this._metadata)) {
+            json.metadata = this._metadata;
+        }
+
+        if (check.assigned(this._nodes) && Object.keys(this._nodes).length > 0) {
+            json.nodes = Object.values(this._nodes);
+        }
+
+        if (check.assigned(this._edges) && this._edges.length > 0) {
+            json.edges = this._edges;
+        }
+
+        return json;
     }
 
     /**
@@ -110,7 +141,13 @@ class JGFGraph {
             newNode.metadata = metadata;
         }
 
-        this._json.nodes.push(newNode);
+        this._nodes[newNode.id] = newNode;
+    }
+
+    addNodes(nodes) {
+        for (let node of nodes) {
+            this._nodes[node.id] = node;
+        }
     }
 
     /**
@@ -133,7 +170,11 @@ class JGFGraph {
         if (check.assigned(metadata)) {
             edge.metadata = metadata;
         }
-        this._json.edges.push(edge);
+        this._edges.push(edge);
+    }
+
+    addEdges(edges) {
+        this._edges.push(...edges);
     }
 }
 

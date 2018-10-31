@@ -134,9 +134,10 @@ class JGFContainer {
 
                 // Add its nodes to the main graph
                 // TODO: Validate that node doesn't exist already (by node id)
-                mainGraph.nodes.push(...partialJson.graph.nodes);
+                mainGraph.addNodes(partialJson.graph.nodes);
+                mainGraph.addEdges(partialJson.graph.edges);
 
-                mainGraph.edges.push(...partialJson.graph.edges);
+                // mainGraph.edges.push(...partialJson.graph.edges);
             }
 
             // TODO: Validate that all edges have valid nodes (by node id)
@@ -154,11 +155,11 @@ class JGFContainer {
         try {
             let containerJson = {};
             if (this.isSingleGraph) {
-                containerJson.graph = this._graphs[0]._json;
+                containerJson.graph = this._graphs[0].json;
             } else {
                 containerJson.graphs = [];
                 this._graphs.forEach((graph) => {
-                    containerJson.graphs.push(graph);
+                    containerJson.graphs.push(graph.json);
                 });
             }
 
