@@ -37,6 +37,10 @@ const program = async () => {
 
     console.log('-- DONE --');
 };
+
+(async () => {
+    await program();
+})();
 ```
 
 # References
