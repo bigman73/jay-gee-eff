@@ -13,7 +13,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Test",
+            "name": "Mocha Test - ALL",
             "args": [
                 "--timeout", "60000"
             ],

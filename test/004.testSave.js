@@ -9,7 +9,7 @@ describe('ContainerSaveToFile', () => {
     describe('#saveToFile-onenode', () => {
         beforeEach(async() => {
             this.currentTest = {};
-            this.currentTest.filename = './test/temp/test-onenode.jgf';
+            this.currentTest.filename = './test/temp/test-onenode.json';
             await fsExtra.ensureDir(path.dirname(this.currentTest.filename));
             if (await fsExtra.exists(this.currentTest.filename)) {
                 await fsExtra.remove(this.currentTest.filename);
@@ -40,7 +40,7 @@ describe('ContainerSaveToFile', () => {
     describe('#saveToFile-full', () => {
         beforeEach(async () => {
             this.currentTest = {};
-            this.currentTest.filename = './test/temp/test-multinodes.jgf';
+            this.currentTest.filename = './test/temp/test-multinodes.json';
             await fsExtra.ensureDir(path.dirname(this.currentTest.filename));
             if (await fsExtra.exists(this.currentTest.filename)) {
                 await fsExtra.remove(this.currentTest.filename);
