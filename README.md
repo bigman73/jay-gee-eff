@@ -1,6 +1,18 @@
 # jay-gee-eff
 JGF - JSON Graph Format npm module
 
+A library that provides the following features:
+1. Create JGF in-memory graphs
+    1. Add nodes
+    2. Add edges
+    3. List nodes
+    4. List edges
+    5. [Coming soon] Search nodes and edges by Id, remove nodes and edges by Id, Update node and edges properties and meta data
+2. Save in-memory graphs into a 100% compatible JGF JSON file
+3. Load a JGF JSON file into memory
+4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
+5. [Coming soon] Ability to load and merge sparse JGF graph files.
+
 # Installation
 ```
 npm install jay-gee-eff --save
