@@ -1,4 +1,7 @@
-const assert = require('assert');
+// const assert = require('assert');
+const chai = require('chai');
+const assert = chai.assert;
+const expect = chai.expect;
 const { JGFContainer } = require('../jgfContainer');
 
 describe('Graph', () => {
@@ -32,6 +35,42 @@ describe('Graph', () => {
             assert.equal(1, graph.nodes.length);
             assert.equal('Power Forward', graph.nodes[0].metadata.position);
             assert.equal(35, graph.nodes[0].metadata.shirt);
+        })
+
+
+        it('should throw an exception when adding a node that already exists', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const nodeId = 'Kevin Durant';
+            const nodeLabel = 'NBAPlayer';
+
+            graph.addNode(nodeId, nodeLabel);
+
+            assert.throw(() => graph.addNode(nodeId, nodeLabel), Error, 'A node already exists');
+        })
+
+        it('should throw an exception when adding nodes that already exist', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const nodeId = 'Kevin Durant';
+            const nodeLabel = 'NBAPlayer';
+
+            graph.addNode(nodeId, nodeLabel);
+
+            const moreNodes = [
+                {
+                    id: 'Kevin Durant',
+                    label: 'NBAPlayer'
+                },
+                {
+                    id: 'Kyrie Irving',
+                    label: 'NBAPlayer'
+                }
+            ];
+
+            assert.throw(() => graph.addNodes(moreNodes), Error, 'A node already exists');
         })
     })
 

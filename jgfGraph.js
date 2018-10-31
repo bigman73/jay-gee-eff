@@ -131,6 +131,10 @@ class JGFGraph {
      * @param {*} metadata A JSON structure with meta data attributes (or 'properties') of the node
      */
     addNode(id, label, metadata = null) {
+        if (id in this._nodes) {
+            throw new Error(`A node already exists with id = ${id}`);
+        }
+
         // TODO: validate node structure
         let newNode = {
             id,
@@ -146,6 +150,10 @@ class JGFGraph {
 
     addNodes(nodes) {
         for (let node of nodes) {
+            if (node.id in this._nodes) {
+                throw new Error(`A node already exists with id = ${node.id}`);
+            }
+
             this._nodes[node.id] = node;
         }
     }
