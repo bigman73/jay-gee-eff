@@ -7,8 +7,9 @@ npm install jay-gee-eff --save
 ```
 
 # Usage
-```JS
+```javascript
 const { JGFContainer } = require('jay-gee-eff');
+const path = require('path');
 
 const program = async () => {
     console.log('Building the NBA JGF Graph...');
@@ -32,8 +33,9 @@ const program = async () => {
     console.log('Adding an edge...');
     graph.addEdge(node1Id, node2Id, playerContractLabel);
 
-    console.log('Saving to file...');
-    await container.saveToFile('./demo/nba-graph.json');
+    const filename = path.join(path.dirname(__filename), 'nba-graph.json');
+    console.log(`Saving to file -> ${filename}`);
+    await container.saveToFile(filename);
 
     console.log('-- DONE --');
 };
