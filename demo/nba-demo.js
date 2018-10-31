@@ -37,7 +37,7 @@ const program = async () => {
     let container2 = new JGFContainer();
     await container2.loadFromFile(filename);
 
-    console.log('Graph nodes');
+    console.log('Graph nodes:');
     for (let node of container2.graph.nodes) {
         console.log(`\t${node.label}`);
     }

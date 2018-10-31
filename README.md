@@ -47,7 +47,7 @@ const program = async () => {
     let container2 = new JGFContainer();
     await container2.loadFromFile(filename);
 
-    console.log('Graph nodes');
+    console.log('Graph nodes:');
     for (let node of container2.graph.nodes) {
         console.log(`\t${node.label}`);
     }
@@ -58,6 +58,20 @@ const program = async () => {
 (async () => {
     await program();
 })();
+```
+
+Expected console output:
+```
+Building the NBA JGF Graph...
+Adding two nodes...
+Adding an edge...
+Saving to file -> /test-jay-gee-eff/demo/nba-graph.json
+Read the saved JGF file
+loadFromFile, isSingleGraph: true
+Graph nodes:
+	LeBron James
+	Los Angeles Lakers
+-- DONE --
 ```
 
 # References
