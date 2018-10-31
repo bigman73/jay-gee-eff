@@ -42,6 +42,11 @@ const program = async () => {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
+    console.log('Graph edges:');
+    for (let edge of container2.graph.edges) {
+        console.log(`\t${edge.source} (->${edge.label}->) ${edge.target}`);
+    }
+
     console.log('-- DONE --');
 };
 

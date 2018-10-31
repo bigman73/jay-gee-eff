@@ -69,6 +69,11 @@ const program = async () => {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
+    console.log('Graph edges:');
+    for (let edge of container2.graph.edges) {
+        console.log(`\t${edge.source} (->${edge.label}->) ${edge.target}`);
+    }
+
     console.log('-- DONE --');
 };
 
@@ -88,6 +93,8 @@ loadFromFile, isSingleGraph: true
 Graph nodes:
 	LeBron James {NBA Player}
 	Los Angeles Lakers {NBA Team}
+Graph edges:
+	lebron-james#2544 (->Plays for->) la-lakers#1610616839    
 -- DONE --
 ```
 
