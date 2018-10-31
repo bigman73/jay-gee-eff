@@ -1,4 +1,5 @@
-const assert = require('assert');
+const chai = require('chai');
+const assert = chai.assert;
 const { JGFContainer } = require('../jgfContainer');
 const fsExtra = require('fs-extra');
 const path = require('path');

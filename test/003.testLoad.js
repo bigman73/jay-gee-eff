@@ -1,4 +1,5 @@
-const assert = require('assert');
+const chai = require('chai');
+const assert = chai.assert;
 const { JGFContainer } = require('../jgfContainer');
 
 /* eslint no-invalid-this: 0 */
