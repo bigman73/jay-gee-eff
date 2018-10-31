@@ -7,17 +7,18 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\index.js"
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "name": "Mocha Test - ALL",
             "args": [
                 "--timeout", "60000"
             ],
             "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run NBA graph demo",
+            "args": [],
+            "program": "${workspaceFolder}/demo/nba-demo.js"
         }
     ]
 }

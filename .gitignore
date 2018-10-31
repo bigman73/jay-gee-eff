@@ -63,3 +63,4 @@ typings/
 
 # Temporary test files
 test/temp
+demo/nba-graph.json

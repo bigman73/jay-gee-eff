@@ -1,14 +1,4 @@
-# jay-gee-eff
-JGF - JSON Graph Format npm module
-
-# Installation
-```
-npm install jay-gee-eff --save
-```
-
-# Usage
-```JS
-const { JGFContainer } = require('jay-gee-eff');
+const { JGFContainer } = require('../index');
 
 const program = async () => {
     console.log('Building the NBA JGF Graph...');
@@ -37,11 +27,7 @@ const program = async () => {
 
     console.log('-- DONE --');
 };
-```
 
-# References
-## JGF Specification
-http://jsongraphformat.info/
-
-## Test Examples
-Source: https://github.com/jsongraph/json-graph-specification/tree/master/examples
+(async () => {
+    await program();
+})();
