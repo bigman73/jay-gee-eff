@@ -14,7 +14,7 @@ const program = async () => {
         type: 'NBA Player'
     };
 
-    const node2Id = 'la-lakers-#1610616839';
+    const node2Id = 'la-lakers#1610616839';
     const node2Label = 'Los Angeles Lakers';
     const metadata2 = {
         type: 'NBA Team'
