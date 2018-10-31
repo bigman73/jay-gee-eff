@@ -25,4 +25,16 @@ describe('ContainerLoadFromFile', () => {
         })
     })
 
+    describe('#loadFromPartialFiles', () => {
+        it('should load from partial graph files (nba*.json)', async () => {
+            let container = new JGFContainer();
+            await container.loadFromPartialFiles('./test/examples/nba*.json');
+            assert.equal(true, container.isSingleGraph, 'Single loaded (merged) graph is expected');
+            let graph = container.graph;
+
+            assert.equal(4, graph.nodes.length, 'two players and two teams');
+            assert.equal(2, graph.edges.length, 'two player-team contracts');
+        })
+    })
+
 });

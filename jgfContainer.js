@@ -1,7 +1,8 @@
 const Validator = require('jsonschema').Validator;
 const fsExtra = require('fs-extra');
-const _ = require('lodash');
+// const _ = require('lodash');
 const { JGFGraph } = require('./jgfGraph');
+const misc = require('./misc');
 
 let jgfSchema = null;
 
@@ -10,7 +11,7 @@ let jgfSchema = null;
  */
 class JGFContainer {
     constructor(singleGraph = true) {
-        this.validator = new Validator();
+        this.JGFSchemaValidator = new Validator();
         this._graphs = [];
         this.isSingleGraph = singleGraph;
 
@@ -69,7 +70,7 @@ class JGFContainer {
             }
 
             this.json = await fsExtra.readJson(filename);
-            let valid = this.validator.validate(this.json, jgfSchema);
+            let valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
 
             if (!valid.valid) {
                 throw new Error(`Invalid JGF format. Validation Errors: ${JSON.stringify(valid.errors)}`)
@@ -90,6 +91,57 @@ class JGFContainer {
                     this._graphs.push(graphInstance);
                 });
             }
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    /**
+     * Loads multiple partial graph files into a single merged in-memory graph
+     * @param {*} filenameWildcard pattern to use for partial JGF files
+     */
+    async loadFromPartialFiles(filenameWildcard) {
+        try {
+            if (!jgfSchema) {
+                jgfSchema = await fsExtra.readJSON('./jgfSchema.json');
+            }
+
+
+            this._graphs = [];
+            this.isSingleGraph = true;
+            let mainGraph = this.addEmptyGraph();
+
+            let files = await misc.getMatchingfiles(filenameWildcard);
+            let firstTime = true;
+
+            for (let filename of files) {
+                console.log(filename);
+
+                // Load partial JGF graph file
+                let partialJson = await fsExtra.readJson(filename); // eslint-disable-line no-await-in-loop
+                let valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
+
+                if (!valid) {
+                    throw new Error(`Invalid graph, filename = ${filename}`);
+                }
+
+                if (firstTime) {
+                    mainGraph.label = partialJson.graph.label;
+                    mainGraph.type = partialJson.graph.type;
+                    mainGraph.directed = partialJson.graph.directed;
+                    mainGraph.metadata = partialJson.graph.metadata;
+                    firstTime = false;
+                }
+
+                // Add its nodes to the main graph
+                // TODO: Validate that node doesn't exist already (by node id)
+                mainGraph.nodes.push(...partialJson.graph.nodes);
+
+                mainGraph.edges.push(...partialJson.graph.edges);
+            }
+
+            // TODO: Validate that all edges have valid nodes (by node id)
         } catch (error) {
             console.error(error);
             throw error;

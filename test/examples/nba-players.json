@@ -1,0 +1,35 @@
+{
+    "graph": {
+        "type": "sports",
+        "label": "NBA Demo Graph",
+        "directed": true,
+        "nodes": [
+            {
+                "id": "lebron-james#2544",
+                "label": "LeBron James",
+                "metadata": {
+                    "type": "NBA Player"
+                }
+            },
+            {
+                "id": "kevin-durant#1234",
+                "label": "Kevin Durant",
+                "metadata": {
+                    "type": "NBA Player"
+                }
+            }
+        ],
+        "edges": [
+            {
+                "source": "lebron-james#2544",
+                "target": "la-lakers#1610616839",
+                "label": "Plays for"
+            },
+            {
+                "source": "kevin-durant#1234",
+                "target": "gsw#98887766",
+                "label": "Plays for"
+            }
+        ]
+    }
+}
