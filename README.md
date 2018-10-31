@@ -19,6 +19,8 @@ npm install jay-gee-eff --save
 ```
 
 # Usage
+## Sample code
+
 ```javascript
 const { JGFContainer } = require('jay-gee-eff');
 const path = require('path');
@@ -72,7 +74,7 @@ const program = async () => {
 })();
 ```
 
-Expected console output:
+### Expected console output:
 ```
 Building the NBA JGF Graph...
 Adding two nodes...
@@ -84,6 +86,36 @@ Graph nodes:
 	LeBron James {NBA Player}
 	Los Angeles Lakers {NBA Team}
 -- DONE --
+```
+
+### The JGF output file:
+```json
+{
+    "graph": {
+        "type": "sports",
+        "label": "NBA Demo Graph",
+        "directed": true,
+        "nodes": [{
+            "id": "lebron-james#2544",
+            "label": "LeBron James",
+            "metadata": {
+                "type": "NBA Player"
+            }
+        }, {
+            "id": "la-lakers#1610616839",
+            "label": "Los Angeles Lakers",
+            "metadata": {
+                "type": "NBA Team"
+            }
+        }],
+        "edges": [{
+                "source": "lebron-james#2544",
+                "target": "la-lakers#1610616839",
+                "label": "Plays for"
+            }
+        ]
+    }
+}
 ```
 
 # References
