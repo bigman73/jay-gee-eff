@@ -1,6 +1,5 @@
 const Validator = require('jsonschema').Validator;
 const fsExtra = require('fs-extra');
-// const _ = require('lodash');
 const { JGFGraph } = require('./jgfGraph');
 const misc = require('./misc');
 
@@ -106,7 +105,6 @@ class JGFContainer {
             if (!jgfSchema) {
                 jgfSchema = await fsExtra.readJSON('./jgfSchema.json');
             }
-
 
             this._graphs = [];
             this.isSingleGraph = true;
