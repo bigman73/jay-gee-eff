@@ -91,7 +91,7 @@ Graph nodes:
 -- DONE --
 ```
 
-### The JGF output file
+### The JGF output file (nba-graph.json)
 ```json
 {
     "graph": {
