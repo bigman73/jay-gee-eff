@@ -7,11 +7,14 @@ A library that provides the following features:
     2. Add edges
     3. List nodes
     4. List edges
-    5. [Coming soon] Search nodes and edges by Id, remove nodes and edges by Id, Update node and edges properties and meta data
+    5. [Coming soon] 
+        1. Search nodes and edges by Id
+        2. Remove nodes and edges by Id
+        3. Update node and edges properties and meta data
 2. Save in-memory graphs into a 100% compatible JGF JSON file
 3. Load a JGF JSON file into memory
 4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
-5. [Coming soon] Ability to load and merge sparse JGF graph files.
+5. [Coming soon] Ability to load and merge sparse JGF graph files
 
 # Installation
 ```
@@ -74,7 +77,7 @@ const program = async () => {
 })();
 ```
 
-### Expected console output:
+### Expected console output
 ```
 Building the NBA JGF Graph...
 Adding two nodes...
@@ -88,7 +91,7 @@ Graph nodes:
 -- DONE --
 ```
 
-### The JGF output file:
+### The JGF output file
 ```json
 {
     "graph": {
