@@ -1,8 +1,9 @@
 const Validator = require('jsonschema').Validator;
 const fsExtra = require('fs-extra');
 const _ = require('lodash');
-const jgfSchema = require('./jgfSchema').jgfSchema;
 const { JGFGraph } = require('./jgfGraph');
+
+let jgfSchema = null;
 
 /**
  * JGF Container (main class) of zero or more JGF graphs
@@ -63,6 +64,10 @@ class JGFContainer {
      */
     async loadFromFile(filename) {
         try {
+            if (!jgfSchema) {
+                jgfSchema = await fsExtra.readJSON('./jgfSchema.json');
+            }
+
             this.json = await fsExtra.readJson(filename);
             let valid = this.validator.validate(this.json, jgfSchema);
 

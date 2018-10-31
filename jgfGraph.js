@@ -13,16 +13,19 @@ class JGFGraph {
      * @param {*} directed true for a directed graph, false for an undirected graph
      * @param {*} metadata A JSON structure with meta data attributes (or 'properties') for the graph
      */
-    constructor(type = '', label = '', directed = true, metadata = {}) {
+    constructor(type = '', label = '', directed = true, metadata = null) {
         this.validator = new Validator();
 
         this._json = {
             type,
             label,
             directed,
-            metadata,
             nodes: [],
             edges: []
+        };
+        
+        if (check.assigned(metadata)) {
+            this._json.metadata = metadata;
         }
     }
 
@@ -93,7 +96,7 @@ class JGFGraph {
     /**
      * Adds a new node
      * @param {*} id Node id
-     * @param {*} label Node label (AKA 'node type')
+     * @param {*} label Node label
      * @param {*} metadata A JSON structure with meta data attributes (or 'properties') of the node
      */
     addNode(id, label, metadata = null) {
@@ -106,6 +109,7 @@ class JGFGraph {
         if (check.assigned(metadata)) {
             newNode.metadata = metadata;
         }
+
         this._json.nodes.push(newNode);
     }
 
