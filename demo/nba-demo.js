@@ -39,7 +39,7 @@ const program = async () => {
 
     console.log('Graph nodes:');
     for (let node of container2.graph.nodes) {
-        console.log(`\t${node.label}`);
+        console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
     console.log('-- DONE --');
