@@ -42,6 +42,13 @@ class JGFGraph {
     }
 
     /**
+     * Set the graph type
+     */
+    set type(value) {
+        this._json.type = value;
+    }
+
+    /**
      * Returns the graph label
      */
     get label() {
@@ -49,10 +56,24 @@ class JGFGraph {
     }
 
     /**
+     * Set the graph label
+     */
+    set label(value) {
+        this._json.label = value;
+    }
+
+    /**
      * Returns the graph meta data
      */
     get metadata() {
         return this._json.metadata;
+    }
+
+    /**
+     * Set the graph meta data
+     */
+    set metadata(value) {
+        this._json.metadata = value;
     }
 
     /**
