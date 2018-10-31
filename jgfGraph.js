@@ -160,17 +160,33 @@ class JGFGraph {
 
     /**
      * Adds an edge between a source node and a target node
-     * @param {*} source Source node id
-     * @param {*} target Target node id
+     * @param {*} sourceId Source node id
+     * @param {*} targetId Target node id
      * @param {*} label Edge label (AKA 'relationship type')
      * @param {*} metadata A JSON structure with meta data attributes (or 'properties') of the edge
      */
-    addEdge(source, target, label = null, metadata = null) {
+    addEdge(sourceId, targetId, label = null, metadata = null) {
         // TODO: validate edge structure (syntax)
-        // TODO: validate that edges exists (semantics, use hashmap)
+        if (!sourceId) {
+            throw new Error('sourceId parameter is not valid');
+        }
+
+        if (!targetId) {
+            throw new Error('targetId parameter is not valid');
+        }
+
+        // Validate that the edge's nodes exist
+        if (!(sourceId in this._nodes)) {
+            throw new Error(`source node isn't found in nodes. sourceId = ${sourceId}`);
+        }
+
+        if (!(targetId in this._nodes)) {
+            throw new Error(`target node isn't found in nodes. targetId = ${targetId}`);
+        }
+
         let edge = {
-            source,
-            target
+            sourceId,
+            targetId
         };
         if (check.assigned(label)) {
             edge.label = label;
