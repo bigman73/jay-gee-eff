@@ -1,6 +1,5 @@
 const chai = require('chai');
 const assert = chai.assert;
-//const expect = chai.expect; //if you use expect
 const { JGFContainer } = require('../jgfContainer');
 
 /* eslint no-invalid-this: 0 */
@@ -40,16 +39,10 @@ describe('ContainerLoadFromFile', () => {
     })
     describe('#lodeInvalidJsonFile', () => {
         it('should throw an error when loading an invalid json file ')
-        this.currentTest.filename = '' //invild json file URL
+        this.currentTest.filename = './test/examples/bad_car_graphs.json';
         let container = new JGFContainer();
-        assert.throw(() => container.loadFromFile(this.currentTest.filename), Error, 'This is not a valid JSON file');
+        assert.throw(() => container.loadFromFile(this.currentTest.filename), Error, 'Invalid JGF format.');
 
-        /*
-         expect(() => {
-             container.loadFromFile(this.currentTest.filename)
-         }).to.throw(Error);
-              
-         */
     })
 
 });

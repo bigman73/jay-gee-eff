@@ -1,0 +1,47 @@
+{
+    "graphs": [{
+            "type": "car",
+            "label": "Car Manufacturer Relationships",
+            "nodes": ["id nissan", "label Nissan", "id infiniti", "label nfiniti"],
+            "edges": [{
+                    "source": "nissan",
+                    "target": "infiniti",
+                    "relation": "has_luxury_division"
+                },
+                {
+                    "source": "toyota",
+                    "target": "lexus",
+                    "relation": "has_luxury_division"
+                }
+            ]
+        },
+        {
+            "type": "car",
+            "label": "Car Manufacturer Countries",
+            "nodes": [{
+                    "id": "japan",
+                    "label": "Japan"
+                },
+                {
+                    "id": "nissan",
+                    "label": "Nissan"
+                },
+                {
+                    "id": "toyota",
+                    "label": "Toyota"
+                }
+            ],
+            "edges": [{
+                    "source": "nissan",
+                    "target": "japan",
+                    "relation": "country_of_origin"
+                },
+                {
+                    "source": "nissan",
+                    "target": "japan",
+                    "relation": "country_of_origin"
+                }
+            ]
+        }
+    ]
+}
