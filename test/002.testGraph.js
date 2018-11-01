@@ -95,7 +95,6 @@ describe('Graph', () => {
         })
     })
 
-    
     describe('#getNode', () => {
         it('should lookup a node by id', () => {
             let container = new JGFContainer(singleGraph = true);
