@@ -159,6 +159,18 @@ class JGFGraph {
     }
 
     /**
+     * Removes an existing graph node
+     * @param {*} nodeId Node unique id
+     */
+    removeNode(nodeId) {
+        if (!(nodeId in this._nodes)) {
+            throw new Error(`A node doesn't exist with id = ${nodeId}`);
+        }
+
+        Reflect.deleteProperty(this._nodes, nodeId);
+    }
+
+    /**
      * Adds an edge between a source node and a target node
      * @param {*} sourceId Source node id
      * @param {*} targetId Target node id

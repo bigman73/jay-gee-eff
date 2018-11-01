@@ -10,11 +10,11 @@ A library that provides the following features:
     5. [Coming soon] 
         1. Search nodes and edges by Id
         2. Remove nodes and edges by Id
-        3. Update node and edges properties and meta data
+        3. Update node and edge properties, meta data
 2. Save in-memory graphs into a 100% compatible JGF JSON file
 3. Load a JGF JSON file into memory
 4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
-5. [Coming soon] Ability to load and merge sparse JGF graph files
+5. Ability to load and merge partial JGF graph files (a single graph spread over multiple 'partial' graph files)
 
 # Installation
 ```

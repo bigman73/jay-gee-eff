@@ -70,6 +70,29 @@ describe('Graph', () => {
 
             assert.throw(() => graph.addNodes(moreNodes), Error, 'A node already exists');
         })
+
+    })
+
+    describe('#removeNode', () => {
+        it('should remove a node', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const nodeId = 'Kevin Durant';
+            const nodeLabel = 'NBAPlayer';
+
+            graph.addNode(nodeId, nodeLabel);
+
+            graph.removeNode(nodeId);
+            assert.equal(0, graph.nodes.length, 'After removeNode there should be zero nodes');
+        })
+
+        it('should throw an exception when removing a non existant node', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            assert.throws(() => graph.removeNode('some dummy id'), 'A node doesn\'t exist');
+        })
     })
 
     describe('#addGraphEdge', () => {
