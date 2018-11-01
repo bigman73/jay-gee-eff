@@ -9,8 +9,8 @@ A library that provides the following features:
     4. List edges
     5. Remove nodes
     6. Remove edges
-    7. Lookup nodes by Id
-    8. Lookup edges by source and target nodes
+    7. Lookup nodes by id
+    8. Lookup edges by source and target nodes, with optional edge label
     9. [Coming soon] 
         1. Update node and edge properties, meta data
 2. Save in-memory graphs into a 100% compatible JGF JSON file
