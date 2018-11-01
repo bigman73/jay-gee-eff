@@ -1,6 +1,6 @@
 {
   "name": "jay-gee-eff",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "JGF - JSON Graph Format helper module",
   "main": "index.js",
   "scripts": {
