@@ -119,4 +119,26 @@ describe('Graph', () => {
             assert.equal(playerContractLabel, graph.edges[0].label);
         })
     })
+
+    describe('#removeEdges', () => {
+        it('should remove a graph edge', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const node1Id = 'LeBron James';
+            const node1Label = 'NBAPlayer';
+
+            const node2Id = 'LA Lakers';
+            const node2Label = 'NBATeam';
+
+            const playerContractLabel = 'Plays for';
+
+            graph.addNode(node1Id, node1Label);
+            graph.addNode(node2Id, node2Label);
+            graph.addEdge(node1Id, node2Id, playerContractLabel);
+
+            graph.removeEdges(node1Id, node2Id, playerContractLabel);
+            assert.equal(0, graph.edges.length, 'After removeEdges there should be zero edges');
+        })
+    })
 });

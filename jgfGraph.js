@@ -1,5 +1,6 @@
 const Validator = require('jsonschema').Validator;
 const check = require('check-types');
+const _ = require('lodash');
 
 /**
  * A single JGF graph instance, always contained in a parent JGFContainer
@@ -148,6 +149,10 @@ class JGFGraph {
         this._nodes[newNode.id] = newNode;
     }
 
+    /**
+     * Adds multiple nodes
+     * @param {*} nodes A collection of JGF node objects
+     */
     addNodes(nodes) {
         for (let node of nodes) {
             if (node.id in this._nodes) {
@@ -209,8 +214,26 @@ class JGFGraph {
         this._edges.push(edge);
     }
 
+    /**
+     * Adds multiple edges
+     * @param {*} edges A collection of JGF edge obejcts
+     */
     addEdges(edges) {
         this._edges.push(...edges);
+    }
+
+    /**
+     * Removes existing graph edges
+     * @param {*} sourceId Source node id
+     * @param {*} targetId Target node id
+     * @param {*} label Specific edge label type to remove. If empty then all edges will be removed, regardless of their label
+     */
+    removeEdges(sourceId, targetId, label = '') {
+        _.remove(this._edges, (currentEdge) => {
+            return currentEdge.sourceId === sourceId &&
+                currentEdge.targetId === targetId &&
+                (label === '' || currentEdge.label === label);
+        });
     }
 }
 
