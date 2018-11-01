@@ -113,6 +113,8 @@ class JGFContainer {
             let files = await misc.getMatchingfiles(filenameWildcard);
             let firstTime = true;
 
+            let allEdges = [];
+
             for (let filename of files) {
                 console.log(filename);
 
@@ -133,14 +135,14 @@ class JGFContainer {
                 }
 
                 // Add its nodes to the main graph
-                // TODO: Validate that node doesn't exist already (by node id)
                 mainGraph.addNodes(partialJson.graph.nodes);
-                mainGraph.addEdges(partialJson.graph.edges);
-
-                // mainGraph.edges.push(...partialJson.graph.edges);
+                allEdges.push(partialJson.graph.edges);
             }
 
-            // TODO: Validate that all edges have valid nodes (by node id)
+            // Second pass - now that all nodes are added to the graph, add the vertices
+            for (let edges of allEdges) {
+                mainGraph.addEdges(edges);
+            }
         } catch (error) {
             console.error(error);
             throw error;
