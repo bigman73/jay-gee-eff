@@ -176,6 +176,18 @@ class JGFGraph {
     }
 
     /**
+     * Lookup a node by a node id
+     * @param {*} nodeId Unique node id
+     */
+    getNode(nodeId) {
+        if (!(nodeId in this._nodes)) {
+            throw new Error(`A node doesn't exist with id = ${nodeId}`);
+        }
+
+        return this._nodes[nodeId];
+    }
+
+    /**
      * Adds an edge between a source node and a target node
      * @param {*} sourceId Source node id
      * @param {*} targetId Target node id
@@ -235,6 +247,31 @@ class JGFGraph {
                 (label === '' || currentEdge.label === label);
         });
     }
+
+    /**
+     * Get edges between source node and target node, with an optional edge label
+     * @param {*} sourceId
+     * @param {*} targetIf
+     * @param {*} label
+     */
+    getEdges(sourceId, targetId, label = '') {
+        if (!(sourceId in this._nodes)) {
+            throw new Error(`A node doesn't exist with id = ${sourceId}`);
+        }
+
+        if (!(targetId in this._nodes)) {
+            throw new Error(`A node doesn't exist with id = ${targetId}`);
+        }
+
+        let edges = _.filter(this._edges, (edge) => {
+            return edge.sourceId === sourceId &&
+                edge.targetId === targetId &&
+                (label === '' || edge.label === label);
+        });
+
+        return edges;
+    }
+
 }
 
 module.exports = {

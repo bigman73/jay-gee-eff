@@ -95,6 +95,29 @@ describe('Graph', () => {
         })
     })
 
+    
+    describe('#getNode', () => {
+        it('should lookup a node by id', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const nodeId = 'Kevin Durant';
+            const nodeLabel = 'NBAPlayer';
+
+            graph.addNode(nodeId, nodeLabel);
+
+            let node = graph.getNode(nodeId);
+            assert(node !== null);
+            assert(node.id === nodeId);
+        })
+
+        it('should throw an exception when looking up a non existant node', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            assert.throws(() => graph.getNode('some dummy id'), 'A node doesn\'t exist');
+        })
+    })
     describe('#addGraphEdge', () => {
         it('should add a simple edge to a graph', () => {
             let container = new JGFContainer(singleGraph = true);
@@ -140,5 +163,29 @@ describe('Graph', () => {
             graph.removeEdges(node1Id, node2Id, playerContractLabel);
             assert.equal(0, graph.edges.length, 'After removeEdges there should be zero edges');
         })
+    })
+
+    describe('#getEdges', () => {
+        it('should lookup edges', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const node1Id = 'LeBron James';
+            const node1Label = 'NBAPlayer';
+
+            const node2Id = 'LA Lakers';
+            const node2Label = 'NBATeam';
+
+            const playerContractLabel = 'Plays for';
+
+            graph.addNode(node1Id, node1Label);
+            graph.addNode(node2Id, node2Label);
+            graph.addEdge(node1Id, node2Id, playerContractLabel);
+
+            let edges = graph.getEdges(node1Id, node2Id, playerContractLabel);
+            assert(edges !== null);
+            assert.equal(1, edges.length);
+        })
+
     })
 });
