@@ -1,9 +1,16 @@
 const Validator = require('jsonschema').Validator;
 const fsExtra = require('fs-extra');
+const path = require('path');
 const { JGFGraph } = require('./jgfGraph');
 const misc = require('./misc');
 
 let jgfSchema = null;
+
+const readJGFSchema = async () => {
+    const jgfSchemaFilename = path.join(path.dirname(__filename), 'jgfSchema.json');
+
+    jgfSchema = await fsExtra.readJSON(jgfSchemaFilename);
+};
 
 /**
  * JGF Container (main class) of zero or more JGF graphs
@@ -70,7 +77,7 @@ class JGFContainer {
     async loadFromFile(filename) {
         try {
             if (!jgfSchema) {
-                jgfSchema = await fsExtra.readJSON('./jgfSchema.json');
+                await readJGFSchema();
             }
 
             this.json = await fsExtra.readJson(filename);
@@ -108,7 +115,7 @@ class JGFContainer {
     async loadFromPartialFiles(filenameWildcard) {
         try {
             if (!jgfSchema) {
-                jgfSchema = await fsExtra.readJSON('./jgfSchema.json');
+                await readJGFSchema();
             }
 
             this._graphs = [];

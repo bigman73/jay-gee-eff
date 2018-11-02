@@ -186,33 +186,33 @@ class JGFGraph {
 
     /**
      * Adds an edge between a source node and a target node
-     * @param {*} sourceId Source node id
-     * @param {*} targetId Target node id
+     * @param {*} source Source node id
+     * @param {*} target Target node id
      * @param {*} label Edge label (AKA 'relationship type')
      * @param {*} metadata Custom edge meta data 
      * @param {*} directed true for a directed edge, false for undirected
      */
-    addEdge(sourceId, targetId, label = null, metadata = null, directed = null) {
-        if (!sourceId) {
-            throw new Error('sourceId parameter is not valid');
+    addEdge(source, target, label = null, metadata = null, directed = null) {
+        if (!source) {
+            throw new Error('source parameter is not valid');
         }
 
-        if (!targetId) {
-            throw new Error('targetId parameter is not valid');
+        if (!target) {
+            throw new Error('target parameter is not valid');
         }
 
         // Validate that the edge's nodes exist
-        if (!(sourceId in this._nodes)) {
-            throw new Error(`source node isn't found in nodes. sourceId = ${sourceId}`);
+        if (!(source in this._nodes)) {
+            throw new Error(`source node isn't found in nodes. source = ${source}`);
         }
 
-        if (!(targetId in this._nodes)) {
-            throw new Error(`target node isn't found in nodes. targetId = ${targetId}`);
+        if (!(target in this._nodes)) {
+            throw new Error(`target node isn't found in nodes. target = ${target}`);
         }
 
         let edge = {
-            sourceId,
-            targetId
+            source,
+            target
         };
         if (check.assigned(label)) {
             edge.label = label;
@@ -237,36 +237,36 @@ class JGFGraph {
 
     /**
      * Removes existing graph edges
-     * @param {*} sourceId Source node id
-     * @param {*} targetId Target node id
+     * @param {*} source Source node id
+     * @param {*} target Target node id
      * @param {*} label Specific edge label type to remove. If empty then all edges will be removed, regardless of their label
      */
-    removeEdges(sourceId, targetId, label = '') {
+    removeEdges(source, target, label = '') {
         _.remove(this._edges, (currentEdge) => {
-            return currentEdge.sourceId === sourceId &&
-                currentEdge.targetId === targetId &&
+            return currentEdge.source === source &&
+                currentEdge.target === target &&
                 (label === '' || currentEdge.label === label);
         });
     }
 
     /**
      * Get edges between source node and target node, with an optional edge label
-     * @param {*} sourceId
-     * @param {*} targetIf
+     * @param {*} source
+     * @param {*} target
      * @param {*} label
      */
-    getEdges(sourceId, targetId, label = '') {
-        if (!(sourceId in this._nodes)) {
-            throw new Error(`A node doesn't exist with id = ${sourceId}`);
+    getEdges(source, target, label = '') {
+        if (!(source in this._nodes)) {
+            throw new Error(`A node doesn't exist with id = ${source}`);
         }
 
-        if (!(targetId in this._nodes)) {
-            throw new Error(`A node doesn't exist with id = ${targetId}`);
+        if (!(target in this._nodes)) {
+            throw new Error(`A node doesn't exist with id = ${target}`);
         }
 
         let edges = _.filter(this._edges, (edge) => {
-            return edge.sourceId === sourceId &&
-                edge.targetId === targetId &&
+            return edge.source === source &&
+                edge.target === target &&
                 (label === '' || edge.label === label);
         });
 
