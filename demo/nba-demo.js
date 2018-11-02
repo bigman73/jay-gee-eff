@@ -33,7 +33,7 @@ const program = async () => {
     console.log(`Saving to file -> ${filename}`);
     await container.saveToFile(filename);
 
-    console.log('Read the saved JGF file');
+    console.log('Load the saved JGF file');
     let container2 = new JGFContainer();
     await container2.loadFromFile(filename);
 

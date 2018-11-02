@@ -62,7 +62,7 @@ const program = async () => {
     console.log(`Saving to file -> ${filename}`);
     await container.saveToFile(filename);
 
-    console.log('Read the saved JGF file');
+    console.log('Load the saved JGF file');
     let container2 = new JGFContainer();
     await container2.loadFromFile(filename);
 
@@ -90,7 +90,7 @@ Building the NBA JGF Graph...
 Adding two nodes...
 Adding an edge...
 Saving to file -> /test-jay-gee-eff/demo/nba-graph.json
-Read the saved JGF file
+Load the saved JGF file
 loadFromFile, isSingleGraph: true
 Graph nodes:
 	LeBron James {NBA Player}
