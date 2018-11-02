@@ -9,6 +9,11 @@ let jgfSchema = null;
  * JGF Container (main class) of zero or more JGF graphs
  */
 class JGFContainer {
+
+    /**
+     * Constructor
+     * @param {*} singleGraph true for single-graph mode, false for multi-graph mode
+     */
     constructor(singleGraph = true) {
         this.JGFSchemaValidator = new Validator();
         this._graphs = [];

@@ -12,7 +12,6 @@ class JGFGraph {
      * @param {*} type graph classification
      * @param {*} label a text display for the graph
      * @param {*} directed true for a directed graph, false for an undirected graph
-     * @param {*} metadata A JSON structure with meta data attributes (or 'properties') for the graph
      */
     constructor(type = '', label = '', directed = true, metadata = null) {
         this.validator = new Validator();
@@ -129,14 +128,12 @@ class JGFGraph {
      * Adds a new node
      * @param {*} id Node id
      * @param {*} label Node label
-     * @param {*} metadata A JSON structure with meta data attributes (or 'properties') of the node
      */
     addNode(id, label, metadata = null) {
         if (id in this._nodes) {
             throw new Error(`A node already exists with id = ${id}`);
         }
 
-        // TODO: validate node structure
         let newNode = {
             id,
             label
@@ -192,10 +189,8 @@ class JGFGraph {
      * @param {*} sourceId Source node id
      * @param {*} targetId Target node id
      * @param {*} label Edge label (AKA 'relationship type')
-     * @param {*} metadata A JSON structure with meta data attributes (or 'properties') of the edge
      */
     addEdge(sourceId, targetId, label = null, metadata = null) {
-        // TODO: validate edge structure (syntax)
         if (!sourceId) {
             throw new Error('sourceId parameter is not valid');
         }
