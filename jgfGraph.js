@@ -189,8 +189,10 @@ class JGFGraph {
      * @param {*} sourceId Source node id
      * @param {*} targetId Target node id
      * @param {*} label Edge label (AKA 'relationship type')
+     * @param {*} metadata Custom edge meta data 
+     * @param {*} directed true for a directed edge, false for undirected
      */
-    addEdge(sourceId, targetId, label = null, metadata = null) {
+    addEdge(sourceId, targetId, label = null, metadata = null, directed = null) {
         if (!sourceId) {
             throw new Error('sourceId parameter is not valid');
         }
@@ -218,6 +220,10 @@ class JGFGraph {
         if (check.assigned(metadata)) {
             edge.metadata = metadata;
         }
+        if (check.assigned(directed)) {
+            edge.directed = directed;
+        }
+
         this._edges.push(edge);
     }
 
