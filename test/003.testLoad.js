@@ -1,5 +1,5 @@
-const chai = require('chai');
-const assert = chai.assert;
+const { assert } = require('chai');
+const nodeAssert = require('assert');
 const { JGFContainer } = require('../jgfContainer');
 
 /* eslint no-invalid-this: 0 */
@@ -35,6 +35,15 @@ describe('ContainerLoadFromFile', () => {
 
             assert.equal(4, graph.nodes.length, 'two players and two teams');
             assert.equal(2, graph.edges.length, 'two player-team contracts');
+        })
+    })
+
+    describe('#loadInvalidJsonFile', () => {
+        it('should throw an error when loading an invalid json file ', async () => {
+            const badTestFilename = './test/examples/bad_car_graphs.json';
+            let container = new JGFContainer();
+            await nodeAssert.rejects(() => container.loadFromFile(badTestFilename),
+                Error, 'Invalid JGF format.');
         })
     })
 
