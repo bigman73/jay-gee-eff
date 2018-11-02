@@ -1,5 +1,5 @@
-const chai = require('chai');
-const assert = chai.assert;
+const { assert } = require('chai');
+const { assertThrowsAsync } = require('./testCommon');
 const { JGFContainer } = require('../jgfContainer');
 
 /* eslint no-invalid-this: 0 */
@@ -11,7 +11,7 @@ describe('ContainerLoadFromFile', () => {
             this.currentTest.filename = './test/examples/car_graphs.json';
         })
 
-        it('should load the car graphs file (multi graphs)', async() => {
+        it('should load the car graphs file (multi graphs)', async () => {
             let container = new JGFContainer();
             await container.loadFromFile(this.currentTest.filename);
             assert.equal(true, container.isMultiGraph, 'isMultiGraph is expected');
@@ -27,7 +27,7 @@ describe('ContainerLoadFromFile', () => {
     })
 
     describe('#loadFromPartialFiles', () => {
-        it('should load from partial graph files (nba*.json)', async() => {
+        it('should load from partial graph files (nba*.json)', async () => {
             let container = new JGFContainer();
             await container.loadFromPartialFiles('./test/examples/nba*.json');
             assert.equal(true, container.isSingleGraph, 'Single loaded (merged) graph is expected');
@@ -37,12 +37,14 @@ describe('ContainerLoadFromFile', () => {
             assert.equal(2, graph.edges.length, 'two player-team contracts');
         })
     })
-    describe('#lodeInvalidJsonFile', () => {
-        it('should throw an error when loading an invalid json file ')
-        this.currentTest.filename = './test/examples/bad_car_graphs.json';
-        let container = new JGFContainer();
-        assert.throw(() => container.loadFromFile(this.currentTest.filename), Error, 'Invalid JGF format.');
 
+    describe('#loadInvalidJsonFile', () => {
+        it('should throw an error when loading an invalid json file ', () => {
+            const badTestFilename = './test/examples/bad_car_graphs.json';
+            let container = new JGFContainer();
+            assertThrowsAsync(() => container.loadFromFile(badTestFilename),
+                Error, 'Invalid JGF format.');
+        })
     })
 
 });
