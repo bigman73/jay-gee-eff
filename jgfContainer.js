@@ -88,7 +88,7 @@ class JGFContainer {
             }
 
             this.isSingleGraph = Boolean(this.json.graph);
-            console.log(`loadFromFile, isSingleGraph: ${this.isSingleGraph}`);
+            console.debug(`loadFromFile, isSingleGraph: ${this.isSingleGraph}`);
 
             if (this.isSingleGraph) {
                 const singleGraph = new JGFGraph();
@@ -128,7 +128,7 @@ class JGFContainer {
             let allEdges = [];
 
             for (let filename of files) {
-                console.log(filename);
+                console.debug(filename);
 
                 // Load partial JGF graph file
                 let partialJson = await fsExtra.readJson(filename); // eslint-disable-line no-await-in-loop
