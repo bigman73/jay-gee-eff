@@ -132,6 +132,7 @@ describe('Graph', () => {
             assert.throws(() => graph.getNode('some dummy id'), 'A node doesn\'t exist');
         })
     })
+
     describe('#addGraphEdge', () => {
         it('should add a simple edge to a graph', () => {
             let container = new JGFContainer(singleGraph = true);
@@ -202,4 +203,5 @@ describe('Graph', () => {
         })
 
     })
+
 });

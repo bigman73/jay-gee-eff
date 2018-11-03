@@ -24,6 +24,7 @@ class JGFGraph {
         this._label = label;
         this._directed = directed;
         this._metadata = metadata;
+        this._isPartial = false;
     }
 
 
@@ -41,6 +42,20 @@ class JGFGraph {
         this._edges = [];
         this.addNodes(graphJson.nodes);
         this.addEdges(graphJson.edges);
+    }
+
+    /**
+     * Returns the isPartial flag
+     */
+    get isPartial() {
+        return this._isPartial;
+    }
+
+    /**
+     * Set the _isPartial flag
+     */
+    set isPartial(value) {
+        this._isPartial = value;
     }
 
     /**
@@ -108,12 +123,21 @@ class JGFGraph {
             type: this._type,
             label: this._label,
             directed: this._directed,
+            metadata: {},
             nodes: [],
             edges: []
         };
 
         if (check.assigned(this._metadata)) {
             json.metadata = this._metadata;
+        }
+
+        if (this._isPartial) {
+            json.metadata.isPartial = this._isPartial;
+        }
+
+        if (_.isEmpty(json.metadata)) {
+            Reflect.deleteProperty(json, 'metadata');
         }
 
         if (check.assigned(this._nodes) && Object.keys(this._nodes).length > 0) {
@@ -223,20 +247,22 @@ class JGFGraph {
      */
     addEdge(source, target, label = null, metadata = null, directed = null) {
         if (!source) {
-            throw new Error('source parameter is not valid');
+            throw new Error('addEdge failed: source parameter is not valid');
         }
 
         if (!target) {
-            throw new Error('target parameter is not valid');
+            throw new Error('addEdge failed: target parameter is not valid');
         }
 
-        // Validate that the edge's nodes exist
-        if (!(source in this._nodes)) {
-            throw new Error(`source node isn't found in nodes. source = ${source}`);
-        }
+        if (!this._isPartial) {
+            // Validate that the edge's nodes exist
+            if (!(source in this._nodes)) {
+                throw new Error(`addEdge failed: source node isn't found in nodes. source = ${source}`);
+            }
 
-        if (!(target in this._nodes)) {
-            throw new Error(`target node isn't found in nodes. target = ${target}`);
+            if (!(target in this._nodes)) {
+                throw new Error(`addEdge failed: target node isn't found in nodes. target = ${target}`);
+            }
         }
 
         let edge = {
@@ -256,12 +282,17 @@ class JGFGraph {
         this._edges.push(edge);
     }
 
+
     /**
      * Adds multiple edges
      * @param {*} edges A collection of JGF edge obejcts
      */
     addEdges(edges) {
-        this._edges.push(...edges);
+        for (let edge of edges) {
+            this.addEdge(edge.source, edge.target, edge.label, edge.metadata, edge.directed);
+        }
+
+        //this._edges.push(...edges);
     }
 
     /**
@@ -285,12 +316,14 @@ class JGFGraph {
      * @param {*} label
      */
     getEdges(source, target, label = '') {
-        if (!(source in this._nodes)) {
-            throw new Error(`A node doesn't exist with id = ${source}`);
-        }
+        if (!this.isPartial) {
+            if (!(source in this._nodes)) {
+                throw new Error(`A node doesn't exist with id = ${source}`);
+            }
 
-        if (!(target in this._nodes)) {
-            throw new Error(`A node doesn't exist with id = ${target}`);
+            if (!(target in this._nodes)) {
+                throw new Error(`A node doesn't exist with id = ${target}`);
+            }
         }
 
         let edges = _.filter(this._edges, (edge) => {

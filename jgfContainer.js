@@ -125,7 +125,7 @@ class JGFContainer {
             let files = await misc.getMatchingfiles(filenameWildcard);
             let firstTime = true;
 
-            let allEdges = [];
+            let allEdgesGroups = [];
 
             for (let filename of files) {
                 console.debug(filename);
@@ -148,12 +148,12 @@ class JGFContainer {
 
                 // Add its nodes to the main graph
                 mainGraph.addNodes(partialJson.graph.nodes);
-                allEdges.push(partialJson.graph.edges);
+                allEdgesGroups.push(partialJson.graph.edges);
             }
 
             // Second pass - now that all nodes are added to the graph, add the vertices
-            for (let edges of allEdges) {
-                mainGraph.addEdges(edges);
+            for (let edgesGroup of allEdgesGroups) {
+                mainGraph.addEdges(edgesGroup);
             }
         } catch (error) {
             console.error(error);
@@ -177,7 +177,7 @@ class JGFContainer {
                 });
             }
 
-            await fsExtra.writeJson(filename, containerJson);
+            await fsExtra.writeJson(filename, containerJson, {spaces: 4});
         } catch (error) {
             console.error(`Failed saving JGF to file ${filename}, error: ${error}`);
             throw error;
