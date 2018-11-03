@@ -112,7 +112,7 @@ class JGFContainer {
      * Loads multiple partial graph files into a single merged in-memory graph
      * @param {*} filenameWildcard pattern to use for partial JGF files
      */
-    async loadFromPartialFiles(filenameWildcard) {
+    async loadFromPartialFiles(filenameWildcard, type, label) {
         try {
             if (!jgfSchema) {
                 await readJGFSchema();
@@ -121,12 +121,15 @@ class JGFContainer {
             this._graphs = [];
             this.isSingleGraph = true;
             let mainGraph = this.addEmptyGraph();
+            mainGraph.type = type;
+            mainGraph.label = label;
 
             let files = await misc.getMatchingfiles(filenameWildcard);
             let firstTime = true;
 
             let allEdgesGroups = [];
 
+            // 1st pass - Read all partial graphs and only add the nodes, accumulate the edges for the 2nd pass
             for (let filename of files) {
                 console.debug(filename);
 
@@ -139,10 +142,14 @@ class JGFContainer {
                 }
 
                 if (firstTime) {
-                    mainGraph.label = partialJson.graph.label;
-                    mainGraph.type = partialJson.graph.type;
                     mainGraph.directed = partialJson.graph.directed;
+                    // TODO: Merge all meta data sections of partial graphs into one
                     mainGraph.metadata = partialJson.graph.metadata;
+
+                    // Remove is partial. Merge main graph is always full (non-partial) by definition
+                    if (mainGraph.metadata && mainGraph.metadata.isPartial) {
+                        Reflect.deleteProperty(mainGraph.metadata, 'isPartial');
+                    }
                     firstTime = false;
                 }
 
@@ -151,7 +158,7 @@ class JGFContainer {
                 allEdgesGroups.push(partialJson.graph.edges);
             }
 
-            // Second pass - now that all nodes are added to the graph, add the vertices
+            // Second pass - now that all nodes are added to the graph, add the edges
             for (let edgesGroup of allEdgesGroups) {
                 mainGraph.addEdges(edgesGroup);
             }
@@ -165,7 +172,7 @@ class JGFContainer {
      * Saves the in memory JSON graph into a JGF file
      * @param {*} filename JGF filename
      */
-    async saveToFile(filename) {
+    async saveToFile(filename, prettyPrint = false) {
         try {
             let containerJson = {};
             if (this.isSingleGraph) {
@@ -177,7 +184,11 @@ class JGFContainer {
                 });
             }
 
-            await fsExtra.writeJson(filename, containerJson, {spaces: 4});
+            const options = {};
+            if (prettyPrint) {
+                options.spaces = 4;
+            }
+            await fsExtra.writeJson(filename, containerJson, options);
         } catch (error) {
             console.error(`Failed saving JGF to file ${filename}, error: ${error}`);
             throw error;

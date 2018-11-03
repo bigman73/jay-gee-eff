@@ -47,9 +47,11 @@ describe('PartialGraph', () => {
             this.currentTest = {};
             this.currentTest.filename1 = './test/temp/partial-good1.json';
             this.currentTest.filename2 = './test/temp/partial-good2.json';
+            this.currentTest.mainFilename = './test/temp/main-good.json';
             await fsExtra.ensureDir(path.dirname(this.currentTest.filename1));
             await common.safeRemoveFile(this.currentTest.filename1);
             await common.safeRemoveFile(this.currentTest.filename2);
+            await common.safeRemoveFile(this.currentTest.mainFilename);
         })
 
         it('should save and load partial graphs', async () => {
@@ -86,9 +88,11 @@ describe('PartialGraph', () => {
                 path.dirname(this.currentTest.filename1),
                 'partial-good*.json'
             );
-            await container.loadFromPartialFiles(partialWildcard);
+            await container.loadFromPartialFiles(partialWildcard, 'JGFGraph', 'Good Main Graph - merged from partial graphs');
             assert.equal(2, container.graph.nodes.length);
             assert.equal(1, container.graph.edges.length);
+
+            await container.saveToFile(this.currentTest.mainFilename, prettyPrint = true);
         })
     })
 
