@@ -32,8 +32,10 @@ describe('ContainerSaveToFile', () => {
             const fileSizeInBytes = stats.size;
             assert.notEqual(0, fileSizeInBytes);
 
-            const fileContent = await fsExtra.readJson(this.currentTest.filename);
-            assert.equal(1, fileContent.graph.nodes.length);
+            // Ensure that the saved file is read properly back in, and is a valid JGF file
+            let container2 = new JGFContainer();
+            container2.loadFromFile(this.currentTest.filename);
+            assert.equal(1, container.graph.nodes.length);
         })
     })
 
