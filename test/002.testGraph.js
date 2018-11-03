@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const { JGFContainer } = require('../jgfContainer');
 
 describe('Graph', () => {
-    describe('#addGraphNode', () => {
+    describe('#add graph node', () => {
         it('should add a simple node to a graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
@@ -68,6 +68,22 @@ describe('Graph', () => {
             ];
 
             assert.throw(() => graph.addNodes(moreNodes), Error, 'A node already exists');
+        })
+
+    })
+
+    describe('#update graph node', () => {
+        it('should update a node\'s label', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            const nodeId = 'Kevin Love';
+            const nodeLabel = 'NBACoach';
+
+            graph.addNode(nodeId, nodeLabel);
+            const correctLabel = 'NBAPlayer';
+            graph.updateNode(nodeId, correctLabel);
+            assert.equal(correctLabel, graph.nodes[0].label);
         })
 
     })

@@ -1,6 +1,7 @@
 const Validator = require('jsonschema').Validator;
 const check = require('check-types');
 const _ = require('lodash');
+const { cloneObject } = require('./common');
 
 /**
  * A single JGF graph instance, always contained in a parent JGFContainer
@@ -24,6 +25,7 @@ class JGFGraph {
         this._directed = directed;
         this._metadata = metadata;
     }
+
 
     /**
      * Loads the graph from a JGF JSON object
@@ -87,18 +89,19 @@ class JGFGraph {
      * Returns all nodes
      */
     get nodes() {
-        return Object.values(this._nodes);
+        return cloneObject(Object.values(this._nodes));
     }
 
     /**
      * Returns all edges
      */
     get edges() {
-        return this._edges;
+        return cloneObject(this._edges);
     }
 
+
     /**
-     * Returns the JGF Json
+     * Returns the graph as JGF Json
      */
     get json() {
         let json = {
@@ -121,8 +124,9 @@ class JGFGraph {
             json.edges = this._edges;
         }
 
-        return json;
+        return cloneObject(json);
     }
+
 
     /**
      * Adds a new node
@@ -146,6 +150,7 @@ class JGFGraph {
         this._nodes[newNode.id] = newNode;
     }
 
+
     /**
      * Adds multiple nodes
      * @param {*} nodes A collection of JGF node objects
@@ -159,6 +164,30 @@ class JGFGraph {
             this._nodes[node.id] = node;
         }
     }
+
+
+    /**
+     * Updates an existing node
+     * @param {*} nodeId Node id
+     * @param {*} label Updated node label
+     * @param {*} metadata Updated node meta data
+     */
+    updateNode(nodeId, label, metadata = null) {
+        if (!(nodeId in this._nodes)) {
+            throw new Error(`Can't update node. A node doesn't exist with id = ${nodeId}`);
+        }
+
+        let node = this._nodes[nodeId];
+
+        if (check.assigned(label)) {
+            node.label = label;
+        }
+
+        if (check.assigned(metadata)) {
+            node.metadata = metadata;
+        }
+    }
+
 
     /**
      * Removes an existing graph node
@@ -181,7 +210,7 @@ class JGFGraph {
             throw new Error(`A node doesn't exist with id = ${nodeId}`);
         }
 
-        return this._nodes[nodeId];
+        return cloneObject(this._nodes[nodeId]);
     }
 
     /**
@@ -189,7 +218,7 @@ class JGFGraph {
      * @param {*} source Source node id
      * @param {*} target Target node id
      * @param {*} label Edge label (AKA 'relationship type')
-     * @param {*} metadata Custom edge meta data 
+     * @param {*} metadata Custom edge meta data
      * @param {*} directed true for a directed edge, false for undirected
      */
     addEdge(source, target, label = null, metadata = null, directed = null) {
@@ -270,7 +299,7 @@ class JGFGraph {
                 (label === '' || edge.label === label);
         });
 
-        return edges;
+        return cloneObject(edges);
     }
 
 }
