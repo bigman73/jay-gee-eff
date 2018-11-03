@@ -17,7 +17,9 @@
     "nodes",
     "vertices",
     "edges",
-    "relationships"
+    "relationships",
+    "javascript",
+    "es7"
   ],
   "author": "Bigman73 (https://github.com/bigman73/jay-gee-eff)",
   "license": "MIT",
