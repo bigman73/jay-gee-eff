@@ -14,8 +14,8 @@ describe('PartialGraph', () => {
             let graph = container.graph;
             graph.isPartial = true;
 
-            const node1Id = 'LeBron James';
-            const node1Label = 'NBAPlayer';
+            const node1Id = 'lebron-james#2544';
+            const node1Label = 'LeBron James';
 
             const partialNode2Id = 'la-lakers#1610616839';
 

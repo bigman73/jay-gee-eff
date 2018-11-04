@@ -20,8 +20,8 @@ describe('ContainerSaveToFile', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'LeBron James';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'lebron-james#2254';
+            const nodeLabel = 'LeBron James';
 
             graph.addNode(nodeId, nodeLabel);
 
@@ -53,12 +53,12 @@ describe('ContainerSaveToFile', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const node1Id = 'Kyrie Irving';
-            const node1Label = 'NBAPlayer';
+            const node1Id = 'kyrie-irving#9876';
+            const node1Label = 'Kyrie Irving';
             graph.addNode(node1Id, node1Label);
 
-            const node2Id = 'Boston Celtics';
-            const node2Label = 'NBATeam';
+            const node2Id = 'boston-celtics#1231234';
+            const node2Label = 'Boston Celtics';
             graph.addNode(node2Id, node2Label);
 
             const edgeLabel = 'Plays for';

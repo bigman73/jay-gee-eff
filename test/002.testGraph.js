@@ -7,8 +7,8 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'LeBron James';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'lebron-james#2254';
+            const nodeLabel = 'LeBron James';
 
             graph.addNode(nodeId, nodeLabel);
             assert.equal(1, graph.nodes.length);
@@ -20,10 +20,11 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'Kevin Durant';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'kevin-durant#4497';
+            const nodeLabel = 'Kevin Durant';
 
             const metadata = {
+                type: 'NBAPlayer',
                 position: 'Power Forward',
                 shirt: 35
             };
@@ -39,8 +40,8 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'Kevin Durant';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'kevin-durant#4497';
+            const nodeLabel = 'Kevin Durant';
 
             graph.addNode(nodeId, nodeLabel);
 
@@ -51,19 +52,19 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'Kevin Durant';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'kevin-durant#4497';
+            const nodeLabel = 'Kevin Durant';
 
             graph.addNode(nodeId, nodeLabel);
 
             const moreNodes = [
                 {
-                    id: 'Kevin Durant',
-                    label: 'NBAPlayer'
+                    id: 'kevin-durant#4497',
+                    label: 'Kevin Durant'
                 },
                 {
-                    id: 'Kyrie Irving',
-                    label: 'NBAPlayer'
+                    id: 'kyrie-irving#9876',
+                    label: 'Kyrie Irving'
                 }
             ];
 
@@ -77,11 +78,11 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'Kevin Love';
-            const nodeLabel = 'NBACoach';
+            const nodeId = 'kevin-love#0000';
+            const nodeLabel = 'Kevin Lofe';
 
             graph.addNode(nodeId, nodeLabel);
-            const correctLabel = 'NBAPlayer';
+            const correctLabel = 'Kevin Love';
             graph.updateNode(nodeId, correctLabel);
             assert.equal(correctLabel, graph.nodes[0].label);
         })
@@ -93,8 +94,8 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'Kevin Durant';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'kevin-durant#4497';
+            const nodeLabel = 'Kevin Durant';
 
             graph.addNode(nodeId, nodeLabel);
 
@@ -115,8 +116,8 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const nodeId = 'Kevin Durant';
-            const nodeLabel = 'NBAPlayer';
+            const nodeId = 'kevin-durant#4497';
+            const nodeLabel = 'Kevin Durant';
 
             graph.addNode(nodeId, nodeLabel);
 
@@ -138,11 +139,11 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const node1Id = 'LeBron James';
-            const node1Label = 'NBAPlayer';
+            const node1Id = 'lebron-james#2254';
+            const node1Label = 'LeBron James';
 
-            const node2Id = 'LA Lakers';
-            const node2Label = 'NBATeam';
+            const node2Id = 'la-lakers#1610616839';
+            const node2Label = 'Los Angeles Lakers';
 
             const playerContractLabel = 'Plays for';
 
@@ -163,11 +164,11 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const node1Id = 'LeBron James';
-            const node1Label = 'NBAPlayer';
+            const node1Id = 'lebron-james#2254';
+            const node1Label = 'LeBron James';
 
-            const node2Id = 'LA Lakers';
-            const node2Label = 'NBATeam';
+            const node2Id = 'la-lakers#1610616839';
+            const node2Label = 'Los Angeles Lakers';
 
             const playerContractLabel = 'Plays for';
 
@@ -185,11 +186,11 @@ describe('Graph', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const node1Id = 'LeBron James';
-            const node1Label = 'NBAPlayer';
+            const node1Id = 'lebron-james#2254';
+            const node1Label = 'LeBron James';
 
-            const node2Id = 'LA Lakers';
-            const node2Label = 'NBATeam';
+            const node2Id = 'la-lakers#1610616839';
+            const node2Label = 'Los Angeles Lakers';
 
             const playerContractLabel = 'Plays for';
 
@@ -201,7 +202,6 @@ describe('Graph', () => {
             assert(edges !== null);
             assert.equal(1, edges.length);
         })
-
     })
 
 });
