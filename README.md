@@ -60,7 +60,7 @@ const program = async () => {
 
     const filename = path.join(path.dirname(__filename), 'nba-graph.json');
     console.log(`Saving to file -> ${filename}`);
-    await container.saveToFile(filename);
+    await container.saveToFile(filename, prettyPrint = true);
 
     console.log('Load the saved JGF file');
     let container2 = new JGFContainer();
