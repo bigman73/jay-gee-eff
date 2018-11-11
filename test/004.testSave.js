@@ -53,11 +53,11 @@ describe('ContainerSaveToFile', () => {
             let container = new JGFContainer(singleGraph = true);
             let graph = container.graph;
 
-            const node1Id = 'kyrie-irving#9876';
+            const node1Id = 'kyrie-irving#202681';
             const node1Label = 'Kyrie Irving';
             graph.addNode(node1Id, node1Label);
 
-            const node2Id = 'boston-celtics#1231234';
+            const node2Id = 'boston-celtics#1610612738';
             const node2Label = 'Boston Celtics';
             graph.addNode(node2Id, node2Label);
 

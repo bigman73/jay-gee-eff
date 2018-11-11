@@ -12,7 +12,7 @@
                 }
             },
             {
-                "id": "kevin-durant#1234",
+                "id": "kevin-durant#201142",
                 "label": "Kevin Durant",
                 "metadata": {
                     "type": "NBA Player"
@@ -26,8 +26,8 @@
                 "label": "Plays for"
             },
             {
-                "source": "kevin-durant#1234",
-                "target": "gsw#98887766",
+                "source": "kevin-durant#201142",
+                "target": "gsw#1610612744",
                 "label": "Plays for"
             }
         ]
