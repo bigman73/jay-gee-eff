@@ -288,11 +288,11 @@ class JGFGraph {
      * @param {*} edges A collection of JGF edge obejcts
      */
     addEdges(edges) {
-        for (let edge of edges) {
-            this.addEdge(edge.source, edge.target, edge.label, edge.metadata, edge.directed);
+        if (edges) {
+            for (let edge of edges) {
+                this.addEdge(edge.source, edge.target, edge.label, edge.metadata, edge.directed);
+            }
         }
-
-        //this._edges.push(...edges);
     }
 
     /**
@@ -334,7 +334,6 @@ class JGFGraph {
 
         return cloneObject(edges);
     }
-
 }
 
 module.exports = {

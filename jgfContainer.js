@@ -131,7 +131,7 @@ class JGFContainer {
 
             // 1st pass - Read all partial graphs and only add the nodes, accumulate the edges for the 2nd pass
             for (let filename of files) {
-                console.debug(filename);
+                console.debug(`Loading partial graph file: ${filename}`);
 
                 // Load partial JGF graph file
                 let partialJson = await fsExtra.readJson(filename); // eslint-disable-line no-await-in-loop
@@ -154,8 +154,16 @@ class JGFContainer {
                 }
 
                 // Add its nodes to the main graph
-                mainGraph.addNodes(partialJson.graph.nodes);
-                allEdgesGroups.push(partialJson.graph.edges);
+                if (partialJson.graph.nodes && partialJson.graph.nodes.length > 0) {
+                    mainGraph.addNodes(partialJson.graph.nodes);
+                }
+
+                // TODO: Test that a partial node-less/edge only graph passes the schema and can be save and loaded
+
+                // Store edges for the 2nd pass
+                if (partialJson.graph.edges && partialJson.graph.edges.length > 0) {
+                    allEdgesGroups.push(partialJson.graph.edges);
+                }
             }
 
             // Second pass - now that all nodes are added to the graph, add the edges
