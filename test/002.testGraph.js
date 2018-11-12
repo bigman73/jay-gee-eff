@@ -145,17 +145,17 @@ describe('Graph', () => {
             const node2Id = 'la-lakers#1610616839';
             const node2Label = 'Los Angeles Lakers';
 
-            const playerContractLabel = 'Plays for';
+            const playerContractRelation = 'Plays for';
 
             graph.addNode(node1Id, node1Label);
             graph.addNode(node2Id, node2Label);
 
             assert.equal(2, graph.nodes.length);
 
-            graph.addEdge(node1Id, node2Id, playerContractLabel);
+            graph.addEdge(node1Id, node2Id, playerContractRelation);
 
             assert.equal(1, graph.edges.length);
-            assert.equal(playerContractLabel, graph.edges[0].label);
+            assert.equal(playerContractRelation, graph.edges[0].relation);
         })
     })
 
@@ -170,13 +170,13 @@ describe('Graph', () => {
             const node2Id = 'la-lakers#1610616839';
             const node2Label = 'Los Angeles Lakers';
 
-            const playerContractLabel = 'Plays for';
+            const playerContractRelation = 'Plays for';
 
             graph.addNode(node1Id, node1Label);
             graph.addNode(node2Id, node2Label);
-            graph.addEdge(node1Id, node2Id, playerContractLabel);
+            graph.addEdge(node1Id, node2Id, playerContractRelation);
 
-            graph.removeEdges(node1Id, node2Id, playerContractLabel);
+            graph.removeEdges(node1Id, node2Id, playerContractRelation);
             assert.equal(0, graph.edges.length, 'After removeEdges there should be zero edges');
         })
     })
@@ -192,13 +192,13 @@ describe('Graph', () => {
             const node2Id = 'la-lakers#1610616839';
             const node2Label = 'Los Angeles Lakers';
 
-            const playerContractLabel = 'Plays for';
+            const playerContractRelation = 'Plays for';
 
             graph.addNode(node1Id, node1Label);
             graph.addNode(node2Id, node2Label);
-            graph.addEdge(node1Id, node2Id, playerContractLabel);
+            graph.addEdge(node1Id, node2Id, playerContractRelation);
 
-            let edges = graph.getEdges(node1Id, node2Id, playerContractLabel);
+            let edges = graph.getEdges(node1Id, node2Id, playerContractRelation);
             assert(edges !== null);
             assert.equal(1, edges.length);
         })

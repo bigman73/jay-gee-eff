@@ -10,9 +10,9 @@ A library that provides the following features:
     5. Remove nodes
     6. Remove edges
     7. Lookup nodes by id
-    8. Lookup edges by source and target nodes, with optional edge label
-    9. [Coming soon] 
-        1. Update node and edge properties, meta data
+    8. Lookup edges by source and target nodes, with optional edge relation
+    9. Update node properties and meta data
+    10. TODO: Update edge properties and meta data
 2. Save in-memory graphs into a 100% compatible JGF JSON file
 3. Load a JGF JSON file into memory
 4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
@@ -49,14 +49,14 @@ const program = async () => {
         type: 'NBA Team'
     };
 
-    const playerContractLabel = 'Plays for';
+    const playerContractRelation = 'Plays for';
 
     console.log('Adding two nodes...');
     graph.addNode(node1Id, node1Label, metadata1);
     graph.addNode(node2Id, node2Label, metadata2);
 
     console.log('Adding an edge...');
-    graph.addEdge(node1Id, node2Id, playerContractLabel);
+    graph.addEdge(node1Id, node2Id, playerContractRelation);
 
     const filename = path.join(path.dirname(__filename), 'nba-graph.json');
     console.log(`Saving to file -> ${filename}`);
@@ -73,7 +73,7 @@ const program = async () => {
 
     console.log('Graph edges:');
     for (let edge of container2.graph.edges) {
-        console.log(`\t${edge.source} (->${edge.label}->) ${edge.target}`);
+        console.log(`\t${edge.source} (->${edge.relation}->) ${edge.target}`);
     }
 
     console.log('-- DONE --');

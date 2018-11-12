@@ -31,10 +31,10 @@ describe('BadPartialGraph', () => {
             const node2Id = 'la-lakers#1610616839';
             const node2Label = 'Los Angeles Lakers';
 
-            const playerContractLabel = 'Plays for';
+            const playerContractRelation = 'Plays for';
 
             graph1.addNode(node1Id, node1Label);
-            graph1.addEdge(node1Id, badNode2Id, playerContractLabel);
+            graph1.addEdge(node1Id, badNode2Id, playerContractRelation);
 
             let edges = graph1.edges;
             assert(edges !== null);

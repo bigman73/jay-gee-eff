@@ -1,7 +1,8 @@
 const fsExtra = require('fs-extra');
+const fastClone = require('fast-clone');
 
 const cloneObject = (obj) => {
-    return JSON.parse(JSON.stringify(obj));
+    return fastClone(obj);
 };
 
 const safeRemoveFile = async (filename) => {

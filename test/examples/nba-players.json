@@ -23,12 +23,12 @@
             {
                 "source": "lebron-james#2544",
                 "target": "la-lakers#1610616839",
-                "label": "Plays for"
+                "relation": "Plays for"
             },
             {
                 "source": "kevin-durant#201142",
                 "target": "gsw#1610612744",
-                "label": "Plays for"
+                "relation": "Plays for"
             }
         ]
     }

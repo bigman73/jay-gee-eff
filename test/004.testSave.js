@@ -61,8 +61,8 @@ describe('ContainerSaveToFile', () => {
             const node2Label = 'Boston Celtics';
             graph.addNode(node2Id, node2Label);
 
-            const edgeLabel = 'Plays for';
-            graph.addEdge(node1Id, node2Id, edgeLabel);
+            const edgeRelation = 'Plays for';
+            graph.addEdge(node1Id, node2Id, edgeRelation);
 
             await container.saveToFile(this.currentTest.filename);
 

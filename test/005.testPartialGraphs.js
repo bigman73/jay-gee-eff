@@ -18,10 +18,10 @@ describe('PartialGraph', () => {
 
             const partialNode2Id = 'la-lakers#1610616839';
 
-            const playerContractLabel = 'Plays for';
+            const playerContractRelation = 'Plays for';
 
             graph.addNode(node1Id, node1Label);
-            graph.addEdge(node1Id, partialNode2Id, playerContractLabel);
+            graph.addEdge(node1Id, partialNode2Id, playerContractRelation);
 
             let edges = graph.edges;
             assert(edges !== null);
@@ -73,10 +73,10 @@ describe('PartialGraph', () => {
             const node4Id = 'boston-celtics#1610612738';
             const node4Label = 'Boston Celtics';
 
-            const playerContractLabel = 'Plays for';
+            const playerContractRelation = 'Plays for';
 
             graph1.addNode(node1Id, node1Label);
-            graph1.addEdge(node1Id, node2Id, playerContractLabel);
+            graph1.addEdge(node1Id, node2Id, playerContractRelation);
 
             let edges = graph1.edges;
             assert(edges !== null);
@@ -96,7 +96,7 @@ describe('PartialGraph', () => {
             let graph3 = container3.graph;
             graph3.isPartial = true;
 
-            graph3.addEdge(node3Id, node4Id, playerContractLabel);
+            graph3.addEdge(node3Id, node4Id, playerContractRelation);
 
             await container1.saveToFile(this.currentTest.filename1);
             await container2.saveToFile(this.currentTest.filename2);

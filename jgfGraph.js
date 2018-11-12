@@ -241,11 +241,12 @@ class JGFGraph {
      * Adds an edge between a source node and a target node
      * @param {*} source Source node id
      * @param {*} target Target node id
-     * @param {*} label Edge label (AKA 'relationship type')
+     * @param {*} relation Edge relation (AKA 'relationship type')
+     * @param {*} label Edge label (the display name of the edge)
      * @param {*} metadata Custom edge meta data
      * @param {*} directed true for a directed edge, false for undirected
      */
-    addEdge(source, target, label = null, metadata = null, directed = null) {
+    addEdge(source, target, relation = null, label = null, metadata = null, directed = null) {
         if (!source) {
             throw new Error('addEdge failed: source parameter is not valid');
         }
@@ -278,6 +279,9 @@ class JGFGraph {
         if (check.assigned(directed)) {
             edge.directed = directed;
         }
+        if (check.assigned(relation)) {
+            edge.relation = relation;
+        }
 
         this._edges.push(edge);
     }
@@ -290,7 +294,7 @@ class JGFGraph {
     addEdges(edges) {
         if (edges) {
             for (let edge of edges) {
-                this.addEdge(edge.source, edge.target, edge.label, edge.metadata, edge.directed);
+                this.addEdge(edge.source, edge.target, edge.relation, edge.label, edge.metadata, edge.directed);
             }
         }
     }
@@ -299,23 +303,23 @@ class JGFGraph {
      * Removes existing graph edges
      * @param {*} source Source node id
      * @param {*} target Target node id
-     * @param {*} label Specific edge label type to remove. If empty then all edges will be removed, regardless of their label
+     * @param {*} relation Specific edge relation type to remove. If empty then all edges will be removed, regardless of their relation
      */
-    removeEdges(source, target, label = '') {
+    removeEdges(source, target, relation = '') {
         _.remove(this._edges, (currentEdge) => {
             return currentEdge.source === source &&
                 currentEdge.target === target &&
-                (label === '' || currentEdge.label === label);
+                (relation === '' || currentEdge.relation === relation);
         });
     }
 
     /**
-     * Get edges between source node and target node, with an optional edge label
+     * Get edges between source node and target node, with an optional edge relation
      * @param {*} source
      * @param {*} target
-     * @param {*} label
+     * @param {*} relation
      */
-    getEdges(source, target, label = '') {
+    getEdges(source, target, relation = '') {
         if (!this.isPartial) {
             if (!(source in this._nodes)) {
                 throw new Error(`A node doesn't exist with id = ${source}`);
@@ -329,7 +333,7 @@ class JGFGraph {
         let edges = _.filter(this._edges, (edge) => {
             return edge.source === source &&
                 edge.target === target &&
-                (label === '' || edge.label === label);
+                (relation === '' || edge.relation === relation);
         });
 
         return cloneObject(edges);
