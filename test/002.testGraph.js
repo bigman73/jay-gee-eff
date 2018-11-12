@@ -204,4 +204,29 @@ describe('Graph', () => {
         })
     })
 
+    describe('#graphDimensions', () => {
+        it('should return zero dimensions for an empty graph', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            let dimensions = graph.graphDimensions;
+            assert.equal(0, dimensions.nodes);
+            assert.equal(0, dimensions.edges);
+        })
+
+
+        it('should return valid dimensions for a non-empty graph', () => {
+            let container = new JGFContainer(singleGraph = true);
+            let graph = container.graph;
+
+            graph.addNode('node1', 'nodeTypeA');
+            graph.addNode('node2', 'nodeTypeB');
+            graph.addEdge('node1', 'node2', 'edgeTypeC');
+
+            let dimensions = graph.graphDimensions;
+            assert.equal(2, dimensions.nodes);
+            assert.equal(1, dimensions.edges);
+        })
+    })
+
 });

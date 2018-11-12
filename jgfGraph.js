@@ -338,6 +338,18 @@ class JGFGraph {
 
         return cloneObject(edges);
     }
+
+    get graphDimensions() {
+        let dimensions = {
+            nodes: 0,
+            edges: 0
+        };
+
+        dimensions.nodes = Object.keys(this._nodes).length;
+        dimensions.edges = this._edges.length;
+
+        return dimensions;
+    }
 }
 
 module.exports = {
