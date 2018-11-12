@@ -270,6 +270,9 @@ class JGFGraph {
             source,
             target
         };
+        if (check.assigned(relation)) {
+            edge.relation = relation;
+        }
         if (check.assigned(label)) {
             edge.label = label;
         }
@@ -278,9 +281,6 @@ class JGFGraph {
         }
         if (check.assigned(directed)) {
             edge.directed = directed;
-        }
-        if (check.assigned(relation)) {
-            edge.relation = relation;
         }
 
         this._edges.push(edge);
