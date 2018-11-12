@@ -123,7 +123,7 @@ Graph edges:
         "edges": [{
                 "source": "lebron-james#2544",
                 "target": "la-lakers#1610616839",
-                "label": "Plays for"
+                "relation": "Plays for"
             }
         ]
     }
