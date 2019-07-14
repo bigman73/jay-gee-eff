@@ -1,6 +1,9 @@
 const { JGFContainer } = require('../index');
 const path = require('path');
 
+/**
+ * Main program - demonstrates building an NBA JGF graph
+ */
 const program = async () => {
     console.log('Building the NBA JGF Graph...');
     let container = new JGFContainer(singleGraph = true);

@@ -339,6 +339,9 @@ class JGFGraph {
         return cloneObject(edges);
     }
 
+    /**
+     * Returns the graph dimensions - Number of nodes and edges
+     */
     get graphDimensions() {
         let dimensions = {
             nodes: 0,
