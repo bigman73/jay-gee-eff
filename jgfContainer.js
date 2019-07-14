@@ -6,6 +6,9 @@ const misc = require('./misc');
 
 let jgfSchema = null;
 
+/**
+ * Reads the JGF Schema from a JSON file
+ */
 const readJGFSchema = async () => {
     const jgfSchemaFilename = path.join(path.dirname(__filename), 'jgfSchema.json');
 
