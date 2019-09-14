@@ -1,4 +1,4 @@
-# jay-gee-eff
+# jay-gee-eff 
 JGF - JSON Graph Format npm module
 
 A library that provides the following features:
@@ -12,7 +12,6 @@ A library that provides the following features:
     7. Lookup nodes by id
     8. Lookup edges by source and target nodes, with optional edge relation
     9. Update node properties and meta data
-    10. TODO: Update edge properties and meta data
 2. Save in-memory graphs into a 100% compatible JGF JSON file
 3. Load a JGF JSON file into memory
 4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
@@ -129,6 +128,26 @@ Graph edges:
     }
 }
 ```
+
+# Unit Testing
+Unit tests are performed by the mocha framework.
+
+All unit tests files are defined inside the *test* folder and are prefixed with numbers to ensure correct execution order
+
+## From VS.CODE
+Run (or bebug) the **Mocha Test - ALL** launch configuration
+
+## From terminal
+1. Install mocha (once) as a global module
+```
+npm i mocha -g
+```
+
+2. Execute the command in terminal
+```
+mocha
+```
+
 
 # References
 ## JGF Specification
