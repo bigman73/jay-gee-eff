@@ -129,6 +129,26 @@ Graph edges:
 }
 ```
 
+# Unit Testing
+Unit tests are performed by the mocha framework.
+
+All unit tests files are defined inside the *test* folder and are prefixed with numbers to ensure correct execution order
+
+## From VS.CODE
+Run (or bebug) the **Mocha Test - ALL** launch configuration
+
+## From terminal
+1. Install mocha (once) as a global module
+```
+npm i mocha -g
+```
+
+2. Execute the command in terminal
+```
+mocha
+```
+
+
 # References
 ## JGF Specification
 http://jsongraphformat.info/

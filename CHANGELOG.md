@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Lean npm deployment, deployment only mandatory source code, excluding unit tests and demos
+- Improved documentation of how to perform unit testing 
 
 ## [1.1.3] - 2019-07-13
 
