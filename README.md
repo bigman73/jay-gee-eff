@@ -134,20 +134,26 @@ Unit tests are performed by the mocha framework.
 
 All unit tests files are defined inside the *test* folder and are prefixed with numbers to ensure correct execution order
 
-## From VS.CODE
-Run (or bebug) the **Mocha Test - ALL** launch configuration
-
-## From terminal
-1. Install mocha (once) as a global module
+## Install mocha globally
+Install mocha (once) as a global module
 ```
 npm i mocha -g
 ```
 
-2. Execute the command in terminal
+## From VS.CODE
+Run (or bebug) the **Mocha Test - ALL** launch configuration
+
+## From terminal
+
+Execute the command in terminal
 ```
 mocha
 ```
 
+or simply run 
+```
+npm test
+```
 
 # References
 ## JGF Specification

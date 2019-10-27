@@ -11,6 +11,7 @@
     "misc.js"
   ],
   "scripts": {
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,7 @@
     "check-types": "^7.4.0",
     "fast-clone": "^1.5.13",
     "fs-extra": "^7.0.1",
-    "glob": "^7.1.4",
+    "glob": "^7.1.5",
     "jsonschema": "^1.2.4",
     "lodash": "^4.17.15"
   }

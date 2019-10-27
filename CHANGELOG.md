@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [1.2.1] - 2019-10-27
+
+### Added
+- CODEOWNERS file
+- npm test - runs all mocha tests
+
+### Changed
+- Updated npm dependencies: glob
+
+
 ## [1.2.0] - 2019-09-14
 
 ### Added
