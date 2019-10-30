@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [1.2.2] - TBD
+
+### Changed
+- ESLint Code quality improved
+
+
 ## [1.2.1] - 2019-10-27
 
 ### Added
