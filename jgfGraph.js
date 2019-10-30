@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const Validator = require('jsonschema').Validator;
 const check = require('check-types');
 const _ = require('lodash');
