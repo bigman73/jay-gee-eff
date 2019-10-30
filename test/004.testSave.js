@@ -17,8 +17,8 @@ describe('ContainerSaveToFile', () => {
         })
 
         it('should save a graph that only has one node to a file', async () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'lebron-james#2254';
             const nodeLabel = 'LeBron James';
@@ -33,7 +33,7 @@ describe('ContainerSaveToFile', () => {
             assert.notEqual(0, fileSizeInBytes);
 
             // Ensure that the saved file is read properly back in, and is a valid JGF file
-            let container2 = new JGFContainer();
+            const container2 = new JGFContainer();
             container2.loadFromFile(this.currentTest.filename);
             assert.equal(1, container.graph.nodes.length);
         })
@@ -50,8 +50,8 @@ describe('ContainerSaveToFile', () => {
         })
 
         it('should save a graph that has multiple nodes and edges to a file', async () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const node1Id = 'kyrie-irving#202681';
             const node1Label = 'Kyrie Irving';

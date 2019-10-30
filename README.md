@@ -31,8 +31,8 @@ const path = require('path');
 
 const program = async () => {
     console.log('Building the NBA JGF Graph...');
-    let container = new JGFContainer(singleGraph = true);
-    let graph = container.graph;
+    const container = new JGFContainer(singleGraph = true);
+    const graph = container.graph;
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
 
@@ -62,16 +62,16 @@ const program = async () => {
     await container.saveToFile(filename, prettyPrint = true);
 
     console.log('Load the saved JGF file');
-    let container2 = new JGFContainer();
+    const container2 = new JGFContainer();
     await container2.loadFromFile(filename);
 
     console.log('Graph nodes:');
-    for (let node of container2.graph.nodes) {
+    for (const node of container2.graph.nodes) {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
     console.log('Graph edges:');
-    for (let edge of container2.graph.edges) {
+    for (const edge of container2.graph.edges) {
         console.log(`\t${edge.source} (->${edge.relation}->) ${edge.target}`);
     }
 
