@@ -67,7 +67,7 @@ class JGFContainer {
      * Adds an empty graph
      */
     addEmptyGraph() {
-        let graph = new JGFGraph();
+        const graph = new JGFGraph();
         this._graphs.push(graph);
 
         return graph;
@@ -84,7 +84,7 @@ class JGFContainer {
             }
 
             this.json = await fsExtra.readJson(filename);
-            let valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
+            const valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
 
             if (!valid.valid) {
                 throw new Error(`Invalid JGF format. Validation Errors: ${JSON.stringify(valid.errors)}`)
@@ -123,22 +123,22 @@ class JGFContainer {
 
             this._graphs = [];
             this.isSingleGraph = true;
-            let mainGraph = this.addEmptyGraph();
+            const mainGraph = this.addEmptyGraph();
             mainGraph.type = type;
             mainGraph.label = label;
 
-            let files = await misc.getMatchingfiles(filenameWildcard);
+            const files = await misc.getMatchingfiles(filenameWildcard);
             let firstTime = true;
 
-            let allEdgesGroups = [];
+            const allEdgesGroups = [];
 
             // 1st pass - Read all partial graphs and only add the nodes, accumulate the edges for the 2nd pass
-            for (let filename of files) {
+            for (const filename of files) {
                 console.debug(`Loading partial graph file: ${filename}`);
 
                 // Load partial JGF graph file
-                let partialJson = await fsExtra.readJson(filename); // eslint-disable-line no-await-in-loop
-                let valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
+                const partialJson = await fsExtra.readJson(filename); // eslint-disable-line no-await-in-loop
+                const valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
 
                 if (!valid) {
                     throw new Error(`Invalid graph, filename = ${filename}`);
@@ -170,7 +170,7 @@ class JGFContainer {
             }
 
             // Second pass - now that all nodes are added to the graph, add the edges
-            for (let edgesGroup of allEdgesGroups) {
+            for (const edgesGroup of allEdgesGroups) {
                 mainGraph.addEdges(edgesGroup);
             }
         } catch (error) {
@@ -185,7 +185,7 @@ class JGFContainer {
      */
     async saveToFile(filename, prettyPrint = false) {
         try {
-            let containerJson = {};
+            const containerJson = {};
             if (this.isSingleGraph) {
                 containerJson.graph = this._graphs[0].json;
             } else {
