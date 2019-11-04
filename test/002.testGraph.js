@@ -4,8 +4,8 @@ const { JGFContainer } = require('../jgfContainer');
 describe('Graph', () => {
     describe('#add graph node', () => {
         it('should add a simple node to a graph', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'lebron-james#2254';
             const nodeLabel = 'LeBron James';
@@ -17,8 +17,8 @@ describe('Graph', () => {
         })
 
         it('should add a node to a graph, with meta data', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'kevin-durant#4497';
             const nodeLabel = 'Kevin Durant';
@@ -37,8 +37,8 @@ describe('Graph', () => {
 
 
         it('should throw an exception when adding a node that already exists', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'kevin-durant#4497';
             const nodeLabel = 'Kevin Durant';
@@ -49,8 +49,8 @@ describe('Graph', () => {
         })
 
         it('should throw an exception when adding nodes that already exist', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'kevin-durant#4497';
             const nodeLabel = 'Kevin Durant';
@@ -75,8 +75,8 @@ describe('Graph', () => {
 
     describe('#update graph node', () => {
         it('should update a node\'s label', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'kevin-love#0000';
             const nodeLabel = 'Kevin Lofe';
@@ -91,8 +91,8 @@ describe('Graph', () => {
 
     describe('#removeNode', () => {
         it('should remove a node', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'kevin-durant#4497';
             const nodeLabel = 'Kevin Durant';
@@ -104,8 +104,8 @@ describe('Graph', () => {
         })
 
         it('should throw an exception when removing a non existant node', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             assert.throws(() => graph.removeNode('some dummy id'), 'A node doesn\'t exist');
         })
@@ -113,22 +113,22 @@ describe('Graph', () => {
 
     describe('#getNode', () => {
         it('should lookup a node by id', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const nodeId = 'kevin-durant#4497';
             const nodeLabel = 'Kevin Durant';
 
             graph.addNode(nodeId, nodeLabel);
 
-            let node = graph.getNode(nodeId);
+            const node = graph.getNode(nodeId);
             assert(node !== null);
             assert(node.id === nodeId);
         })
 
         it('should throw an exception when looking up a non existant node', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             assert.throws(() => graph.getNode('some dummy id'), 'A node doesn\'t exist');
         })
@@ -136,8 +136,8 @@ describe('Graph', () => {
 
     describe('#addGraphEdge', () => {
         it('should add a simple edge to a graph', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const node1Id = 'lebron-james#2254';
             const node1Label = 'LeBron James';
@@ -161,8 +161,8 @@ describe('Graph', () => {
 
     describe('#removeEdges', () => {
         it('should remove a graph edge', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const node1Id = 'lebron-james#2254';
             const node1Label = 'LeBron James';
@@ -183,8 +183,8 @@ describe('Graph', () => {
 
     describe('#getEdges', () => {
         it('should lookup edges', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             const node1Id = 'lebron-james#2254';
             const node1Label = 'LeBron James';
@@ -198,7 +198,7 @@ describe('Graph', () => {
             graph.addNode(node2Id, node2Label);
             graph.addEdge(node1Id, node2Id, playerContractRelation);
 
-            let edges = graph.getEdges(node1Id, node2Id, playerContractRelation);
+            const edges = graph.getEdges(node1Id, node2Id, playerContractRelation);
             assert(edges !== null);
             assert.equal(1, edges.length);
         })
@@ -206,24 +206,24 @@ describe('Graph', () => {
 
     describe('#graphDimensions', () => {
         it('should return zero dimensions for an empty graph', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
-            let dimensions = graph.graphDimensions;
+            const dimensions = graph.graphDimensions;
             assert.equal(0, dimensions.nodes);
             assert.equal(0, dimensions.edges);
         })
 
 
         it('should return valid dimensions for a non-empty graph', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
 
             graph.addNode('node1', 'nodeTypeA');
             graph.addNode('node2', 'nodeTypeB');
             graph.addEdge('node1', 'node2', 'edgeTypeC');
 
-            let dimensions = graph.graphDimensions;
+            const dimensions = graph.graphDimensions;
             assert.equal(2, dimensions.nodes);
             assert.equal(1, dimensions.edges);
         })

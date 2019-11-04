@@ -19,8 +19,8 @@ describe('BadPartialGraph', () => {
         })
 
         it('should save bad partial graphs but fail loading them', async () => {
-            let container1 = new JGFContainer(singleGraph = true);
-            let graph1 = container1.graph;
+            const container1 = new JGFContainer(singleGraph = true);
+            const graph1 = container1.graph;
             graph1.isPartial = true;
 
             const node1Id = 'lebron-james#2254';
@@ -36,12 +36,12 @@ describe('BadPartialGraph', () => {
             graph1.addNode(node1Id, node1Label);
             graph1.addEdge(node1Id, badNode2Id, playerContractRelation);
 
-            let edges = graph1.edges;
+            const edges = graph1.edges;
             assert(edges !== null);
             assert.equal(1, edges.length);
 
-            let container2 = new JGFContainer(singleGraph = true);
-            let graph2 = container2.graph;
+            const container2 = new JGFContainer(singleGraph = true);
+            const graph2 = container2.graph;
             graph2.isPartial = true;
 
             graph2.addNode(node2Id, node2Label);
@@ -49,7 +49,7 @@ describe('BadPartialGraph', () => {
             await container1.saveToFile(this.currentTest.filename1);
             await container2.saveToFile(this.currentTest.filename2);
 
-            let container = new JGFContainer();
+            const container = new JGFContainer();
             const partialWildcard = path.join(
                 path.dirname(this.currentTest.filename1),
                 'partial-bad*.json'

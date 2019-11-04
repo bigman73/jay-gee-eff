@@ -9,8 +9,8 @@ const common = require('../common');
 describe('PartialGraph', () => {
     describe('#partial graph edges', () => {
         it('should add partial graph edges', () => {
-            let container = new JGFContainer(singleGraph = true);
-            let graph = container.graph;
+            const container = new JGFContainer(singleGraph = true);
+            const graph = container.graph;
             graph.isPartial = true;
 
             const node1Id = 'lebron-james#2544';
@@ -23,7 +23,7 @@ describe('PartialGraph', () => {
             graph.addNode(node1Id, node1Label);
             graph.addEdge(node1Id, partialNode2Id, playerContractRelation);
 
-            let edges = graph.edges;
+            const edges = graph.edges;
             assert(edges !== null);
             assert.equal(1, edges.length);
         })
@@ -31,10 +31,10 @@ describe('PartialGraph', () => {
 
     describe('#loadFromPartialFiles', () => {
         it('should load from partial graph files (nba*.json)', async () => {
-            let container = new JGFContainer();
+            const container = new JGFContainer();
             await container.loadFromPartialFiles('./test/examples/nba*.json');
             assert.equal(true, container.isSingleGraph, 'Single loaded (merged) graph is expected');
-            let graph = container.graph;
+            const graph = container.graph;
 
             assert.equal(4, graph.nodes.length, 'two players and two teams');
             assert.equal(2, graph.edges.length, 'two player-team contracts');
@@ -56,9 +56,9 @@ describe('PartialGraph', () => {
         })
 
         it('should save and load partial graphs', async () => {
-            let container1 = new JGFContainer(singleGraph = true);
+            const container1 = new JGFContainer(singleGraph = true);
             // Graph1 - with nodes and partial edges
-            let graph1 = container1.graph;
+            const graph1 = container1.graph;
             graph1.isPartial = true;
 
             const node1Id = 'lebron-james#2254';
@@ -78,22 +78,22 @@ describe('PartialGraph', () => {
             graph1.addNode(node1Id, node1Label);
             graph1.addEdge(node1Id, node2Id, playerContractRelation);
 
-            let edges = graph1.edges;
+            const edges = graph1.edges;
             assert(edges !== null);
             assert.equal(1, edges.length);
 
-            let container2 = new JGFContainer(singleGraph = true);
+            const container2 = new JGFContainer(singleGraph = true);
             // Graph 2 - Nodes only
-            let graph2 = container2.graph;
+            const graph2 = container2.graph;
             graph2.isPartial = true;
 
             graph2.addNode(node2Id, node2Label);
             graph2.addNode(node3Id, node3Label)
             graph2.addNode(node4Id, node4Label)
 
-            let container3 = new JGFContainer(singleGraph = true);
+            const container3 = new JGFContainer(singleGraph = true);
             // Graph 3 - Edges only
-            let graph3 = container3.graph;
+            const graph3 = container3.graph;
             graph3.isPartial = true;
 
             graph3.addEdge(node3Id, node4Id, playerContractRelation);
@@ -102,7 +102,7 @@ describe('PartialGraph', () => {
             await container2.saveToFile(this.currentTest.filename2);
             await container3.saveToFile(this.currentTest.filename3);
 
-            let container = new JGFContainer();
+            const container = new JGFContainer();
             const partialWildcard = path.join(
                 path.dirname(this.currentTest.filename1),
                 'partial-good*.json'

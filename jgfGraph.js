@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 const Validator = require('jsonschema').Validator;
 const check = require('check-types');
 const _ = require('lodash');
@@ -119,7 +120,7 @@ class JGFGraph {
      * Returns the graph as JGF Json
      */
     get json() {
-        let json = {
+        const json = {
             type: this._type,
             label: this._label,
             directed: this._directed,
@@ -162,7 +163,7 @@ class JGFGraph {
             throw new Error(`A node already exists with id = ${id}`);
         }
 
-        let newNode = {
+        const newNode = {
             id,
             label
         };
@@ -180,7 +181,7 @@ class JGFGraph {
      * @param {*} nodes A collection of JGF node objects
      */
     addNodes(nodes) {
-        for (let node of nodes) {
+        for (const node of nodes) {
             if (node.id in this._nodes) {
                 throw new Error(`A node already exists with id = ${node.id}`);
             }
@@ -201,7 +202,7 @@ class JGFGraph {
             throw new Error(`Can't update node. A node doesn't exist with id = ${nodeId}`);
         }
 
-        let node = this._nodes[nodeId];
+        const node = this._nodes[nodeId];
 
         if (check.assigned(label)) {
             node.label = label;
@@ -266,7 +267,7 @@ class JGFGraph {
             }
         }
 
-        let edge = {
+        const edge = {
             source,
             target
         };
@@ -293,7 +294,7 @@ class JGFGraph {
      */
     addEdges(edges) {
         if (edges) {
-            for (let edge of edges) {
+            for (const edge of edges) {
                 this.addEdge(edge.source, edge.target, edge.relation, edge.label, edge.metadata, edge.directed);
             }
         }
@@ -330,7 +331,7 @@ class JGFGraph {
             }
         }
 
-        let edges = _.filter(this._edges, (edge) => {
+        const edges = _.filter(this._edges, (edge) => {
             return edge.source === source &&
                 edge.target === target &&
                 (relation === '' || edge.relation === relation);
@@ -343,7 +344,7 @@ class JGFGraph {
      * Returns the graph dimensions - Number of nodes and edges
      */
     get graphDimensions() {
-        let dimensions = {
+        const dimensions = {
             nodes: 0,
             edges: 0
         };
