@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [1.3.0] - 2020-03-15
+
+### Changed
+- Fixed eslint configuration (removed babel-eslint), fixed eslint errors
+- Updated npm dependencies: glob, eslint, jsonschema, mocha, fs-extra
+
+
 ## [1.2.2] - 2019-11-03
 
 ### Changed
