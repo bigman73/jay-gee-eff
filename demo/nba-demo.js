@@ -1,13 +1,15 @@
-const { JGFContainer } = require('../index');
+/* eslint-disable no-console */
 const path = require('path');
+const { JGFContainer } = require('../index');
+
 
 /**
  * Main program - demonstrates building an NBA JGF graph
  */
 const program = async () => {
     console.log('Building the NBA JGF Graph...');
-    const container = new JGFContainer(singleGraph = true);
-    const graph = container.graph;
+    const container = new JGFContainer(true);
+    const { graph } = container;
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
 
@@ -34,7 +36,7 @@ const program = async () => {
 
     const filename = path.join(path.dirname(__filename), 'nba-graph.json');
     console.log(`Saving to file -> ${filename}`);
-    await container.saveToFile(filename, prettyPrint = true);
+    await container.saveToFile(filename, true);
 
     console.log('Load the saved JGF file');
     const container2 = new JGFContainer();

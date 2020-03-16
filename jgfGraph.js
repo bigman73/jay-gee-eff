@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-const Validator = require('jsonschema').Validator;
+const { Validator } = require('jsonschema');
 const check = require('check-types');
 const _ = require('lodash');
 const { cloneObject } = require('./common');
@@ -8,7 +8,6 @@ const { cloneObject } = require('./common');
  * A single JGF graph instance, always contained in a parent JGFContainer
  */
 class JGFGraph {
-
     /**
      * Constructor
      * @param {*} type graph classification
@@ -290,12 +289,15 @@ class JGFGraph {
 
     /**
      * Adds multiple edges
-     * @param {*} edges A collection of JGF edge obejcts
+     * @param {*} edges A collection of JGF edge objects
      */
     addEdges(edges) {
         if (edges) {
             for (const edge of edges) {
-                this.addEdge(edge.source, edge.target, edge.relation, edge.label, edge.metadata, edge.directed);
+                this.addEdge(
+                    edge.source, edge.target, edge.relation,
+                    edge.label, edge.metadata, edge.directed
+                );
             }
         }
     }
@@ -304,14 +306,13 @@ class JGFGraph {
      * Removes existing graph edges
      * @param {*} source Source node id
      * @param {*} target Target node id
-     * @param {*} relation Specific edge relation type to remove. If empty then all edges will be removed, regardless of their relation
+     * @param {*} relation Specific edge relation type to remove.
+     *                      If empty then all edges will be removed, regardless of their relation
      */
     removeEdges(source, target, relation = '') {
-        _.remove(this._edges, (currentEdge) => {
-            return currentEdge.source === source &&
-                currentEdge.target === target &&
-                (relation === '' || currentEdge.relation === relation);
-        });
+        _.remove(this._edges, (currentEdge) => currentEdge.source === source
+            && currentEdge.target === target
+            && (relation === '' || currentEdge.relation === relation));
     }
 
     /**
@@ -331,11 +332,9 @@ class JGFGraph {
             }
         }
 
-        const edges = _.filter(this._edges, (edge) => {
-            return edge.source === source &&
-                edge.target === target &&
-                (relation === '' || edge.relation === relation);
-        });
+        const edges = _.filter(this._edges, (edge) => edge.source === source
+            && edge.target === target
+            && (relation === '' || edge.relation === relation));
 
         return cloneObject(edges);
     }

@@ -5,9 +5,7 @@ const fastClone = require('fast-clone');
  * Clones an object (using fast clone)
  * @param {*} obj source object o clone
  */
-const cloneObject = (obj) => {
-    return fastClone(obj);
-};
+const cloneObject = (obj) => fastClone(obj);
 
 /**
  * Removes a file only if it exists

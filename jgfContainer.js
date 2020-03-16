@@ -1,8 +1,10 @@
-const Validator = require('jsonschema').Validator;
+/* eslint-disable no-console */
+/* eslint-disable no-underscore-dangle */
+const { Validator } = require('jsonschema');
 const fsExtra = require('fs-extra');
 const path = require('path');
 const { JGFGraph } = require('./jgfGraph');
-const misc = require('./misc');
+const { getMatchingFiles } = require('./misc');
 
 let jgfSchema = null;
 
@@ -19,7 +21,6 @@ const readJGFSchema = async () => {
  * JGF Container (main class) of zero or more JGF graphs
  */
 class JGFContainer {
-
     /**
      * Constructor
      * @param {*} singleGraph true for single-graph mode, false for multi-graph mode
@@ -39,7 +40,7 @@ class JGFContainer {
      */
     get graphs() {
         if (this.isSingleGraph) {
-            throw new Error('Cannot call graphs() in Single-Graph mode')
+            throw new Error('Cannot call graphs() in Single-Graph mode');
         }
 
         return this._graphs;
@@ -50,7 +51,7 @@ class JGFContainer {
      */
     get graph() {
         if (!this.isSingleGraph) {
-            throw new Error('Cannot call graph() in Multi-Graph mode')
+            throw new Error('Cannot call graph() in Multi-Graph mode');
         }
 
         return this._graphs[0];
@@ -87,7 +88,7 @@ class JGFContainer {
             const valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
 
             if (!valid.valid) {
-                throw new Error(`Invalid JGF format. Validation Errors: ${JSON.stringify(valid.errors)}`)
+                throw new Error(`Invalid JGF format. Validation Errors: ${JSON.stringify(valid.errors)}`);
             }
 
             this.isSingleGraph = Boolean(this.json.graph);
@@ -127,17 +128,19 @@ class JGFContainer {
             mainGraph.type = type;
             mainGraph.label = label;
 
-            const files = await misc.getMatchingfiles(filenameWildcard);
+            const files = await getMatchingFiles(filenameWildcard);
             let firstTime = true;
 
             const allEdgesGroups = [];
 
-            // 1st pass - Read all partial graphs and only add the nodes, accumulate the edges for the 2nd pass
+            // 1st pass - Read all partial graphs and only add the nodes,
+            //   accumulate the edges for the 2nd pass
             for (const filename of files) {
                 console.debug(`Loading partial graph file: ${filename}`);
 
                 // Load partial JGF graph file
-                const partialJson = await fsExtra.readJson(filename); // eslint-disable-line no-await-in-loop
+                // eslint-disable-next-line no-await-in-loop
+                const partialJson = await fsExtra.readJson(filename);
                 const valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
 
                 if (!valid) {
@@ -149,7 +152,8 @@ class JGFContainer {
                     // TODO: Merge all meta data sections of partial graphs into one
                     mainGraph.metadata = partialJson.graph.metadata;
 
-                    // Remove is partial. Merge main graph is always full (non-partial) by definition
+                    // Remove is partial.
+                    //   Merge main graph is always full (non-partial) by definition
                     if (mainGraph.metadata && mainGraph.metadata.isPartial) {
                         Reflect.deleteProperty(mainGraph.metadata, 'isPartial');
                     }
@@ -161,7 +165,8 @@ class JGFContainer {
                     mainGraph.addNodes(partialJson.graph.nodes);
                 }
 
-                // TODO: Test that a partial node-less/edge only graph passes the schema and can be save and loaded
+                // TODO: Test that a partial node-less/edge only graph
+                //   passes the schema and can be save and loaded
 
                 // Store edges for the 2nd pass
                 if (partialJson.graph.edges && partialJson.graph.edges.length > 0) {

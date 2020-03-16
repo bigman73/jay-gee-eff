@@ -3,10 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [1.2.3] - 2019-??-??
+## [1.2.3] - 2020-03-15
 
 ### Changed
-- Updated npm dependencies: glob, eslint
+- Fixed eslint configuration (removed babel-eslint), fixed eslint errors
+- Updated npm dependencies: glob, eslint, jsonschema
 
 
 ## [1.2.2] - 2019-11-03

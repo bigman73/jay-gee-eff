@@ -9,13 +9,13 @@ describe('ContainerLoadFromFile', () => {
         beforeEach(() => {
             this.currentTest = {};
             this.currentTest.filename = './test/examples/car_graphs.json';
-        })
+        });
 
         it('should load the car graphs file (multi graphs)', async () => {
             const container = new JGFContainer();
             await container.loadFromFile(this.currentTest.filename);
             assert.equal(true, container.isMultiGraph, 'isMultiGraph is expected');
-            const graphs = container.graphs;
+            const { graphs } = container;
 
             assert.equal(2, graphs.length, 'car_graphs should have 2 inner graphs');
 
@@ -23,8 +23,8 @@ describe('ContainerLoadFromFile', () => {
             assert.equal('car', firstGraph.type);
             assert.equal(4, firstGraph.nodes.length);
             assert.equal(2, firstGraph.edges.length);
-        })
-    })
+        });
+    });
 
     describe('#loadInvalidJsonFile', () => {
         it('should throw an error when loading an invalid json file ', async () => {
@@ -32,7 +32,6 @@ describe('ContainerLoadFromFile', () => {
             const container = new JGFContainer();
             await nodeAssert.rejects(() => container.loadFromFile(badTestFilename),
                 Error, 'Invalid JGF format.');
-        })
-    })
-
+        });
+    });
 });
