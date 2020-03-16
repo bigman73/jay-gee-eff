@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [1.2.3] - 2020-03-15
+## [1.3.0] - 2020-03-15
 
 ### Changed
 - Fixed eslint configuration (removed babel-eslint), fixed eslint errors
