@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [1.3.1] - 2020-03-16
+## [1.3.1] - 2020-03-22
 - Fixed: README.md, sample code has eslint issues
 - Updated npm dependencies: mocha
 - Fixed: npm audit issues, minimist
