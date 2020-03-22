@@ -30,9 +30,9 @@ const { JGFContainer } = require('jay-gee-eff');
 const path = require('path');
 
 const program = async () => {
-    console.log('Building the NBA JGF Graph...');
-    const container = new JGFContainer(singleGraph = true);
-    const graph = container.graph;
+   console.log('Building the NBA JGF Graph...');
+    const container = new JGFContainer(true);
+    const { graph } = container;
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
 
@@ -48,18 +48,18 @@ const program = async () => {
         type: 'NBA Team'
     };
 
-    const playerContractRelation = 'Plays for';
+    const playerContractLabel = 'Plays for';
 
     console.log('Adding two nodes...');
     graph.addNode(node1Id, node1Label, metadata1);
     graph.addNode(node2Id, node2Label, metadata2);
 
     console.log('Adding an edge...');
-    graph.addEdge(node1Id, node2Id, playerContractRelation);
+    graph.addEdge(node1Id, node2Id, playerContractLabel);
 
     const filename = path.join(path.dirname(__filename), 'nba-graph.json');
     console.log(`Saving to file -> ${filename}`);
-    await container.saveToFile(filename, prettyPrint = true);
+    await container.saveToFile(filename, true);
 
     console.log('Load the saved JGF file');
     const container2 = new JGFContainer();
@@ -72,7 +72,7 @@ const program = async () => {
 
     console.log('Graph edges:');
     for (const edge of container2.graph.edges) {
-        console.log(`\t${edge.source} (->${edge.relation}->) ${edge.target}`);
+        console.log(`\t${edge.source} (->${edge.label}->) ${edge.target}`);
     }
 
     console.log('-- DONE --');
