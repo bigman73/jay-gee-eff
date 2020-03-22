@@ -1,7 +1,7 @@
 # jay-gee-eff 
 JGF - JSON Graph Format npm module
 
-![](https://github.com/bigman73/jay-gee-eff/workflows/nodejs/badge.svg)
+![](https://github.com/bigman73/jay-gee-eff/workflows/nodejs-ci/badge.svg)
 
 A library that provides the following features:
 1. Create JGF in-memory graphs
