@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.0.0] - 2020-04-01
+- BREAKING CHANGE: Modified to latest JGF 2.0 Schema Spec
+
 ## [1.3.1] - 2020-03-22
 - Fixed: README.md, sample code has eslint issues
 - Updated npm dependencies: mocha

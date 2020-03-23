@@ -36,7 +36,7 @@ describe('PartialGraph', () => {
             assert.equal(true, container.isSingleGraph, 'Single loaded (merged) graph is expected');
             const { graph } = container;
 
-            assert.equal(4, graph.nodes.length, 'two players and two teams');
+            assert.equal(4, Object.keys(graph.nodes).length, 'two players and two teams');
             assert.equal(2, graph.edges.length, 'two player-team contracts');
         });
     });
@@ -108,7 +108,7 @@ describe('PartialGraph', () => {
                 'partial-good*.json'
             );
             await container.loadFromPartialFiles(partialWildcard, 'JGFGraph', 'Good Main Graph - merged from partial graphs');
-            assert.equal(4, container.graph.nodes.length, '4 total nodes expected');
+            assert.equal(4, Object.keys(container.graph.nodes).length, '4 total nodes expected');
             assert.equal(2, container.graph.edges.length, '2 total edges expected');
 
             await container.saveToFile(this.currentTest.mainFilename, true);

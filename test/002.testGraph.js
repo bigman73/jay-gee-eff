@@ -11,9 +11,9 @@ describe('Graph', () => {
             const nodeLabel = 'LeBron James';
 
             graph.addNode(nodeId, nodeLabel);
-            assert.equal(1, graph.nodes.length);
-            assert.equal(nodeId, graph.nodes[0].id);
-            assert.equal(nodeLabel, graph.nodes[0].label);
+            assert.equal(1, Object.keys(graph.nodes).length);
+            assert.equal(nodeId, Object.keys(graph.nodes)[0]);
+            assert.equal(nodeLabel, Object.values(graph.nodes)[0].label);
         });
 
         it('should add a node to a graph, with meta data', () => {
@@ -30,9 +30,10 @@ describe('Graph', () => {
             };
 
             graph.addNode(nodeId, nodeLabel, metadata);
-            assert.equal(1, graph.nodes.length);
-            assert.equal('Power Forward', graph.nodes[0].metadata.position);
-            assert.equal(35, graph.nodes[0].metadata.shirt);
+            assert.equal(1, Object.keys(graph.nodes).length);
+            const node = Object.values(graph.nodes)[0];
+            assert.equal('Power Forward', node.metadata.position);
+            assert.equal(35, node.metadata.shirt);
         });
 
 
@@ -57,16 +58,14 @@ describe('Graph', () => {
 
             graph.addNode(nodeId, nodeLabel);
 
-            const moreNodes = [
-                {
-                    id: 'kevin-durant#4497',
+            const moreNodes = {
+                'kevin-durant#4497': {
                     label: 'Kevin Durant'
                 },
-                {
-                    id: 'kyrie-irving#9876',
+                'kyrie-irving#9876': {
                     label: 'Kyrie Irving'
                 }
-            ];
+            };
 
             assert.throw(() => graph.addNodes(moreNodes), Error, 'A node already exists');
         });
@@ -83,7 +82,7 @@ describe('Graph', () => {
             graph.addNode(nodeId, nodeLabel);
             const correctLabel = 'Kevin Love';
             graph.updateNode(nodeId, correctLabel);
-            assert.equal(correctLabel, graph.nodes[0].label);
+            assert.equal(correctLabel, Object.values(graph.nodes)[0].label);
         });
     });
 
@@ -98,7 +97,7 @@ describe('Graph', () => {
             graph.addNode(nodeId, nodeLabel);
 
             graph.removeNode(nodeId);
-            assert.equal(0, graph.nodes.length, 'After removeNode there should be zero nodes');
+            assert.equal(0, Object.keys(graph.nodes).length, 'After removeNode there should be zero nodes');
         });
 
         it('should throw an exception when removing a non existant node', () => {
@@ -121,7 +120,6 @@ describe('Graph', () => {
 
             const node = graph.getNode(nodeId);
             assert(node !== null);
-            assert(node.id === nodeId);
         });
 
         it('should throw an exception when looking up a non existant node', () => {
@@ -148,7 +146,7 @@ describe('Graph', () => {
             graph.addNode(node1Id, node1Label);
             graph.addNode(node2Id, node2Label);
 
-            assert.equal(2, graph.nodes.length);
+            assert.equal(2, Object.keys(graph.nodes).length);
 
             graph.addEdge(node1Id, node2Id, playerContractRelation);
 

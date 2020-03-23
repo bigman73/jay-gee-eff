@@ -104,7 +104,7 @@ class JGFGraph {
      * Returns all nodes
      */
     get nodes() {
-        return cloneObject(Object.values(this._nodes));
+        return cloneObject(this._nodes);
     }
 
     /**
@@ -141,7 +141,8 @@ class JGFGraph {
         }
 
         if (check.assigned(this._nodes) && Object.keys(this._nodes).length > 0) {
-            json.nodes = Object.values(this._nodes);
+            // FIXME: Format nodes as JGF V2 nodes structure (object with keys per node)
+            json.nodes = this._nodes;
         }
 
         if (check.assigned(this._edges) && this._edges.length > 0) {
@@ -163,7 +164,6 @@ class JGFGraph {
         }
 
         const newNode = {
-            id,
             label
         };
 
@@ -171,7 +171,7 @@ class JGFGraph {
             newNode.metadata = metadata;
         }
 
-        this._nodes[newNode.id] = newNode;
+        this._nodes[id] = newNode;
     }
 
 
@@ -180,12 +180,12 @@ class JGFGraph {
      * @param {*} nodes A collection of JGF node objects
      */
     addNodes(nodes) {
-        for (const node of nodes) {
-            if (node.id in this._nodes) {
-                throw new Error(`A node already exists with id = ${node.id}`);
+        for (const [nodeId, node] of Object.entries(nodes)) {
+            if (nodeId in this._nodes) {
+                throw new Error(`A node already exists with id = ${nodeId}`);
             }
 
-            this._nodes[node.id] = node;
+            this._nodes[nodeId] = node;
         }
     }
 

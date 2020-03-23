@@ -3,24 +3,22 @@
         "type": "sports",
         "label": "NBA Demo Graph",
         "directed": true,
-        "nodes": [
-            {
-                "id": "la-lakers#1610616839",
+        "nodes": {
+            "la-lakers#1610616839": {
                 "label": "Los Angeles Lakers",
                 "metadata": {
                     "type": "NBA Team",
                     "code": "LAL"
                 }
             },
-            {
-                "id": "gsw#1610612744",
+            "gsw#1610612744": {
                 "label": "Golden State Warriors",
                 "metadata": {
                     "type": "NBA Player",
                     "code": "GSW"
                 }
             }
-        ],
+        },
         "edges": []
     }
 }

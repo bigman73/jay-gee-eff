@@ -161,7 +161,7 @@ class JGFContainer {
                 }
 
                 // Add its nodes to the main graph
-                if (partialJson.graph.nodes && partialJson.graph.nodes.length > 0) {
+                if (partialJson.graph.nodes && Object.keys(partialJson.graph.nodes).length > 0) {
                     mainGraph.addNodes(partialJson.graph.nodes);
                 }
 
