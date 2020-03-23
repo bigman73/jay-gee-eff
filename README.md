@@ -32,15 +32,23 @@ npm install jay-gee-eff --save
 ## Sample code
 
 ```javascript
-const { JGFContainer } = require('jay-gee-eff');
+/* eslint-disable no-console */
 const path = require('path');
+const { JGFContainer } = require('../index');
 
+/**
+ * Main program - demonstrates building an NBA JGF graph
+ */
 const program = async () => {
-   console.log('Building the NBA JGF Graph...');
+    console.log('Building the NBA JGF Graph...');
     const container = new JGFContainer(true);
     const { graph } = container;
+    graph.id = 'nba-demo-graph-2020';
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
+    graph.metadata = {
+        season: 2020
+    };
 
     const node1Id = 'lebron-james#2544';
     const node1Label = 'LeBron James';
@@ -72,7 +80,7 @@ const program = async () => {
     await container2.loadFromFile(filename);
 
     console.log('Graph nodes:');
-    for (const node of container2.graph.nodes) {
+    for (const node of Object.values(container2.graph.nodes)) {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
@@ -113,6 +121,9 @@ Graph edges:
         "type": "sports",
         "label": "NBA Demo Graph",
         "directed": true,
+        "metadata": {
+            "season": 2020
+        },
         "nodes": {
             "lebron-james#2544": {
                 "label": "LeBron James",

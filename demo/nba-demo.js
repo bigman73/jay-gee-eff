@@ -12,6 +12,9 @@ const program = async () => {
     graph.id = 'nba-demo-graph-2020';
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
+    graph.metadata = {
+        season: 2020
+    };
 
     const node1Id = 'lebron-james#2544';
     const node1Label = 'LeBron James';
