@@ -2,7 +2,6 @@
 const path = require('path');
 const { JGFContainer } = require('../index');
 
-
 /**
  * Main program - demonstrates building an NBA JGF graph
  */
@@ -10,6 +9,7 @@ const program = async () => {
     console.log('Building the NBA JGF Graph...');
     const container = new JGFContainer(true);
     const { graph } = container;
+    graph.id = 'nba-demo-graph-2020';
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
 
@@ -43,7 +43,7 @@ const program = async () => {
     await container2.loadFromFile(filename);
 
     console.log('Graph nodes:');
-    for (const node of container2.graph.nodes) {
+    for (const node of Object.values(container2.graph.nodes)) {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 

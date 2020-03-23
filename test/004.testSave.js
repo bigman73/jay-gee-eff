@@ -20,6 +20,9 @@ describe('ContainerSaveToFile', () => {
             const container = new JGFContainer(true);
             const { graph } = container;
 
+            const GraphId = 'nba-test';
+            graph.id = GraphId;
+
             const nodeId = 'lebron-james#2254';
             const nodeLabel = 'LeBron James';
 
@@ -35,6 +38,7 @@ describe('ContainerSaveToFile', () => {
             // Ensure that the saved file is read properly back in, and is a valid JGF file
             const container2 = new JGFContainer();
             container2.loadFromFile(this.currentTest.filename);
+            assert.equal(GraphId, container.graph.id);
             assert.equal(1, Object.keys(container.graph.nodes).length);
         });
     });

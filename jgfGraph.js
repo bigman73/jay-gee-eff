@@ -10,16 +10,19 @@ const { cloneObject } = require('./common');
 class JGFGraph {
     /**
      * Constructor
-     * @param {*} type graph classification
-     * @param {*} label a text display for the graph
-     * @param {*} directed true for a directed graph, false for an undirected graph
+     *
+     * @param {string} id graph unique id
+     * @param {string} type graph classification
+     * @param {string} label a text display for the graph
+     * @param {boolean} directed true for a directed graph, false for an undirected graph
      */
-    constructor(type = '', label = '', directed = true, metadata = null) {
+    constructor(id = '', type = '', label = '', directed = true, metadata = null) {
         this.validator = new Validator();
 
         this._nodes = {};
         this._edges = [];
 
+        this._id = id;
         this._type = type;
         this._label = label;
         this._directed = directed;
@@ -33,6 +36,7 @@ class JGFGraph {
      * @param {*} graphJson JGF JSON object
      */
     loadFromJSON(graphJson) {
+        this._id = graphJson.id;
         this._type = graphJson.type;
         this._label = graphJson.label;
         this._directed = graphJson.directed || true;
@@ -56,6 +60,20 @@ class JGFGraph {
      */
     set isPartial(value) {
         this._isPartial = value;
+    }
+
+    /**
+     * Returns the graph id
+     */
+    get id() {
+        return this._id;
+    }
+
+    /**
+     * Set the graph id
+     */
+    set id(value) {
+        this._id = value;
     }
 
     /**
@@ -120,6 +138,7 @@ class JGFGraph {
      */
     get json() {
         const json = {
+            id: this._id,
             type: this._type,
             label: this._label,
             directed: this._directed,
