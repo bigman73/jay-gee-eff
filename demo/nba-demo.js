@@ -28,6 +28,7 @@ const program = async () => {
         type: 'NBA Team'
     };
 
+    const playerContractRelation = 'plays-for';
     const playerContractLabel = 'Plays for';
 
     console.log('Adding two nodes...');
@@ -35,7 +36,7 @@ const program = async () => {
     graph.addNode(node2Id, node2Label, metadata2);
 
     console.log('Adding an edge...');
-    graph.addEdge(node1Id, node2Id, playerContractLabel);
+    graph.addEdge(node1Id, node2Id, playerContractRelation, playerContractLabel);
 
     const filename = path.join(path.dirname(__filename), 'nba-graph.json');
     console.log(`Saving to file -> ${filename}`);
