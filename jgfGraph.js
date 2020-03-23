@@ -33,7 +33,8 @@ class JGFGraph {
 
     /**
      * Loads the graph from a JGF JSON object
-     * @param {*} graphJson JGF JSON object
+     *
+     * @param {object} graphJson JGF JSON object
      */
     loadFromJSON(graphJson) {
         this._id = graphJson.id;
@@ -173,8 +174,9 @@ class JGFGraph {
 
     /**
      * Adds a new node
-     * @param {*} id Node id
-     * @param {*} label Node label
+     *
+     * @param {string} id Node id
+     * @param {string} label Node label
      */
     addNode(id, label, metadata = null) {
         if (id in this._nodes) {
@@ -195,6 +197,7 @@ class JGFGraph {
 
     /**
      * Adds multiple nodes
+     *
      * @param {*} nodes A collection of JGF node objects
      */
     addNodes(nodes) {
@@ -210,9 +213,10 @@ class JGFGraph {
 
     /**
      * Updates an existing node
-     * @param {*} nodeId Node id
-     * @param {*} label Updated node label
-     * @param {*} metadata Updated node meta data
+     *
+     * @param {string} nodeId Node id
+     * @param {string} label Updated node label
+     * @param {object} metadata Updated node meta data
      */
     updateNode(nodeId, label, metadata = null) {
         if (!(nodeId in this._nodes)) {
@@ -233,7 +237,8 @@ class JGFGraph {
 
     /**
      * Removes an existing graph node
-     * @param {*} nodeId Node unique id
+     *
+     * @param {string} nodeId Node unique id
      */
     removeNode(nodeId) {
         if (!(nodeId in this._nodes)) {
@@ -245,7 +250,8 @@ class JGFGraph {
 
     /**
      * Lookup a node by a node id
-     * @param {*} nodeId Unique node id
+     *
+     * @param {string} nodeId Unique node id
      */
     getNode(nodeId) {
         if (!(nodeId in this._nodes)) {
@@ -257,14 +263,17 @@ class JGFGraph {
 
     /**
      * Adds an edge between a source node and a target node
-     * @param {*} source Source node id
-     * @param {*} target Target node id
-     * @param {*} relation Edge relation (AKA 'relationship type')
-     * @param {*} label Edge label (the display name of the edge)
-     * @param {*} metadata Custom edge meta data
-     * @param {*} directed true for a directed edge, false for undirected
+     *
+     * @param {string} source Source node id
+     * @param {string} target Target node id
+     * @param {string} relation Edge relation (AKA 'relationship type')
+     * @param {string} label Edge label (the display name of the edge)
+     * @param {object} metadata Custom edge meta data
+     * @param {boolean} directed true for a directed edge, false for undirected
+     * @param {string} id Edge identity
      */
-    addEdge(source, target, relation = null, label = null, metadata = null, directed = null) {
+    addEdge(source, target, relation = null, label = null,
+        metadata = null, directed = null, id = null) {
         if (!source) {
             throw new Error('addEdge failed: source parameter is not valid');
         }
@@ -288,6 +297,9 @@ class JGFGraph {
             source,
             target
         };
+        if (check.assigned(id)) {
+            edge.id = id;
+        }
         if (check.assigned(relation)) {
             edge.relation = relation;
         }
@@ -314,7 +326,8 @@ class JGFGraph {
             for (const edge of edges) {
                 this.addEdge(
                     edge.source, edge.target, edge.relation,
-                    edge.label, edge.metadata, edge.directed
+                    edge.label, edge.metadata, edge.directed,
+                    edge.id
                 );
             }
         }
@@ -322,9 +335,9 @@ class JGFGraph {
 
     /**
      * Removes existing graph edges
-     * @param {*} source Source node id
-     * @param {*} target Target node id
-     * @param {*} relation Specific edge relation type to remove.
+     * @param {string} source Source node id
+     * @param {string} target Target node id
+     * @param {string} relation Specific edge relation type to remove.
      *                      If empty then all edges will be removed, regardless of their relation
      */
     removeEdges(source, target, relation = '') {
@@ -335,9 +348,9 @@ class JGFGraph {
 
     /**
      * Get edges between source node and target node, with an optional edge relation
-     * @param {*} source
-     * @param {*} target
-     * @param {*} relation
+     * @param {string} source
+     * @param {string} target
+     * @param {string} relation
      */
     getEdges(source, target, relation = '') {
         if (!this.isPartial) {
