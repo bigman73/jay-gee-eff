@@ -141,7 +141,6 @@ class JGFGraph {
         }
 
         if (check.assigned(this._nodes) && Object.keys(this._nodes).length > 0) {
-            // FIXME: Format nodes as JGF V2 nodes structure (object with keys per node)
             json.nodes = this._nodes;
         }
 
