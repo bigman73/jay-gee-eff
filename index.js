@@ -1,4 +1,4 @@
-const { JGFContainer } = require('./jgfContainer');
+const { JGFContainer } = require('./src/jgfContainer');
 
 module.exports = {
     JGFContainer
