@@ -6,15 +6,25 @@ const path = require('path');
 const { JGFGraph } = require('./jgfGraph');
 const { getMatchingFiles } = require('./misc');
 
-let jgfSchema = null;
+let jgfSchemaV1 = null;
+let jgfSchemaV2 = null;
 
 /**
- * Reads the JGF Schema from a JSON file
+ * Reads the JGF Schema V1 from a JSON file
  */
-const readJGFSchema = async () => {
-    const jgfSchemaFilename = path.join(path.dirname(__filename), 'jgfSchema.json');
+const readJGFSchemaV1 = async () => {
+    const jgfSchemaFilename = path.join(path.dirname(__filename), 'jgfSchemaV1.json');
 
-    jgfSchema = await fsExtra.readJSON(jgfSchemaFilename);
+    jgfSchemaV1 = await fsExtra.readJSON(jgfSchemaFilename);
+};
+
+/**
+ * Reads the JGF Schema V2 from a JSON file
+ */
+const readJGFSchemaV2 = async () => {
+    const jgfSchemaFilename = path.join(path.dirname(__filename), 'jgfSchemaV2.json');
+
+    jgfSchemaV2 = await fsExtra.readJSON(jgfSchemaFilename);
 };
 
 /**
@@ -75,18 +85,58 @@ class JGFContainer {
     }
 
     /**
-     * Loads a JGF file into memory
+     * Loads a JGF V1 file into memory
+     * Used for old V1 files
+     *
+     * @param {string} filename JGF filename
+     */
+    async loadFromFileV1(filename) {
+        try {
+            if (!jgfSchemaV1) {
+                await readJGFSchemaV1();
+            }
+
+            this.json = await fsExtra.readJson(filename);
+            const valid = this.JGFSchemaValidator.validate(this.json, jgfSchemaV1);
+
+            if (!valid.valid) {
+                throw new Error(`Invalid JGF format. Validation Errors: ${JSON.stringify(valid.errors)}`);
+            }
+
+            this.isSingleGraph = Boolean(this.json.graph);
+            console.debug(`loadFromFile, isSingleGraph: ${this.isSingleGraph}`);
+
+            if (this.isSingleGraph) {
+                const singleGraph = new JGFGraph();
+                singleGraph.loadFromJSONV1(this.json.graph);
+                this._graphs = [singleGraph];
+            } else {
+                this._graphs = [];
+                this.json.graphs.forEach((graphJson) => {
+                    const graphInstance = new JGFGraph();
+                    graphInstance.loadFromJSONV1(graphJson);
+                    this._graphs.push(graphInstance);
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    /**
+     * Loads a JGF file V2 into memory
      *
      * @param {string} filename JGF filename
      */
     async loadFromFile(filename) {
         try {
-            if (!jgfSchema) {
-                await readJGFSchema();
+            if (!jgfSchemaV2) {
+                await readJGFSchemaV2();
             }
 
             this.json = await fsExtra.readJson(filename);
-            const valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
+            const valid = this.JGFSchemaValidator.validate(this.json, jgfSchemaV2);
 
             if (!valid.valid) {
                 throw new Error(`Invalid JGF format. Validation Errors: ${JSON.stringify(valid.errors)}`);
@@ -120,8 +170,8 @@ class JGFContainer {
      */
     async loadFromPartialFiles(filenameWildcard, type, label) {
         try {
-            if (!jgfSchema) {
-                await readJGFSchema();
+            if (!jgfSchemaV2) {
+                await readJGFSchemaV2();
             }
 
             this._graphs = [];
@@ -143,7 +193,7 @@ class JGFContainer {
                 // Load partial JGF graph file
                 // eslint-disable-next-line no-await-in-loop
                 const partialJson = await fsExtra.readJson(filename);
-                const valid = this.JGFSchemaValidator.validate(this.json, jgfSchema);
+                const valid = this.JGFSchemaValidator.validate(this.json, jgfSchemaV2);
 
                 if (!valid) {
                     throw new Error(`Invalid graph, filename = ${filename}`);

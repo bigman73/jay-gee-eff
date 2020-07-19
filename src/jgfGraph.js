@@ -31,6 +31,24 @@ class JGFGraph {
     }
 
     /**
+     * Loads the graph from a JGF JSON object, for legacy V1 schema
+     *
+     * @param {object} graphJson JGF JSON object
+     */
+    loadFromJSONV1(graphJson) {
+        this._id = graphJson.id;
+        this._type = graphJson.type;
+        this._label = graphJson.label;
+        this._directed = graphJson.directed || true;
+        this._metadata = graphJson.metadata;
+
+        this._nodes = {};
+        this._edges = [];
+        this.addNodesV1(graphJson.nodes);
+        this.addEdges(graphJson.edges);
+    }
+
+    /**
      * Loads the graph from a JGF JSON object
      *
      * @param {object} graphJson JGF JSON object
@@ -189,6 +207,21 @@ class JGFGraph {
         }
 
         this._nodes[id] = newNode;
+    }
+
+    /**
+     * Adds multiple nodes, for legacy V1 JGF Schema
+     *
+     * @param {*} nodes A collection of JGF node objects
+     */
+    addNodesV1(nodes) {
+        for (const node of nodes) {
+            if (node.id in this._nodes) {
+                throw new Error(`A node already exists with id = ${node.id}`);
+            }
+
+            this._nodes[node.id] = node;
+        }
     }
 
     /**
