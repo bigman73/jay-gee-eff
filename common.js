@@ -3,13 +3,15 @@ const fastClone = require('fast-clone');
 
 /**
  * Clones an object (using fast clone)
- * @param {*} obj source object o clone
+ *
+ * @param {object} obj source object o clone
  */
 const cloneObject = (obj) => fastClone(obj);
 
 /**
  * Removes a file only if it exists
- * @param {*} filename Filename
+ *
+ * @param {string} filename Filename
  */
 const safeRemoveFile = async (filename) => {
     if (await fsExtra.exists(filename)) {

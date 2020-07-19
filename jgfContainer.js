@@ -76,7 +76,8 @@ class JGFContainer {
 
     /**
      * Loads a JGF file into memory
-     * @param {*} filename JGF filename
+     *
+     * @param {string} filename JGF filename
      */
     async loadFromFile(filename) {
         try {
@@ -114,7 +115,8 @@ class JGFContainer {
 
     /**
      * Loads multiple partial graph files into a single merged in-memory graph
-     * @param {*} filenameWildcard pattern to use for partial JGF files
+     *
+     * @param {string} filenameWildcard pattern to use for partial JGF files
      */
     async loadFromPartialFiles(filenameWildcard, type, label) {
         try {
@@ -161,7 +163,7 @@ class JGFContainer {
                 }
 
                 // Add its nodes to the main graph
-                if (partialJson.graph.nodes && partialJson.graph.nodes.length > 0) {
+                if (partialJson.graph.nodes && Object.keys(partialJson.graph.nodes).length > 0) {
                     mainGraph.addNodes(partialJson.graph.nodes);
                 }
 
@@ -186,7 +188,8 @@ class JGFContainer {
 
     /**
      * Saves the in memory JSON graph into a JGF file
-     * @param {*} filename JGF filename
+     *
+     * @param {string} filename JGF filename
      */
     async saveToFile(filename, prettyPrint = false) {
         try {

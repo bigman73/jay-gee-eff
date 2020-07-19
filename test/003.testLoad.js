@@ -21,7 +21,7 @@ describe('ContainerLoadFromFile', () => {
 
             const firstGraph = graphs[0];
             assert.equal('car', firstGraph.type);
-            assert.equal(4, firstGraph.nodes.length);
+            assert.equal(4, Object.keys(firstGraph.nodes).length);
             assert.equal(2, firstGraph.edges.length);
         });
     });

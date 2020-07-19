@@ -3,22 +3,20 @@
         "type": "sports",
         "label": "NBA Demo Graph",
         "directed": true,
-        "nodes": [
-            {
-                "id": "lebron-james#2544",
+        "nodes": {
+            "lebron-james#2544": {
                 "label": "LeBron James",
                 "metadata": {
                     "type": "NBA Player"
                 }
             },
-            {
-                "id": "kevin-durant#201142",
+            "kevin-durant#201142": {
                 "label": "Kevin Durant",
                 "metadata": {
                     "type": "NBA Player"
                 }
             }
-        ],
+        },
         "edges": [
             {
                 "source": "lebron-james#2544",

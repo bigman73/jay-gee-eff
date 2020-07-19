@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.0.0] - 2020-07-19
+- BREAKING CHANGE: Modified to latest JGF 2.0 Schema Spec
+- Improved jsdoc
+- npm outdated, upgraded/updated modules
+- Fixed lint issues
+
 ## [1.3.1] - 2020-03-22
 - Fixed: README.md, sample code has eslint issues
 - Updated npm dependencies: mocha
@@ -14,13 +20,10 @@ All notable changes to this project will be documented in this file.
 - Fixed eslint configuration (removed babel-eslint), fixed eslint errors
 - Updated npm dependencies: glob, eslint, jsonschema, mocha, fs-extra
 
-
-
 ## [1.2.2] - 2019-11-03
 
 ### Changed
 - ESLint Code quality improved
-
 
 ## [1.2.1] - 2019-10-27
 
@@ -30,7 +33,6 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Updated npm dependencies: glob
-
 
 ## [1.2.0] - 2019-09-14
 

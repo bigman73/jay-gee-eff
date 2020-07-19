@@ -1,5 +1,5 @@
 # jay-gee-eff 
-JGF - JSON Graph Format npm module
+JGF - JSON Graph Format manipulation module. Reads and writes JGF files.
 
 ![](https://github.com/bigman73/jay-gee-eff/workflows/nodejs-ci/badge.svg)
 
@@ -18,6 +18,10 @@ A library that provides the following features:
 3. Load a JGF JSON file into memory
 4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
 5. Ability to load and merge partial JGF graph files (a single graph spread over multiple 'partial' graph files)
+6. Support the JGF v2 Schema
+
+## Important note
+The JGF Schema has changed from v1 to v2. v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff v2 there is support for JGF Schema v2 which is a breaking change. Files generated with jay-gee-eff v1.* would not read properly with jay-gee-eff v2.*
 
 # Installation
 ```
@@ -28,15 +32,23 @@ npm install jay-gee-eff --save
 ## Sample code
 
 ```javascript
-const { JGFContainer } = require('jay-gee-eff');
+/* eslint-disable no-console */
 const path = require('path');
+const { JGFContainer } = require('../index');
 
+/**
+ * Main program - demonstrates building an NBA JGF graph
+ */
 const program = async () => {
-   console.log('Building the NBA JGF Graph...');
+    console.log('Building the NBA JGF Graph...');
     const container = new JGFContainer(true);
     const { graph } = container;
+    graph.id = 'nba-demo-graph-2020';
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
+    graph.metadata = {
+        season: 2020
+    };
 
     const node1Id = 'lebron-james#2544';
     const node1Label = 'LeBron James';
@@ -68,7 +80,7 @@ const program = async () => {
     await container2.loadFromFile(filename);
 
     console.log('Graph nodes:');
-    for (const node of container2.graph.nodes) {
+    for (const node of Object.values(container2.graph.nodes)) {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
@@ -105,23 +117,29 @@ Graph edges:
 ```json
 {
     "graph": {
+        "id": "nba-demo-graph-2020",
         "type": "sports",
         "label": "NBA Demo Graph",
         "directed": true,
-        "nodes": [{
-            "id": "lebron-james#2544",
-            "label": "LeBron James",
-            "metadata": {
-                "type": "NBA Player"
+        "metadata": {
+            "season": 2020
+        },
+        "nodes": {
+            "lebron-james#2544": {
+                "label": "LeBron James",
+                "metadata": {
+                    "type": "NBA Player"
+                }
+            },
+            "la-lakers#1610616839": {
+                "label": "Los Angeles Lakers",
+                "metadata": {
+                    "type": "NBA Team"
+                }
             }
-        }, {
-            "id": "la-lakers#1610616839",
-            "label": "Los Angeles Lakers",
-            "metadata": {
-                "type": "NBA Team"
-            }
-        }],
-        "edges": [{
+        },
+        "edges": [
+            {
                 "source": "lebron-james#2544",
                 "target": "la-lakers#1610616839",
                 "relation": "Plays for"

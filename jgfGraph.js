@@ -10,16 +10,19 @@ const { cloneObject } = require('./common');
 class JGFGraph {
     /**
      * Constructor
-     * @param {*} type graph classification
-     * @param {*} label a text display for the graph
-     * @param {*} directed true for a directed graph, false for an undirected graph
+     *
+     * @param {string} id graph unique id
+     * @param {string} type graph classification
+     * @param {string} label a text display for the graph
+     * @param {boolean} directed true for a directed graph, false for an undirected graph
      */
-    constructor(type = '', label = '', directed = true, metadata = null) {
+    constructor(id = '', type = '', label = '', directed = true, metadata = null) {
         this.validator = new Validator();
 
         this._nodes = {};
         this._edges = [];
 
+        this._id = id;
         this._type = type;
         this._label = label;
         this._directed = directed;
@@ -27,12 +30,13 @@ class JGFGraph {
         this._isPartial = false;
     }
 
-
     /**
      * Loads the graph from a JGF JSON object
-     * @param {*} graphJson JGF JSON object
+     *
+     * @param {object} graphJson JGF JSON object
      */
     loadFromJSON(graphJson) {
+        this._id = graphJson.id;
         this._type = graphJson.type;
         this._label = graphJson.label;
         this._directed = graphJson.directed || true;
@@ -56,6 +60,20 @@ class JGFGraph {
      */
     set isPartial(value) {
         this._isPartial = value;
+    }
+
+    /**
+     * Returns the graph id
+     */
+    get id() {
+        return this._id;
+    }
+
+    /**
+     * Set the graph id
+     */
+    set id(value) {
+        this._id = value;
     }
 
     /**
@@ -104,7 +122,7 @@ class JGFGraph {
      * Returns all nodes
      */
     get nodes() {
-        return cloneObject(Object.values(this._nodes));
+        return cloneObject(this._nodes);
     }
 
     /**
@@ -114,12 +132,12 @@ class JGFGraph {
         return cloneObject(this._edges);
     }
 
-
     /**
      * Returns the graph as JGF Json
      */
     get json() {
         const json = {
+            id: this._id,
             type: this._type,
             label: this._label,
             directed: this._directed,
@@ -141,7 +159,7 @@ class JGFGraph {
         }
 
         if (check.assigned(this._nodes) && Object.keys(this._nodes).length > 0) {
-            json.nodes = Object.values(this._nodes);
+            json.nodes = this._nodes;
         }
 
         if (check.assigned(this._edges) && this._edges.length > 0) {
@@ -151,11 +169,11 @@ class JGFGraph {
         return cloneObject(json);
     }
 
-
     /**
      * Adds a new node
-     * @param {*} id Node id
-     * @param {*} label Node label
+     *
+     * @param {string} id Node id
+     * @param {string} label Node label
      */
     addNode(id, label, metadata = null) {
         if (id in this._nodes) {
@@ -163,7 +181,6 @@ class JGFGraph {
         }
 
         const newNode = {
-            id,
             label
         };
 
@@ -171,30 +188,30 @@ class JGFGraph {
             newNode.metadata = metadata;
         }
 
-        this._nodes[newNode.id] = newNode;
+        this._nodes[id] = newNode;
     }
-
 
     /**
      * Adds multiple nodes
+     *
      * @param {*} nodes A collection of JGF node objects
      */
     addNodes(nodes) {
-        for (const node of nodes) {
-            if (node.id in this._nodes) {
-                throw new Error(`A node already exists with id = ${node.id}`);
+        for (const [nodeId, node] of Object.entries(nodes)) {
+            if (nodeId in this._nodes) {
+                throw new Error(`A node already exists with id = ${nodeId}`);
             }
 
-            this._nodes[node.id] = node;
+            this._nodes[nodeId] = node;
         }
     }
 
-
     /**
      * Updates an existing node
-     * @param {*} nodeId Node id
-     * @param {*} label Updated node label
-     * @param {*} metadata Updated node meta data
+     *
+     * @param {string} nodeId Node id
+     * @param {string} label Updated node label
+     * @param {object} metadata Updated node meta data
      */
     updateNode(nodeId, label, metadata = null) {
         if (!(nodeId in this._nodes)) {
@@ -212,10 +229,10 @@ class JGFGraph {
         }
     }
 
-
     /**
      * Removes an existing graph node
-     * @param {*} nodeId Node unique id
+     *
+     * @param {string} nodeId Node unique id
      */
     removeNode(nodeId) {
         if (!(nodeId in this._nodes)) {
@@ -227,7 +244,8 @@ class JGFGraph {
 
     /**
      * Lookup a node by a node id
-     * @param {*} nodeId Unique node id
+     *
+     * @param {string} nodeId Unique node id
      */
     getNode(nodeId) {
         if (!(nodeId in this._nodes)) {
@@ -239,14 +257,17 @@ class JGFGraph {
 
     /**
      * Adds an edge between a source node and a target node
-     * @param {*} source Source node id
-     * @param {*} target Target node id
-     * @param {*} relation Edge relation (AKA 'relationship type')
-     * @param {*} label Edge label (the display name of the edge)
-     * @param {*} metadata Custom edge meta data
-     * @param {*} directed true for a directed edge, false for undirected
+     *
+     * @param {string} source Source node id
+     * @param {string} target Target node id
+     * @param {string} relation Edge relation (AKA 'relationship type')
+     * @param {string} label Edge label (the display name of the edge)
+     * @param {object} metadata Custom edge meta data
+     * @param {boolean} directed true for a directed edge, false for undirected
+     * @param {string} id Edge identity
      */
-    addEdge(source, target, relation = null, label = null, metadata = null, directed = null) {
+    addEdge(source, target, relation = null, label = null,
+        metadata = null, directed = null, id = null) {
         if (!source) {
             throw new Error('addEdge failed: source parameter is not valid');
         }
@@ -270,6 +291,9 @@ class JGFGraph {
             source,
             target
         };
+        if (check.assigned(id)) {
+            edge.id = id;
+        }
         if (check.assigned(relation)) {
             edge.relation = relation;
         }
@@ -286,7 +310,6 @@ class JGFGraph {
         this._edges.push(edge);
     }
 
-
     /**
      * Adds multiple edges
      * @param {*} edges A collection of JGF edge objects
@@ -296,7 +319,8 @@ class JGFGraph {
             for (const edge of edges) {
                 this.addEdge(
                     edge.source, edge.target, edge.relation,
-                    edge.label, edge.metadata, edge.directed
+                    edge.label, edge.metadata, edge.directed,
+                    edge.id
                 );
             }
         }
@@ -304,9 +328,9 @@ class JGFGraph {
 
     /**
      * Removes existing graph edges
-     * @param {*} source Source node id
-     * @param {*} target Target node id
-     * @param {*} relation Specific edge relation type to remove.
+     * @param {string} source Source node id
+     * @param {string} target Target node id
+     * @param {string} relation Specific edge relation type to remove.
      *                      If empty then all edges will be removed, regardless of their relation
      */
     removeEdges(source, target, relation = '') {
@@ -317,9 +341,9 @@ class JGFGraph {
 
     /**
      * Get edges between source node and target node, with an optional edge relation
-     * @param {*} source
-     * @param {*} target
-     * @param {*} relation
+     * @param {string} source
+     * @param {string} target
+     * @param {string} relation
      */
     getEdges(source, target, relation = '') {
         if (!this.isPartial) {

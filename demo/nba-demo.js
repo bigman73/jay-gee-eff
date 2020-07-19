@@ -2,7 +2,6 @@
 const path = require('path');
 const { JGFContainer } = require('../index');
 
-
 /**
  * Main program - demonstrates building an NBA JGF graph
  */
@@ -10,8 +9,12 @@ const program = async () => {
     console.log('Building the NBA JGF Graph...');
     const container = new JGFContainer(true);
     const { graph } = container;
+    graph.id = 'nba-demo-graph-2020';
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
+    graph.metadata = {
+        season: 2020
+    };
 
     const node1Id = 'lebron-james#2544';
     const node1Label = 'LeBron James';
@@ -25,6 +28,7 @@ const program = async () => {
         type: 'NBA Team'
     };
 
+    const playerContractRelation = 'plays-for';
     const playerContractLabel = 'Plays for';
 
     console.log('Adding two nodes...');
@@ -32,7 +36,7 @@ const program = async () => {
     graph.addNode(node2Id, node2Label, metadata2);
 
     console.log('Adding an edge...');
-    graph.addEdge(node1Id, node2Id, playerContractLabel);
+    graph.addEdge(node1Id, node2Id, playerContractRelation, playerContractLabel);
 
     const filename = path.join(path.dirname(__filename), 'nba-graph.json');
     console.log(`Saving to file -> ${filename}`);
@@ -43,7 +47,7 @@ const program = async () => {
     await container2.loadFromFile(filename);
 
     console.log('Graph nodes:');
-    for (const node of container2.graph.nodes) {
+    for (const node of Object.values(container2.graph.nodes)) {
         console.log(`\t${node.label} {${node.metadata.type}}`);
     }
 
