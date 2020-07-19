@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## [2.1.0] - TBD
 - Refactor code in src folder
 - Add support for legacy v1 schema, loadFromFileV1
+- Fixed: Added missing jgfSchemaV1.json, jgfSchemaV2.json to package
 
 ## [2.0.0] - 2020-07-19
 - BREAKING CHANGE: Modified to latest JGF 2.0 Schema Spec
