@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 const nodeAssert = require('assert');
-const { JGFContainer } = require('../jgfContainer');
+const { JGFContainer } = require('../src/jgfContainer');
 
 /* eslint no-invalid-this: 0 */
 

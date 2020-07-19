@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const fsExtra = require('fs-extra');
 const path = require('path');
-const { JGFContainer } = require('../jgfContainer');
+const { JGFContainer } = require('../src/jgfContainer');
 
 /* eslint no-invalid-this: 0 */
 

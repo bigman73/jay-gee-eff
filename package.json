@@ -1,14 +1,16 @@
 {
   "name": "jay-gee-eff",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "JGF - JSON Graph Format manipulation module. Reads and writes JGF files.",
   "main": "index.js",
   "files": [
-    "common.js",
-    "jgfContainer.js",
-    "jgfGraph.js",
-    "jgfSchema.js",
-    "misc.js"
+    "src/common.js",
+    "src/jgfContainer.js",
+    "src/jgfGraph.js",
+    "src/jgfSchema.js",
+    "src/misc.js",
+    "src/jgfSchemaV1.json",
+    "src/jgfSchemaV2.json"
   ],
   "engines": {
     "node": ">=10.0.0"

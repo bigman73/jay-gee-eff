@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { JGFContainer } = require('../jgfContainer');
+const { JGFContainer } = require('../src/jgfContainer');
 
 describe('Graph', () => {
     describe('#add graph node', () => {
