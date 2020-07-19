@@ -30,7 +30,6 @@ class JGFGraph {
         this._isPartial = false;
     }
 
-
     /**
      * Loads the graph from a JGF JSON object
      *
@@ -133,7 +132,6 @@ class JGFGraph {
         return cloneObject(this._edges);
     }
 
-
     /**
      * Returns the graph as JGF Json
      */
@@ -171,7 +169,6 @@ class JGFGraph {
         return cloneObject(json);
     }
 
-
     /**
      * Adds a new node
      *
@@ -194,7 +191,6 @@ class JGFGraph {
         this._nodes[id] = newNode;
     }
 
-
     /**
      * Adds multiple nodes
      *
@@ -209,7 +205,6 @@ class JGFGraph {
             this._nodes[nodeId] = node;
         }
     }
-
 
     /**
      * Updates an existing node
@@ -233,7 +228,6 @@ class JGFGraph {
             node.metadata = metadata;
         }
     }
-
 
     /**
      * Removes an existing graph node
@@ -315,7 +309,6 @@ class JGFGraph {
 
         this._edges.push(edge);
     }
-
 
     /**
      * Adds multiple edges

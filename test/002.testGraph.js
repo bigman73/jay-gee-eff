@@ -36,7 +36,6 @@ describe('Graph', () => {
             assert.equal(35, node.metadata.shirt);
         });
 
-
         it('should throw an exception when adding a node that already exists', () => {
             const container = new JGFContainer(true);
             const { graph } = container;
@@ -209,7 +208,6 @@ describe('Graph', () => {
             assert.equal(0, dimensions.nodes);
             assert.equal(0, dimensions.edges);
         });
-
 
         it('should return valid dimensions for a non-empty graph', () => {
             const container = new JGFContainer(true);
