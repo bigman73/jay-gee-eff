@@ -18,7 +18,7 @@ A library that provides the following features:
 3. Load a JGF JSON file into memory
 4. Validate JGF JSON files, for syntax (JGF schema) and semantics (invalid nodes and edges)
 5. Ability to load and merge partial JGF graph files (a single graph spread over multiple 'partial' graph files)
-6. Support the JGF V2 Schema
+6. Support the JGF v2 Schema
 
 ## Important note
 The JGF Schema has changed from v1 to v2. v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff v2 there is support for JGF Schema v2 which is a breaking change. Files generated with jay-gee-eff v1.* would not read properly with jay-gee-eff v2.*

@@ -20,13 +20,10 @@ All notable changes to this project will be documented in this file.
 - Fixed eslint configuration (removed babel-eslint), fixed eslint errors
 - Updated npm dependencies: glob, eslint, jsonschema, mocha, fs-extra
 
-
-
 ## [1.2.2] - 2019-11-03
 
 ### Changed
 - ESLint Code quality improved
-
 
 ## [1.2.1] - 2019-10-27
 
@@ -36,7 +33,6 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Updated npm dependencies: glob
-
 
 ## [1.2.0] - 2019-09-14
 
