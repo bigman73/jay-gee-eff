@@ -4,6 +4,7 @@ const glob = require('glob');
  * Returns all files matching the wild card pattern
  *
  * @param {string} filenameWildcard filename wildcard pattern
+ * @returns {Array} list of files
  */
 const getMatchingFiles = (filenameWildcard) => new Promise((resolve, reject) => {
     glob(filenameWildcard, (err, files) => {

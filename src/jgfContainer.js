@@ -33,7 +33,8 @@ const readJGFSchemaV2 = async () => {
 class JGFContainer {
     /**
      * Constructor
-     * @param {*} singleGraph true for single-graph mode, false for multi-graph mode
+     *
+     * @param {boolean} singleGraph true for single-graph mode, false for multi-graph mode
      */
     constructor(singleGraph = true) {
         this.JGFSchemaValidator = new Validator();
@@ -47,6 +48,8 @@ class JGFContainer {
 
     /**
      * Returns all graphs, in Multi-Graph mode
+     *
+     * @returns {Array} List of graphs
      */
     get graphs() {
         if (this.isSingleGraph) {
@@ -58,6 +61,8 @@ class JGFContainer {
 
     /**
      * Returns the graph, in Single-Graph mode
+     *
+     * @returns {object} The single graph
      */
     get graph() {
         if (!this.isSingleGraph) {
@@ -68,7 +73,9 @@ class JGFContainer {
     }
 
     /**
-     * Returns true if the container is in Multi-Graph mode
+     * Multi-Graph mode flag
+     *
+     * @returns {boolean} Returns true if the container is in Multi-Graph mode, otherwise false
      */
     get isMultiGraph() {
         return !this.isSingleGraph;
@@ -76,6 +83,8 @@ class JGFContainer {
 
     /**
      * Adds an empty graph
+     *
+     * @returns {object} Empty graph
      */
     addEmptyGraph() {
         const graph = new JGFGraph();
@@ -167,6 +176,8 @@ class JGFContainer {
      * Loads multiple partial graph files into a single merged in-memory graph
      *
      * @param {string} filenameWildcard pattern to use for partial JGF files
+     * @param {string} type Graph type
+     * @param {string} label Graph label
      */
     async loadFromPartialFiles(filenameWildcard, type, label) {
         try {
@@ -240,6 +251,7 @@ class JGFContainer {
      * Saves the in memory JSON graph into a JGF file
      *
      * @param {string} filename JGF filename
+     * @param {boolean} prettyPrint true to output a easy to read JSON, false for a compact JSON
      */
     async saveToFile(filename, prettyPrint = false) {
         try {

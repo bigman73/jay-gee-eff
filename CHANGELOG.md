@@ -3,7 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [2.1.0] - TBD
+## [2.2.0] - 2020-07-26
+- Added eslint jsdoc enforcement
+- Fixed all eslint issues
+- Added: Test application that uses the npm module (also a demo app)
+
+## [2.1.0] - 2020-07-19
 - Refactor code in src folder
 - Add support for legacy v1 schema, loadFromFileV1
 - Fixed: Added missing jgfSchemaV1.json, jgfSchemaV2.json to package

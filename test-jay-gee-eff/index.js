@@ -2,6 +2,9 @@
 const { JGFContainer } = require('jay-gee-eff');
 const path = require('path');
 
+/**
+ * Main test program
+ */
 const program = async () => {
     // eslint-disable-next-line global-require
     const { version: moduleVersion } = require('./node_modules/jay-gee-eff/package.json');
@@ -13,6 +16,7 @@ const program = async () => {
     const { graph } = container;
     graph.type = 'sports';
     graph.label = 'NBA Demo Graph';
+    graph.id = 'nba';
 
     const node1Id = 'LeBron James';
     const node1Label = 'NBAPlayer';
