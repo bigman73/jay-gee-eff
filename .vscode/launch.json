@@ -19,6 +19,14 @@
             "name": "Run NBA graph demo",
             "args": [],
             "program": "${workspaceFolder}/demo/nba-demo.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run external module tester",
+            "cwd": "${workspaceFolder}/test-jay-gee-eff",
+            "args": [],
+            "program": "${workspaceFolder}/test-jay-gee-eff/index.js"
         }
     ]
 }
