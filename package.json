@@ -1,6 +1,6 @@
 {
   "name": "jay-gee-eff",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "JGF - JSON Graph Format manipulation module. Reads and writes JGF files.",
   "main": "index.js",
   "files": [
@@ -45,6 +45,7 @@
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsdoc": "^30.0.3",
     "mocha": "^8.0.1"
   },
   "dependencies": {

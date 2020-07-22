@@ -5,6 +5,7 @@ const fastClone = require('fast-clone');
  * Clones an object (using fast clone)
  *
  * @param {object} obj source object o clone
+ * @returns {object} cloned object
  */
 const cloneObject = (obj) => fastClone(obj);
 

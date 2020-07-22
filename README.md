@@ -21,7 +21,8 @@ A library that provides the following features:
 6. Support the JGF v2 Schema
 
 ## Important note
-The JGF Schema has changed from v1 to v2. v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff v2 there is support for JGF Schema v2 which is a breaking change. Files generated with jay-gee-eff v1.* would not read properly with jay-gee-eff v2.*
+The JGF Schema has changed from v1 to v2. v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff version 2.0.0 there is support for JGF Schema v2 which is a breaking change. 
+Files previously generated with jay-gee-eff v1.* can be read with the special function *JGFContainer.loadFromFileV1()*
 
 # Installation
 ```

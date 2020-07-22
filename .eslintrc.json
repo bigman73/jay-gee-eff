@@ -6,7 +6,11 @@
         "mocha": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb-base",
+        "plugin:jsdoc/recommended"
+    ],
+    "plugins": [
+        "jsdoc"
     ],
     "globals": {
         "Atomics": "readonly",

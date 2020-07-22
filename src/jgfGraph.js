@@ -15,6 +15,7 @@ class JGFGraph {
      * @param {string} type graph classification
      * @param {string} label a text display for the graph
      * @param {boolean} directed true for a directed graph, false for an undirected graph
+     * @param {object} metadata Graph meta data attributes
      */
     constructor(id = '', type = '', label = '', directed = true, metadata = null) {
         this.validator = new Validator();
@@ -68,6 +69,8 @@ class JGFGraph {
 
     /**
      * Returns the isPartial flag
+     *
+     * @returns {boolean} true if partial graph, otherwise false
      */
     get isPartial() {
         return this._isPartial;
@@ -82,6 +85,8 @@ class JGFGraph {
 
     /**
      * Returns the graph id
+     *
+     * @returns {string} graph id
      */
     get id() {
         return this._id;
@@ -96,6 +101,8 @@ class JGFGraph {
 
     /**
      * Returns the graph type
+     *
+     * @returns {string} Graph type
      */
     get type() {
         return this._type;
@@ -110,6 +117,8 @@ class JGFGraph {
 
     /**
      * Returns the graph label
+     *
+     * @returns {string} Graph label
      */
     get label() {
         return this._label;
@@ -124,6 +133,8 @@ class JGFGraph {
 
     /**
      * Returns the graph meta data
+     *
+     * @returns {object} Graph meta data attribute
      */
     get metadata() {
         return this._metadata;
@@ -138,6 +149,8 @@ class JGFGraph {
 
     /**
      * Returns all nodes
+     *
+     * @returns {Array} List of all nodes
      */
     get nodes() {
         return cloneObject(this._nodes);
@@ -145,6 +158,8 @@ class JGFGraph {
 
     /**
      * Returns all edges
+     *
+     * @returns {Array} List of all edges
      */
     get edges() {
         return cloneObject(this._edges);
@@ -152,6 +167,8 @@ class JGFGraph {
 
     /**
      * Returns the graph as JGF Json
+     *
+     * @returns {object} Graph as JGF JSON object
      */
     get json() {
         const json = {
@@ -192,6 +209,7 @@ class JGFGraph {
      *
      * @param {string} id Node id
      * @param {string} label Node label
+     * @param {object} metadata Node meta data attributes
      */
     addNode(id, label, metadata = null) {
         if (id in this._nodes) {
@@ -212,7 +230,7 @@ class JGFGraph {
     /**
      * Adds multiple nodes, for legacy V1 JGF Schema
      *
-     * @param {*} nodes A collection of JGF node objects
+     * @param {Array} nodes A collection of JGF node objects
      */
     addNodesV1(nodes) {
         for (const node of nodes) {
@@ -227,7 +245,7 @@ class JGFGraph {
     /**
      * Adds multiple nodes
      *
-     * @param {*} nodes A collection of JGF node objects
+     * @param {Array} nodes A collection of JGF node objects
      */
     addNodes(nodes) {
         for (const [nodeId, node] of Object.entries(nodes)) {
@@ -244,7 +262,7 @@ class JGFGraph {
      *
      * @param {string} nodeId Node id
      * @param {string} label Updated node label
-     * @param {object} metadata Updated node meta data
+     * @param {object} metadata Updated node meta data attributes
      */
     updateNode(nodeId, label, metadata = null) {
         if (!(nodeId in this._nodes)) {
@@ -279,6 +297,7 @@ class JGFGraph {
      * Lookup a node by a node id
      *
      * @param {string} nodeId Unique node id
+     * @returns {object} Graph node
      */
     getNode(nodeId) {
         if (!(nodeId in this._nodes)) {
@@ -345,6 +364,7 @@ class JGFGraph {
 
     /**
      * Adds multiple edges
+     *
      * @param {*} edges A collection of JGF edge objects
      */
     addEdges(edges) {
@@ -361,6 +381,7 @@ class JGFGraph {
 
     /**
      * Removes existing graph edges
+     *
      * @param {string} source Source node id
      * @param {string} target Target node id
      * @param {string} relation Specific edge relation type to remove.
@@ -374,9 +395,11 @@ class JGFGraph {
 
     /**
      * Get edges between source node and target node, with an optional edge relation
-     * @param {string} source
-     * @param {string} target
-     * @param {string} relation
+     *
+     * @param {string} source Node source id
+     * @param {string} target Node target id
+     * @param {string} relation Relationship name
+     * @returns {Array} List of matching edges
      */
     getEdges(source, target, relation = '') {
         if (!this.isPartial) {
@@ -398,6 +421,8 @@ class JGFGraph {
 
     /**
      * Returns the graph dimensions - Number of nodes and edges
+     *
+     * @returns {object} Graph dimensions
      */
     get graphDimensions() {
         const dimensions = {
