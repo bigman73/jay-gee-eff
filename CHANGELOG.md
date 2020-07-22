@@ -3,9 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [2.2.0] - 2020-07-26
+## [2.2.0] - 2020-07-21
 - Added eslint jsdoc enforcement
 - Fixed all eslint issues
+- Added: loadFromFileV1() function for backward compatibility with files generated with v1 schema
 - Added: Test application that uses the npm module (also a demo app)
 
 ## [2.1.0] - 2020-07-19
