@@ -1,7 +1,7 @@
 {
   "name": "test-jay-gee-eff",
   "description": "Tester for jay-gee-eff npm external module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -12,6 +12,6 @@
   "author": "Bigman73",
   "license": "ISC",
   "dependencies": {
-    "jay-gee-eff": "^2.1.0"
+    "jay-gee-eff": "^2.2.0"
   }
 }

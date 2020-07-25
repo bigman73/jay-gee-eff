@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.2.1] - 2020-07-24
+- Improved documentation
+
 ## [2.2.0] - 2020-07-21
 - Added eslint jsdoc enforcement
 - Fixed all eslint issues

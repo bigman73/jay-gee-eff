@@ -26,7 +26,7 @@ Files previously generated with jay-gee-eff v1.* can be read with the special fu
 
 # Installation
 ```
-npm install jay-gee-eff --save
+npm install jay-gee-eff
 ```
 
 # Usage
@@ -35,7 +35,7 @@ npm install jay-gee-eff --save
 ```javascript
 /* eslint-disable no-console */
 const path = require('path');
-const { JGFContainer } = require('../index');
+const { JGFContainer } = require('jay-gee-eff');
 
 /**
  * Main program - demonstrates building an NBA JGF graph
