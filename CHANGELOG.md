@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.2.2] - 2020-08-13
+- Fixed: Security vulnerability with serialize-javascript (used by mocha)
+- npm update
+
 ## [2.2.1] - 2020-07-24
 - Improved documentation
 
