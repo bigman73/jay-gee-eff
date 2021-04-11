@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.3.0] - 2021-04-11
+- Chore: Upgraded npm dependencies due security vulnerability with y18n
+
 ## [2.2.2] - 2020-08-13
 - Fixed: Security vulnerability with serialize-javascript (used by mocha)
 - npm update
