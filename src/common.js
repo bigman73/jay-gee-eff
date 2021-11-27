@@ -15,12 +15,12 @@ const cloneObject = (obj) => fastClone(obj);
  * @param {string} filename Filename
  */
 const safeRemoveFile = async (filename) => {
-    if (await fsExtra.exists(filename)) {
-        await fsExtra.remove(filename);
-    }
+  if (await fsExtra.exists(filename)) {
+    await fsExtra.remove(filename);
+  }
 };
 
 module.exports = {
-    cloneObject,
-    safeRemoveFile
+  cloneObject,
+  safeRemoveFile
 };
