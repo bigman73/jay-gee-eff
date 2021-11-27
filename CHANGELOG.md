@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.3.1] - 2021-11-26
+- chore: Upgraded npm dependencies due security vulnerabilities
+- chore: lint:fix script
+- chore: tab size change from 4 to 2
+
 ## [2.3.0] - 2021-04-11
 - Chore: Upgraded npm dependencies due security vulnerability with y18n
 
@@ -16,7 +21,7 @@ All notable changes to this project will be documented in this file.
 ## [2.2.0] - 2020-07-21
 - Added eslint jsdoc enforcement
 - Fixed all eslint issues
-- Added: loadFromFileV1() function for backward compatibility with files generated with v1 schema
+- Added: load FileV1() function for backward compatibility with files generated with v1 schema
 - Added: Test application that uses the npm module (also a demo app)
 
 ## [2.1.0] - 2020-07-19
