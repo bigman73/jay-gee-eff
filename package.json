@@ -21,7 +21,6 @@
     "lint:fix": "eslint --fix -c .eslintrc.json **/*.js && npm run prettier:fix",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "husky:install": "npx husky install",
     "prepare": "husky install"
   },
   "repository": {
