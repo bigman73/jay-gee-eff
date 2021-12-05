@@ -1,24 +1,24 @@
 {
-    "graph": {
-        "type": "sports",
-        "label": "NBA Demo Graph",
-        "directed": true,
-        "nodes": {
-            "la-lakers#1610616839": {
-                "label": "Los Angeles Lakers",
-                "metadata": {
-                    "type": "NBA Team",
-                    "code": "LAL"
-                }
-            },
-            "gsw#1610612744": {
-                "label": "Golden State Warriors",
-                "metadata": {
-                    "type": "NBA Player",
-                    "code": "GSW"
-                }
-            }
-        },
-        "edges": []
-    }
+  "graph": {
+    "type": "sports",
+    "label": "NBA Demo Graph",
+    "directed": true,
+    "nodes": {
+      "la-lakers#1610616839": {
+        "label": "Los Angeles Lakers",
+        "metadata": {
+          "type": "NBA Team",
+          "code": "LAL"
+        }
+      },
+      "gsw#1610612744": {
+        "label": "Golden State Warriors",
+        "metadata": {
+          "type": "NBA Player",
+          "code": "GSW"
+        }
+      }
+    },
+    "edges": []
+  }
 }

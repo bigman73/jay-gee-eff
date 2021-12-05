@@ -103,10 +103,7 @@ describe('PartialGraph', () => {
       await container3.saveToFile(this.currentTest.filename3);
 
       const container = new JGFContainer();
-      const partialWildcard = path.join(
-        path.dirname(this.currentTest.filename1),
-        'partial-good*.json'
-      );
+      const partialWildcard = path.join(path.dirname(this.currentTest.filename1), 'partial-good*.json');
       await container.loadFromPartialFiles(partialWildcard, 'JGFGraph', 'Good Main Graph - merged from partial graphs');
       assert.equal(4, Object.keys(container.graph.nodes).length, '4 total nodes expected');
       assert.equal(2, container.graph.edges.length, '2 total edges expected');

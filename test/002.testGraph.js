@@ -71,7 +71,7 @@ describe('Graph', () => {
   });
 
   describe('#update graph node', () => {
-    it('should update a node\'s label', () => {
+    it("should update a node's label", () => {
       const container = new JGFContainer(true);
       const { graph } = container;
 
@@ -103,7 +103,7 @@ describe('Graph', () => {
       const container = new JGFContainer(true);
       const { graph } = container;
 
-      assert.throws(() => graph.removeNode('some dummy id'), 'A node doesn\'t exist');
+      assert.throws(() => graph.removeNode('some dummy id'), "A node doesn't exist");
     });
   });
 
@@ -125,7 +125,7 @@ describe('Graph', () => {
       const container = new JGFContainer(true);
       const { graph } = container;
 
-      assert.throws(() => graph.getNode('some dummy id'), 'A node doesn\'t exist');
+      assert.throws(() => graph.getNode('some dummy id'), "A node doesn't exist");
     });
   });
 
