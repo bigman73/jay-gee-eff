@@ -21,16 +21,12 @@
     "lint:fix": "eslint --fix -c .eslintrc.json **/*.js && npm run prettier:fix",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "husky:install": "npx husky install"
+    "husky:install": "npx husky install",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bigman73/jay-gee-eff.git"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
   },
   "keywords": [
     "JGF",
