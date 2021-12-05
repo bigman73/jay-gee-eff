@@ -5,7 +5,7 @@
     "node": true,
     "mocha": true
   },
-  "extends": ["airbnb-base", "plugin:jsdoc/recommended"],
+  "extends": ["airbnb-base", "prettier", "plugin:jsdoc/recommended"],
   "plugins": ["jsdoc"],
   "globals": {
     "Atomics": "readonly",

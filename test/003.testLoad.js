@@ -30,7 +30,11 @@ describe('ContainerLoadFromFile', () => {
     it('should throw an error when loading an invalid json file ', async () => {
       const badTestFilename = './test/examples/bad_car_graphs.json';
       const container = new JGFContainer();
-      await nodeAssert.rejects(() => container.loadFromFile(badTestFilename), Error, 'Invalid JGF format.');
+      await nodeAssert.rejects(
+        () => container.loadFromFile(badTestFilename),
+        Error,
+        'Invalid JGF format.'
+      );
     });
   });
 });

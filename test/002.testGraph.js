@@ -96,7 +96,11 @@ describe('Graph', () => {
       graph.addNode(nodeId, nodeLabel);
 
       graph.removeNode(nodeId);
-      assert.equal(0, Object.keys(graph.nodes).length, 'After removeNode there should be zero nodes');
+      assert.equal(
+        0,
+        Object.keys(graph.nodes).length,
+        'After removeNode there should be zero nodes'
+      );
     });
 
     it('should throw an exception when removing a non existant node', () => {

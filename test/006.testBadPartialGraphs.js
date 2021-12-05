@@ -50,9 +50,16 @@ describe('BadPartialGraph', () => {
       await container2.saveToFile(this.currentTest.filename2);
 
       const container = new JGFContainer();
-      const partialWildcard = path.join(path.dirname(this.currentTest.filename1), 'partial-bad*.json');
+      const partialWildcard = path.join(
+        path.dirname(this.currentTest.filename1),
+        'partial-bad*.json'
+      );
 
-      await nodeAssert.rejects(() => container.loadFromPartialFiles(partialWildcard), Error, 'Invalid graph');
+      await nodeAssert.rejects(
+        () => container.loadFromPartialFiles(partialWildcard),
+        Error,
+        'Invalid graph'
+      );
     });
   });
 });

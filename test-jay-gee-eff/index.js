@@ -41,7 +41,9 @@ const program = async () => {
   const container2 = new JGFContainer(true);
 
   await container2.loadFromFile('output/nba-graph.json');
-  console.log(`Container loaded, container2: Nodes = ${Object.keys(container2.graph.nodes).length}`);
+  console.log(
+    `Container loaded, container2: Nodes = ${Object.keys(container2.graph.nodes).length}`
+  );
 
   console.log('-- DONE --');
 };

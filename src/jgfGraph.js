@@ -318,7 +318,15 @@ class JGFGraph {
    * @param {boolean} directed true for a directed edge, false for undirected
    * @param {string} id Edge identity
    */
-  addEdge(source, target, relation = null, label = null, metadata = null, directed = null, id = null) {
+  addEdge(
+    source,
+    target,
+    relation = null,
+    label = null,
+    metadata = null,
+    directed = null,
+    id = null
+  ) {
     if (!source) {
       throw new Error('addEdge failed: source parameter is not valid');
     }
@@ -369,7 +377,15 @@ class JGFGraph {
   addEdges(edges) {
     if (edges) {
       for (const edge of edges) {
-        this.addEdge(edge.source, edge.target, edge.relation, edge.label, edge.metadata, edge.directed, edge.id);
+        this.addEdge(
+          edge.source,
+          edge.target,
+          edge.relation,
+          edge.label,
+          edge.metadata,
+          edge.directed,
+          edge.id
+        );
       }
     }
   }
@@ -413,7 +429,10 @@ class JGFGraph {
 
     const edges = _.filter(
       this._edges,
-      (edge) => edge.source === source && edge.target === target && (relation === '' || edge.relation === relation)
+      (edge) =>
+        edge.source === source &&
+        edge.target === target &&
+        (relation === '' || edge.relation === relation)
     );
 
     return cloneObject(edges);
