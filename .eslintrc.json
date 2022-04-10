@@ -5,14 +5,14 @@
     "node": true,
     "mocha": true
   },
-  "extends": ["airbnb-base", "prettier", "plugin:jsdoc/recommended"],
+  "extends": ["eslint:recommended", "plugin:jsdoc/recommended", "prettier"],
   "plugins": ["jsdoc"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2020
   },
   "rules": {
     "indent": ["error", 2],
