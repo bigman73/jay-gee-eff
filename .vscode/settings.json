@@ -3,5 +3,6 @@
     "titleBar.activeBackground": "#5994f3",
     "titleBar.activeForeground": "#ffffff"
   },
-  "cSpell.words": ["CODEOWNERS"]
+  "cSpell.words": ["CODEOWNERS"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
