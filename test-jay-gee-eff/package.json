@@ -12,6 +12,6 @@
   "author": "Bigman73",
   "license": "ISC",
   "dependencies": {
-    "jay-gee-eff": "^2.2.2"
+    "jay-gee-eff": "^2.4.0"
   }
 }
