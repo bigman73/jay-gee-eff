@@ -198,3 +198,17 @@ http://jsongraphformat.info/
 ## Test Examples
 
 Source: https://github.com/jsongraph/json-graph-specification/tree/master/examples
+
+
+# Publishing a version to npm
+```
+# Tag repo
+# e.g. git tag v2.5.0
+git tag v<SEMANTIC VERSION>
+
+# Push tags to github
+git push --tags
+
+# Publish package to npm
+npm publish
+```
