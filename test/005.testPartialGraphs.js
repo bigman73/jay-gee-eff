@@ -103,12 +103,8 @@ describe('PartialGraph', () => {
       await container3.saveToFile(this.currentTest.filename3);
 
       const container = new JGFContainer();
-      const partialWildcard = path.join(
-        path.dirname(this.currentTest.filename1),
-        'partial-good*.json'
-      );
       await container.loadFromPartialFiles(
-        partialWildcard,
+        './test/temp/partial-good*.json',
         'JGFGraph',
         'Good Main Graph - merged from partial graphs'
       );
