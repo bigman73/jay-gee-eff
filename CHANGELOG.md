@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [2.6.0] - 2022-11-10
+- chore: upgrade npm dependencies
+
 ## [2.3.1] - 2021-11-26
 - chore: Upgraded npm dependencies due security vulnerabilities
 - chore: lint:fix script
