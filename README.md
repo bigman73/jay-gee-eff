@@ -1,6 +1,6 @@
 # jay-gee-eff
 
-JGF - JSON Graph Format manipulation module. Reads and writes JGF files.
+JGF - JSON Graph Format manipulation module for JavaScript. Reads and writes JGF files.
 
 ![](https://github.com/bigman73/jay-gee-eff/workflows/nodejs-ci/badge.svg)
 
