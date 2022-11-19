@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [3.0.0] - 2022-11-12
+- feat: re-implemented using Typescript
+- feat: moved from mocha to jest
+- refactor: test data
+- BREAKING CHANGE: remove support for JGF V1 Schema
+
 ## [2.6.0] - 2022-11-10
 - chore: upgrade npm dependencies
 
