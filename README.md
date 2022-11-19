@@ -36,8 +36,6 @@ npm install jay-gee-eff
 
 ## Sample code
 
-🚨 FIXME: Change to import style
-
 ```javascript
 /* eslint-disable no-console */
 import path from 'path'
