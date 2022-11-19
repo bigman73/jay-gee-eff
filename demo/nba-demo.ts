@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import path from 'path'
 
-import { JGFContainer } from '../src/jgfContainer'
+import { JGFContainer } from '..'
 
 /**
  * Main program - demonstrates building an NBA JGF graph.
