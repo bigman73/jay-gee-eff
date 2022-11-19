@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import path from 'path'
 
-import { JGFContainer } from '../'
+import { JGFContainer } from '../src/jgfContainer'
 
 /**
  * Main program - demonstrates building an NBA JGF graph.
@@ -49,7 +49,7 @@ const program = async () => {
 
   console.log('Graph nodes:')
   for (const node of Object.values(container2.graph.nodes)) {
-    console.log(`\t${node.label} {${node.metadata.type}}`)
+    console.log(`\t${node.label} {${node.metadata?.type}}`)
   }
 
   console.log('Graph edges:')

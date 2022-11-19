@@ -42,7 +42,7 @@ npm install jay-gee-eff
 /* eslint-disable no-console */
 import path from 'path'
 
-import { JGFContainer } from '../'
+import { JGFContainer } from 'jay-gee-eff'
 
 /**
  * Main program - demonstrates building an NBA JGF graph.
@@ -90,7 +90,7 @@ const program = async () => {
 
   console.log('Graph nodes:')
   for (const node of Object.values(container2.graph.nodes)) {
-    console.log(`\t${node.label} {${node.metadata.type}}`)
+    console.log(`\t${node.label} {${node.metadata?.type}}`)
   }
 
   console.log('Graph edges:')
@@ -128,36 +128,37 @@ Graph edges:
 
 ```json
 {
-  "graph": {
-    "id": "nba-demo-graph-2020",
-    "type": "sports",
-    "label": "NBA Demo Graph",
-    "directed": true,
-    "metadata": {
-      "season": 2020
-    },
-    "nodes": {
-      "lebron-james#2544": {
-        "label": "LeBron James",
+    "graph": {
+        "id": "nba-demo-graph-2020",
+        "type": "sports",
+        "label": "NBA Demo Graph",
+        "directed": true,
         "metadata": {
-          "type": "NBA Player"
-        }
-      },
-      "la-lakers#1610616839": {
-        "label": "Los Angeles Lakers",
-        "metadata": {
-          "type": "NBA Team"
-        }
-      }
-    },
-    "edges": [
-      {
-        "source": "lebron-james#2544",
-        "target": "la-lakers#1610616839",
-        "relation": "Plays for"
-      }
-    ]
-  }
+            "season": 2020
+        },
+        "nodes": {
+            "lebron-james#2544": {
+                "label": "LeBron James",
+                "metadata": {
+                    "type": "NBA Player"
+                }
+            },
+            "la-lakers#1610616839": {
+                "label": "Los Angeles Lakers",
+                "metadata": {
+                    "type": "NBA Team"
+                }
+            }
+        },
+        "edges": [
+            {
+                "source": "lebron-james#2544",
+                "target": "la-lakers#1610616839",
+                "relation": "plays-for",
+                "label": "Plays for"
+            }
+        ]
+    }
 }
 ```
 

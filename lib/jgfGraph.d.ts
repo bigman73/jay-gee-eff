@@ -2,7 +2,6 @@ import { Validator } from 'jsonschema';
 import { GraphMetaData } from './common';
 import { JGFEdge } from './jgfEdge';
 import { JGFNode } from './jgfNode';
-import { Nullable } from './misc';
 export declare type GraphJSON = any;
 /**
  * A single JGF graph instance, always contained in a parent JGFContainer.
@@ -15,7 +14,7 @@ export declare class JGFGraph {
     _type: string;
     _label: string;
     _directed: boolean;
-    _metadata: GraphMetaData;
+    _metadata?: GraphMetaData;
     _isPartial: boolean;
     /**
      * Constructor.
@@ -27,12 +26,6 @@ export declare class JGFGraph {
      * @param metadata - Graph meta data attributes.
      */
     constructor(id?: string, type?: string, label?: string, directed?: boolean, metadata?: GraphMetaData);
-    /**
-     * Loads the graph from a JGF JSON object, for legacy V1 schema.
-     *
-     * @param graphJson - JGF JSON object.
-     */
-    loadFromJSONv1(graphJson: GraphJSON): void;
     /**
      * Loads the graph from a JGF JSON object.
      *
@@ -84,11 +77,11 @@ export declare class JGFGraph {
      *
      * @returns Graph meta data attribute.
      */
-    get metadata(): GraphMetaData;
+    get metadata(): GraphMetaData | undefined;
     /**
      * Set the graph meta data.
      */
-    set metadata(value: GraphMetaData);
+    set metadata(value: GraphMetaData | undefined);
     /**
      * Returns the directed flag.
      *
@@ -135,13 +128,6 @@ export declare class JGFGraph {
      */
     addNode(id: string, label: string, metadata?: GraphMetaData): void;
     /**
-     * Adds multiple nodes, for legacy V1 JGF Schema.
-     *
-     * @param nodes - A collection of JGF node objects.
-     * @throws If node already exists.
-     */
-    addNodesV1(nodes: Array<JGFNode>): void;
-    /**
      * Adds multiple nodes.
      *
      * @param nodes - A collection of JGF node objects.
@@ -156,7 +142,7 @@ export declare class JGFGraph {
      * @param metadata - Updated node meta data attributes.
      * @throws If node doesn't exist.
      */
-    updateNode(nodeId: string, label: string, metadata?: Nullable<object>): void;
+    updateNode(nodeId: string, label: string, metadata?: GraphMetaData): void;
     /**
      * Removes an existing graph node.
      *
@@ -184,7 +170,7 @@ export declare class JGFGraph {
      * @param id - Edge identity.
      * @throws If source or target are invalid.
      */
-    addEdge(source: string, target: string, relation?: string, label?: string, metadata?: Nullable<object>, directed?: boolean, id?: string): void;
+    addEdge(source: string, target: string, relation?: string, label?: string, metadata?: GraphMetaData, directed?: boolean, id?: string): void;
     /**
      * Adds multiple edges.
      *

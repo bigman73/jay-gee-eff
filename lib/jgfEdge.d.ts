@@ -9,7 +9,7 @@ export declare class JGFEdge {
     source: string;
     target: string;
     directed?: boolean | undefined;
-    metadata: GraphMetaData;
+    metadata?: GraphMetaData;
     /**
      * Constructor.
      *

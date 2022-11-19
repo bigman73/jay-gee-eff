@@ -5,3 +5,4 @@ node_modules
 *.md
 /tests/temp
 /lib
+/demo/nba-graph.json

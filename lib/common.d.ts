@@ -1,4 +1,6 @@
-export declare type GraphMetaData = any;
+export interface GraphMetaData {
+    [key: string]: string | boolean | number;
+}
 /**
  * Clones an object (using fast clone).
  *

@@ -1,8 +1,4 @@
 /**
- * A Nullable type.
- */
-export declare type Nullable<T> = T | null;
-/**
  * Returns all files matching the wild card pattern.
  *
  * @param filenameWildcard - File name wildcard pattern.

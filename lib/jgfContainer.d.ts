@@ -39,13 +39,6 @@ export declare class JGFContainer {
      */
     addEmptyGraph(): JGFGraph;
     /**
-     * Loads a JGF V1 file into memory.
-     * Used for old V1 files.
-     *
-     * @param filename - JGF filename.
-     */
-    loadFromFileV1(filename: string): Promise<void>;
-    /**
      * Loads a JGF file V2 into memory.
      *
      * @param filename - JGF filename.
