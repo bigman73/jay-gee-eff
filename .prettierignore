@@ -3,4 +3,5 @@ package-lock.json
 node_modules
 .prettierrc
 *.md
-/test/temp
+/tests/temp
+/lib

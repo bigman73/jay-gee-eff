@@ -24,8 +24,7 @@ A library that provides the following features:
 
 ## Important note
 
-The JGF Schema has changed from v1 to v2. v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff version 2.0.0 there is support for JGF Schema v2 which is a breaking change.
-Files previously generated with jay-gee-eff v1.* can be read with the special function *JGFContainer.loadFromFileV1()\*
+The JGF Schema has breaking changes from v1 to v2, in other words v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff version 3.0.0 the support for schema V1 has been dropped.
 
 # Installation
 
@@ -37,70 +36,75 @@ npm install jay-gee-eff
 
 ## Sample code
 
+🚨 FIXME: Change to import style
+
 ```javascript
 /* eslint-disable no-console */
-const path = require('path');
-const { JGFContainer } = require('jay-gee-eff');
+import path from 'path'
+
+import { JGFContainer } from '../'
 
 /**
- * Main program - demonstrates building an NBA JGF graph
+ * Main program - demonstrates building an NBA JGF graph.
  */
 const program = async () => {
-  console.log('Building the NBA JGF Graph...');
-  const container = new JGFContainer(true);
-  const { graph } = container;
-  graph.id = 'nba-demo-graph-2020';
-  graph.type = 'sports';
-  graph.label = 'NBA Demo Graph';
+  console.log('Building the NBA JGF Graph...')
+  const container = new JGFContainer(true)
+  const { graph } = container
+  graph.id = 'nba-demo-graph-2020'
+  graph.type = 'sports'
+  graph.label = 'NBA Demo Graph'
   graph.metadata = {
     season: 2020
-  };
+  }
 
-  const node1Id = 'lebron-james#2544';
-  const node1Label = 'LeBron James';
+  const node1Id = 'lebron-james#2544'
+  const node1Label = 'LeBron James'
   const metadata1 = {
     type: 'NBA Player'
-  };
+  }
 
-  const node2Id = 'la-lakers#1610616839';
-  const node2Label = 'Los Angeles Lakers';
+  const node2Id = 'la-lakers#1610616839'
+  const node2Label = 'Los Angeles Lakers'
   const metadata2 = {
     type: 'NBA Team'
-  };
+  }
 
-  const playerContractLabel = 'Plays for';
+  const playerContractRelation = 'plays-for'
+  const playerContractLabel = 'Plays for'
 
-  console.log('Adding two nodes...');
-  graph.addNode(node1Id, node1Label, metadata1);
-  graph.addNode(node2Id, node2Label, metadata2);
+  console.log('Adding two nodes...')
+  graph.addNode(node1Id, node1Label, metadata1)
+  graph.addNode(node2Id, node2Label, metadata2)
 
-  console.log('Adding an edge...');
-  graph.addEdge(node1Id, node2Id, playerContractLabel);
+  console.log('Adding an edge...')
+  graph.addEdge(node1Id, node2Id, playerContractRelation, playerContractLabel)
 
-  const filename = path.join(path.dirname(__filename), 'nba-graph.json');
-  console.log(`Saving to file -> ${filename}`);
-  await container.saveToFile(filename, true);
+  const filename = path.join(path.dirname(__filename), 'nba-graph.json')
+  console.log(`Saving to file -> ${filename}`)
+  await container.saveToFile(filename, true)
 
-  console.log('Load the saved JGF file');
-  const container2 = new JGFContainer();
-  await container2.loadFromFile(filename);
+  console.log('Load the saved JGF file')
+  const container2 = new JGFContainer()
+  await container2.loadFromFile(filename)
 
-  console.log('Graph nodes:');
+  console.log('Graph nodes:')
   for (const node of Object.values(container2.graph.nodes)) {
-    console.log(`\t${node.label} {${node.metadata.type}}`);
+    console.log(`\t${node.label} {${node.metadata.type}}`)
   }
 
-  console.log('Graph edges:');
+  console.log('Graph edges:')
   for (const edge of container2.graph.edges) {
-    console.log(`\t${edge.source} (->${edge.label}->) ${edge.target}`);
+    console.log(`\t${edge.source} (->${edge.label}->) ${edge.target}`)
   }
 
-  console.log('-- DONE --');
-};
+  console.log('-- DONE --')
+}
 
-(async () => {
-  await program();
-})();
+;(async () => {
+  await program()
+})()
+
 ```
 
 ### Expected console output
@@ -159,31 +163,18 @@ Graph edges:
 
 # Unit Testing
 
-Unit tests are performed by the mocha framework.
+Unit tests are performed by the `jest` framework.
 
-All unit tests files are defined inside the _test_ folder and are prefixed with numbers to ensure correct execution order
+All unit tests files are defined inside the `tests` folder and are prefixed with numbers to ensure correct execution order
 
-## Install mocha globally
-
-Install mocha (once) as a global module
-
-```
-npm i mocha -g
-```
 
 ## From VS.CODE
+Use the Jest Runner extension to run or debug a test or test suite.
 
-Run (or bebug) the **Mocha Test - ALL** launch configuration
 
 ## From terminal
 
 Execute the command in terminal
-
-```
-mocha
-```
-
-or simply run
 
 ```
 npm test
