@@ -1,9 +1,9 @@
 {
   "name": "jay-gee-eff",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "JGF - JSON Graph Format manipulation module for JavaScript. Reads and writes JGF files.",
-  "main": "ndex.js",
-  "types": "index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],
