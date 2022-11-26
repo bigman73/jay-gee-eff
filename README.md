@@ -24,11 +24,13 @@ A library that provides the following features:
 
 ## Important note
 
-The JGF Schema has breaking changes from v1 to v2, in other words v2 is not backward compatible with v1. jay-gee-eff up to version 1.3.1 supported JGF Schema v1. Starting from jay-gee-eff version 3.0.0 the support for schema V1 has been dropped.
+The JGF Schema has breaking changes from v1 to v2, in other words v2 is not backward compatible with v1. jay-gee-eff supported JGF Schema v1 up to version 1.3.1. 
+Starting from jay-gee-eff version 3.0.0 the support for schema V1 has been dropped.
 
 # Installation
 
-```
+## Install the package
+```bash
 npm install jay-gee-eff
 ```
 
@@ -160,23 +162,81 @@ Graph edges:
 }
 ```
 
-# Unit Testing
+# Development
+> `jay-gee-eff` uses `pnpm` instead of `npm` package manager
+
+## Install pnpm globally
+Follow the instructions specific for your operating system
+https://pnpm.io/installation
+
+Ensure that after the installation the command runs successfully:
+```bash
+pnpm --version
+```
+
+> If not there may be a problem with the PATH environment variable
+
+## Install dependencies
+Install all projects dependencies with `pnpm`:
+```bash
+pnpm install
+```
+
+## Unit Testing
 
 Unit tests are performed by the `jest` framework.
 
 All unit tests files are defined inside the `tests` folder and are prefixed with numbers to ensure correct execution order
 
 
-## From VS.CODE
+### From VS.CODE
 Use the Jest Runner extension to run or debug a test or test suite.
 
 
-## From terminal
+### From terminal
 
 Execute the command in terminal
 
+```bash
+pnpm test
 ```
-npm test
+
+## Run the demo program locally
+
+Execute the command in terminal to generate an NBA JGF file
+
+```bash
+pnpm demo
+```
+
+## Prettier
+### Check code style formatting
+```bash
+pnpm prettier
+```
+
+### Fix code style formatting
+```bash
+pnpm prettier:fix
+```
+
+
+## Lint
+```bash
+pnpm lint
+```
+
+## Publishing a version to npm registry
+
+```bash
+# Increment version
+npm version <patch | minor | major>
+
+# Push tags to github
+git push --tags
+
+# Publish package to npm
+pnpm publish
 ```
 
 # References
@@ -189,16 +249,3 @@ http://jsongraphformat.info/
 
 Source: https://github.com/jsongraph/json-graph-specification/tree/master/examples
 
-
-# Publishing a version to npm
-```
-# Tag repo
-# e.g. git tag v2.5.0
-git tag v<SEMANTIC VERSION>
-
-# Push tags to github
-git push --tags
-
-# Publish package to npm
-npm publish
-```

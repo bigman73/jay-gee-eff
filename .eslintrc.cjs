@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  ignorePatterns: ['lib/', 'tests/temp/'],
+  ignorePatterns: ['lib/', 'tests/temp/', 'pnpm-lock.yaml'],
   rules: {
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended

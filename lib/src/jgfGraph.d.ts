@@ -2,7 +2,7 @@ import { Validator } from 'jsonschema';
 import { GraphMetaData } from './common';
 import { JGFEdge } from './jgfEdge';
 import { JGFNode } from './jgfNode';
-export declare type GraphJSON = any;
+export type GraphJSON = any;
 /**
  * A single JGF graph instance, always contained in a parent JGFContainer.
  */
