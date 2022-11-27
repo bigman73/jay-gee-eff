@@ -169,6 +169,11 @@ Graph edges:
 Follow the instructions specific for your operating system
 https://pnpm.io/installation
 
+The recommended and easy way -> use `npm`:
+```bash
+npm install -g pnpm
+```
+
 Ensure that after the installation the command runs successfully:
 ```bash
 pnpm --version
