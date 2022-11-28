@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [3.1.0] - 2022-11-26
+- feat: use pnpm as package manager, instead of npm
+
 ## [3.0.0] - 2022-11-12
 - feat: re-implemented using Typescript
 - feat: moved from mocha to jest

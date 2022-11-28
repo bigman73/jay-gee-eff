@@ -6,3 +6,4 @@ node_modules
 /tests/temp
 /lib
 /demo/nba-graph.json
+pnpm-lock.yaml
