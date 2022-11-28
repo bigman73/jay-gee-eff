@@ -3,10 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [3.1.0] - 2022-11-26
+## [3.1.0] - 2022-11-27
 - feat: use pnpm as package manager, instead of npm
+- fix: unit test for loading bad partial files
+- chore: dependencies, typescript, eslint, commitlint and prettier
 
-## [3.0.0] - 2022-11-12
+## [3.0.3] - 2022-11-12
 - feat: re-implemented using Typescript
 - feat: moved from mocha to jest
 - refactor: test data

@@ -49,7 +49,7 @@ describe('BadPartialGraph', () => {
       const container = new JGFContainer()
       await expect(() =>
         container.loadFromPartialFiles('./tests/temp/partial-bad*.json')
-      ).rejects.toThrow('addEdge failed')
+      ).rejects.toThrowError('addEdge failed')
     })
   })
 })
