@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
+## [3.1.1] - 2022-12-27
+- chore: package dependencies
+
 ## [3.1.0] - 2022-11-27
 - feat: use pnpm as package manager, instead of npm
 - fix: unit test for loading bad partial files
