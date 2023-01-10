@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import path from 'path'
 
-import fsExtra, { WriteOptions } from 'fs-extra'
+import fsExtra, { JsonWriteOptions } from 'fs-extra'
 import { Validator } from 'jsonschema'
 
 import { GraphJSON, JGFGraph } from './jgfGraph'
@@ -219,7 +219,7 @@ export class JGFContainer {
         })
       }
 
-      const options: WriteOptions = {}
+      const options: JsonWriteOptions = {}
       if (prettyPrint) {
         options.spaces = 4
       }
