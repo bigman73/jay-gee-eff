@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Released]
 
-## [3.1.4] - 2023-01-09
+## [3.1.3] - 2023-01-09
 - chore: package dependencies, fs-extra broke its interface wrt to WriteOptions
 - ci: workflow action for push to main event
 
