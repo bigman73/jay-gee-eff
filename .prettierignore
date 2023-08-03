@@ -7,3 +7,5 @@ node_modules
 /lib
 /demo/nba-graph.json
 pnpm-lock.yaml
+.vscode/settings.json
+.eslintrc.cjs
