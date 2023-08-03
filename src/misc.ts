@@ -1,4 +1,4 @@
-import glob from 'glob'
+import { glob } from 'glob'
 
 /**
  * Returns all files matching the wild card pattern.
@@ -6,16 +6,8 @@ import glob from 'glob'
  * @param filenameWildcard - File name wildcard pattern.
  * @returns List of matching files.
  */
-export const getMatchingFiles = (filenameWildcard: string): Promise<Array<string>> =>
-  new Promise((resolve, reject) => {
-    glob(filenameWildcard, (err, files) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error(`Failed getting filenames, error = ${err}`)
+export const getMatchingFiles = async (filenameWildcard: string): Promise<Array<string>> => {
+  const files = await glob(filenameWildcard)
 
-        reject(err)
-      } else {
-        resolve(files)
-      }
-    })
-  })
+  return files
+}

@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## [3.2.0] - 2023-08-03
 - chore: package dependencies, typescript 5
 - chore: remove support for NodeJS 14
+- chore: major upgrade to glob, fix getMatchingFiles
 
 ## [3.1.3] - 2023-01-09
 - chore: package dependencies, fs-extra broke its interface wrt to WriteOptions
