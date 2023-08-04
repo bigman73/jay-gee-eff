@@ -34,7 +34,6 @@ module.exports = {
     'jsdoc/implements-on-classes': 1, // Recommended
     'jsdoc/match-description': 1,
     'jsdoc/multiline-blocks': 1, // Recommended
-    'jsdoc/newline-after-description': 1, // Recommended
     'jsdoc/no-bad-blocks': 1,
     'jsdoc/no-defaults': 1,
     'jsdoc/no-missing-syntax': 0,
@@ -92,7 +91,9 @@ module.exports = {
     'jsdoc/require-throws': 1,
     'jsdoc/require-yields': 1, // Recommended
     'jsdoc/require-yields-check': 1, // Recommended
-    'jsdoc/tag-lines': 1, // Recommended
+    "jsdoc/tag-lines": ["error", "never", {
+      "startLines": 1
+    }],
     'jsdoc/valid-types': 1, // Recommended
     'tsdoc/syntax': 'warn',
     'import/order': [

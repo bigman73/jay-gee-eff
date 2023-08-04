@@ -3,6 +3,11 @@
     "titleBar.activeBackground": "#5994f3",
     "titleBar.activeForeground": "#ffffff"
   },
-  "cSpell.words": ["CODEOWNERS", "isempty", "lebron"],
+  "cSpell.words": [
+    "CODEOWNERS",
+    "isempty",
+    "lebron",
+    "tsdoc"
+  ],
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
